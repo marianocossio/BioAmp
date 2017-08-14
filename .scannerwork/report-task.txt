@@ -1,0 +1,7 @@
+organization=marianocossio-github
+projectKey=BioAmp
+serverUrl=https://sonarcloud.io
+serverVersion=6.5.0.27571
+dashboardUrl=https://sonarcloud.io/dashboard/index/BioAmp
+ceTaskId=AV3hv_yv_3TVqy6JD2rw
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AV3hv_yv_3TVqy6JD2rw

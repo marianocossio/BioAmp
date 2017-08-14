@@ -1,0 +1,71 @@
+Mon Aug 14 14:10:40 2017: build-wrapper, version 4.11 (linux-x86)
+Mon Aug 14 14:10:40 2017: System name: Linux Nodename: MarianoDo Release: 3.16.0-4-amd64 Version: #1 SMP Debian 3.16.39-1+deb8u2 (2017-03-07) Machine: x86_64
+Mon Aug 14 14:10:40 2017: socket path: /tmp/build-wrapper-socket.FOspoc
+Mon Aug 14 14:10:40 2017: dynamic library found: /media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/build-wrapper-linux-x86/libinterceptor-i686.so
+Mon Aug 14 14:10:40 2017: dynamic library found: /media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/build-wrapper-linux-x86/libinterceptor-x86_64.so
+Mon Aug 14 14:10:40 2017: command executed as: <build-wrapper-linux-x86-64>
+Mon Aug 14 14:10:40 2017: command line received: <make clean all>
+Mon Aug 14 14:10:40 2017: env 0: <XDG_VTNR=7>
+Mon Aug 14 14:10:40 2017: env 1: <SSH_AGENT_PID=1182>
+Mon Aug 14 14:10:40 2017: env 2: <XDG_SESSION_ID=1>
+Mon Aug 14 14:10:40 2017: env 3: <GPG_AGENT_INFO=/run/user/1000/keyring/gpg:0:1>
+Mon Aug 14 14:10:40 2017: env 4: <TERM=xterm>
+Mon Aug 14 14:10:40 2017: env 5: <SHELL=/bin/bash>
+Mon Aug 14 14:10:40 2017: env 6: <XDG_MENU_PREFIX=gnome->
+Mon Aug 14 14:10:40 2017: env 7: <VTE_VERSION=3801>
+Mon Aug 14 14:10:40 2017: env 8: <DERBY_HOME=/usr/lib/jvm/java-8-oracle/db>
+Mon Aug 14 14:10:40 2017: env 9: <GJS_DEBUG_OUTPUT=stderr>
+Mon Aug 14 14:10:40 2017: env 10: <WINDOWID=41943046>
+Mon Aug 14 14:10:40 2017: env 11: <OLDPWD=/media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/BioAmp/bw-output>
+Mon Aug 14 14:10:40 2017: env 12: <GJS_DEBUG_TOPICS=JS ERROR;JS LOG>
+Mon Aug 14 14:10:40 2017: env 13: <USER=mariano>
+Mon Aug 14 14:10:40 2017: env 14: <LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:>
+Mon Aug 14 14:10:40 2017: env 15: <SSH_AUTH_SOCK=/run/user/1000/keyring/ssh>
+Mon Aug 14 14:10:40 2017: env 16: <SESSION_MANAGER=local/MarianoDo:@/tmp/.ICE-unix/1143,unix/MarianoDo:/tmp/.ICE-unix/1143>
+Mon Aug 14 14:10:40 2017: env 17: <USERNAME=mariano>
+Mon Aug 14 14:10:40 2017: env 18: <PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/sonar-scanner-3.0.3.778-linux/bin/:/media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/build-wrapper-linux-x86/>
+Mon Aug 14 14:10:40 2017: env 19: <DESKTOP_SESSION=default>
+Mon Aug 14 14:10:40 2017: env 20: <PWD=/media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/BioAmp>
+Mon Aug 14 14:10:40 2017: env 21: <JAVA_HOME=/usr/lib/jvm/java-8-oracle>
+Mon Aug 14 14:10:40 2017: env 22: <LANG=es_AR.UTF-8>
+Mon Aug 14 14:10:40 2017: env 23: <GDM_LANG=es_AR.UTF-8>
+Mon Aug 14 14:10:40 2017: env 24: <GDMSESSION=default>
+Mon Aug 14 14:10:40 2017: env 25: <SHLVL=1>
+Mon Aug 14 14:10:40 2017: env 26: <XDG_SEAT=seat0>
+Mon Aug 14 14:10:40 2017: env 27: <HOME=/home/mariano>
+Mon Aug 14 14:10:40 2017: env 28: <GNOME_DESKTOP_SESSION_ID=this-is-deprecated>
+Mon Aug 14 14:10:40 2017: env 29: <XDG_SESSION_DESKTOP=default>
+Mon Aug 14 14:10:40 2017: env 30: <LOGNAME=mariano>
+Mon Aug 14 14:10:40 2017: env 31: <XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/>
+Mon Aug 14 14:10:40 2017: env 32: <DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-MZeXf7zRsR,guid=4c917615d08f70251e0488215991afef>
+Mon Aug 14 14:10:40 2017: env 33: <J2SDKDIR=/usr/lib/jvm/java-8-oracle>
+Mon Aug 14 14:10:40 2017: env 34: <WINDOWPATH=7>
+Mon Aug 14 14:10:40 2017: env 35: <XDG_RUNTIME_DIR=/run/user/1000>
+Mon Aug 14 14:10:40 2017: env 36: <DISPLAY=:0>
+Mon Aug 14 14:10:40 2017: env 37: <XDG_CURRENT_DESKTOP=GNOME>
+Mon Aug 14 14:10:40 2017: env 38: <J2REDIR=/usr/lib/jvm/java-8-oracle/jre>
+Mon Aug 14 14:10:40 2017: env 39: <XAUTHORITY=/var/run/gdm3/auth-for-mariano-KyfX2t/database>
+Mon Aug 14 14:10:40 2017: env 40: <_=/media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Mon Aug 14 14:10:40 2017: executing: <make clean all>
+Mon Aug 14 14:10:40 2017: initializing json file
+Mon Aug 14 14:10:40 2017: process created with pid: 6350
+Mon Aug 14 14:10:40 2017: parent pid: 6349
+Mon Aug 14 14:10:40 2017: working directory: </media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/BioAmp>
+Mon Aug 14 14:10:40 2017: executable: </media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/build-wrapper-linux-x86/build-wrapper-linux-x86-64>
+Mon Aug 14 14:10:40 2017: argv[0]: <build-wrapper-linux-x86-64>
+Mon Aug 14 14:10:40 2017: argv[1]: <-c>
+Mon Aug 14 14:10:40 2017: argv[2]: <>
+Mon Aug 14 14:10:40 2017: argv[3]: <make>
+Mon Aug 14 14:10:40 2017: argv[4]: <clean>
+Mon Aug 14 14:10:40 2017: argv[5]: <all>
+Mon Aug 14 14:10:40 2017: skipping process with pid: 6350
+Mon Aug 14 14:10:40 2017: process created with pid: 6351
+Mon Aug 14 14:10:40 2017: parent pid: 6350
+Mon Aug 14 14:10:40 2017: working directory: </media/mariano/Archivos/Mariano/Facultad/PPS/BioAmp/BioAmp>
+Mon Aug 14 14:10:40 2017: executable: </usr/bin/make>
+Mon Aug 14 14:10:40 2017: argv[0]: <make>
+Mon Aug 14 14:10:40 2017: argv[1]: <clean>
+Mon Aug 14 14:10:40 2017: argv[2]: <all>
+Mon Aug 14 14:10:40 2017: skipping process with pid: 6351
+Mon Aug 14 14:10:40 2017: finalizing json file
+Mon Aug 14 14:10:40 2017: returned with code: 2
