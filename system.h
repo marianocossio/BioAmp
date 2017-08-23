@@ -4,7 +4,6 @@
 #include <QObject>
 
 #include <vector>
-#include <memory>
 
 #include "interface.h"
 #include "interfaceqt.h"
