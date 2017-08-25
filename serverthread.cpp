@@ -63,6 +63,11 @@ void ServerThread::stopPort()
     emit portClosed();
 }
 
+bool ServerThread::portIsActive()
+{
+    return portBioAmp.isOpen();
+}
+
 void ServerThread::write(QByteArray data)
 {
     mutex.lock();
@@ -70,6 +75,16 @@ void ServerThread::write(QByteArray data)
     portBioAmp.write(data);
 
     mutex.unlock();
+}
+
+QList<QString> ServerThread::availablePorts()
+{
+    QList<QString> availablePortNames;
+
+    for (int index = 0; index < QSerialPortInfo::availablePorts().size(); index++)
+        availablePortNames.push_back(QSerialPortInfo::availablePorts()[index].portName());
+
+    return availablePortNames;
 }
 
 void ServerThread::setBaudRate(long baudRate)

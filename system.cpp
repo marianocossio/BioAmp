@@ -2,43 +2,76 @@
 
 System::System(QObject *parent) : QObject(parent)
 {
-    interface = new InterfaceQt;
-    acquisitionServer = new AcquisitionServerQt;
-    dataConditioner = new DataConditionerStd;
-
     bufferSize = 256;
 
-    connect(acquisitionServer, SIGNAL(dataReceived(unsigned char)), dataConditioner, SLOT(newByte(unsigned char)));
-    connect(dataConditioner, SIGNAL(dataReady(DataSet*)), this, SLOT(receiveData(DataSet*)));
+    connect(&acquisitionServer, SIGNAL(dataReady(DataSet)), this, SLOT(receiveData(DataSet)));
 }
 
 System::~System()
 {
-    acquisitionServer->stopPort();
-
-    delete interface;
-    delete acquisitionServer;
-    delete dataConditioner;
+    acquisitionServer.stopPort();
 }
 
-void System::run()
+bool System::start(QString portName, int baudRate)
 {
-    acquisitionServer->setBaudRate(115200);
-    acquisitionServer->startPort("/dev/tnt0");
-    interface->show();
+    acquisitionServer.setBaudRate(baudRate);
+    bool result = acquisitionServer.startPort(portName);
+
+    if (result)
+        graph.show();
+
+    return result;
 }
 
-void System::receiveData(DataSet *data)
+void System::stop()
+{
+    acquisitionServer.stopPort();
+    graph.close();
+}
+
+bool System::receivingData()
+{
+    return acquisitionServer.portIsActive();
+}
+
+void System::send(QByteArray data)
+{
+    acquisitionServer.write(data);
+}
+
+QList<QString> System::availablePorts()
+{
+    return acquisitionServer.availablePorts();
+}
+
+void System::activateChannel(int channel)
+{
+    acquisitionServer.activateChannel(channel);
+}
+
+void System::deactivateChannel(int channel)
+{
+    acquisitionServer.deactivateChannel(channel);
+}
+
+void System::activateAllChannels()
+{
+    acquisitionServer.activateAllChannels();
+}
+
+void System::deactivateAllChannels()
+{
+    acquisitionServer.deactivateAllChannels();
+}
+
+void System::receiveData(DataSet data)
 {
     if (buffer.size() >= bufferSize)
     {
-//        for (unsigned int index = 0; index < buffer.size(); index++)
-//            delete buffer[index];
-
         buffer.clear();
     }
 
-    buffer.push_back(new DataSetStd(data));
+    graph.addData(data);
 
-    interface->displayData(buffer[buffer.size() - 1]);
+    buffer.push_back(data);
 }

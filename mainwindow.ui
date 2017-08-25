@@ -6,23 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>656</width>
+    <height>420</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="Graph" name="graph">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>300</width>
-      <height>200</height>
+      <x>470</x>
+      <y>30</y>
+      <width>160</width>
+      <height>311</height>
      </rect>
     </property>
+    <layout class="QVBoxLayout" name="channelsLayout"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -30,20 +31,52 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>656</width>
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_Tools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <widget class="QMenu" name="menuOperation_Mode">
+     <property name="title">
+      <string>Operation &amp;Mode</string>
+     </property>
+     <addaction name="action_8_Channels"/>
+     <addaction name="action1_6_Channels"/>
+    </widget>
+    <widget class="QMenu" name="menu_Port">
+     <property name="title">
+      <string>&amp;Port</string>
+     </property>
+    </widget>
+    <addaction name="menuOperation_Mode"/>
+    <addaction name="menu_Port"/>
+   </widget>
+   <addaction name="menu_Tools"/>
   </widget>
+  <action name="action_8_Channels">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;8 Channels</string>
+   </property>
+  </action>
+  <action name="action1_6_Channels">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>1&amp;6 Channels</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>Graph</class>
-   <extends>QOpenGLWidget</extends>
-   <header>graph.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

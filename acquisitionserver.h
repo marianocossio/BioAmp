@@ -3,6 +3,9 @@
 
 #include <QObject>
 
+#include "serverthread.h"
+#include "dataconditioner.h"
+
 class AcquisitionServer : public QObject
 {
     Q_OBJECT
@@ -11,19 +14,36 @@ public:
     explicit AcquisitionServer(QObject *parent = 0);
     virtual ~AcquisitionServer();
 
-    virtual bool startPort(QString portName) = 0;
-    virtual void stopPort() = 0;
-    virtual void write(QByteArray data) = 0;
+    virtual bool startPort(QString portName);
+    virtual void stopPort();
+    virtual bool portIsActive();
+    virtual void write(QByteArray data);
+
+    virtual QList<QString> availablePorts();
 
 signals:
-    void dataReceived(unsigned char data);
+    void dataReady(DataSet data);
     void portOpened();
     void portClosed();
 
 public slots:
-    virtual void setBaudRate(long baudRate) = 0;
+    virtual void setBaudRate(long baudRate);
+
+    virtual void activateChannel(int channel);
+    virtual void deactivateChannel(int channel);
+    virtual void activateAllChannels();
+    virtual void deactivateAllChannels();
 
 protected:
+
+private:
+    ServerThread thread;
+    DataConditioner dataConditioner;
+
+private slots:
+    virtual void dataReadySignalReceived(DataSet data);
+    virtual void portOpenedSignalReceived();
+    virtual void portClosedSignalReceived();
 
 };
 

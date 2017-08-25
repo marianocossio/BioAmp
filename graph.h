@@ -5,15 +5,14 @@
 #include <QVector>
 
 #include "dataset.h"
-#include "datasetstd.h"
 
 class Graph : public QOpenGLWidget
 {
     Q_OBJECT
 public:
-    Graph(QWidget *parent);
+    Graph(QWidget *parent = 0);
 
-    void addData(DataSet *data);
+    void addData(DataSet data);
 
 protected:
     void initializeGL();
@@ -21,7 +20,7 @@ protected:
     void paintGL();
 
 private:
-    QVector<DataSet*> localSignals;
+    QVector<DataSet> localSignals;
 };
 
 #endif // GRAPH_H

@@ -5,14 +5,9 @@
 
 #include <vector>
 
-#include "interface.h"
-#include "interfaceqt.h"
-
 #include "acquisitionserver.h"
-#include "acquisitionserverqt.h"
-
 #include "dataconditioner.h"
-#include "dataconditionerstd.h"
+#include "graph.h"
 
 using namespace std;
 
@@ -23,20 +18,30 @@ class System : public QObject
 public:
     explicit System(QObject *parent = 0);
     ~System();
-    void run();
+
+    bool start(QString portName, int baudRate);
+    void stop();
+    bool receivingData();
+    void send(QByteArray data);
+
+    QList<QString> availablePorts();
 
 signals:
 
-public slots:
+public slots:    
+    void activateChannel(int channel);
+    void deactivateChannel(int channel);
+    void activateAllChannels();
+    void deactivateAllChannels();
 
 private slots:
-    void receiveData(DataSet *data);
+    void receiveData(DataSet data);
 
 private:
-    Interface *interface;
-    AcquisitionServer *acquisitionServer;
-    DataConditioner *dataConditioner;
-    vector<DataSetStd*> buffer;
+    AcquisitionServer acquisitionServer;
+    Graph graph;
+
+    vector<DataSet> buffer;
 
     unsigned int bufferSize;
 };

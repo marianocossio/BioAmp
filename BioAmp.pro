@@ -24,35 +24,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        interfaceqt.cpp \
-    interface.cpp \
     system.cpp \
     acquisitionserver.cpp \
-    acquisitionserverqt.cpp \
     dataconditioner.cpp \
-    dataconditionerstd.cpp \
     filehandler.cpp \
-    filehandlerqt.cpp \
     filter.cpp \
     serverthread.cpp \
     dataset.cpp \
-    datasetstd.cpp \
     graph.cpp \
     mainwindow.cpp
 
-HEADERS  += interfaceqt.h \
-    interface.h \
+HEADERS  += \
     system.h \
     acquisitionserver.h \
-    acquisitionserverqt.h \
     dataconditioner.h \
-    dataconditionerstd.h \
     filehandler.h \
-    filehandlerqt.h \
     filter.h \
     serverthread.h \
     dataset.h \
-    datasetstd.h \
     graph.h \
     mainwindow.h
 

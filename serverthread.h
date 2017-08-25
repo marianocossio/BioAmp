@@ -6,8 +6,10 @@
 #include <QWaitCondition>
 
 #include <QSerialPort>
+#include <QSerialPortInfo>
 
 #include <QByteArray>
+#include <QList>
 
 class ServerThread : public QThread
 {
@@ -19,7 +21,10 @@ public:
 
     bool startPort(QString portName);
     void stopPort();
+    bool portIsActive();
     void write(QByteArray data);
+
+    QList<QString> availablePorts();
 
 signals:
     void dataReceived(unsigned char data);

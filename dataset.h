@@ -1,6 +1,11 @@
 #ifndef DATASET_H
 #define DATASET_H
 
+#include <vector>
+
+#include <dataset.h>
+
+using namespace std;
 
 class DataSet
 {
@@ -8,22 +13,33 @@ public:
     DataSet(DataSet *parent = 0);
     virtual ~DataSet();
 
-    virtual void setDataOrder(int order) = 0;
-    virtual int getDataOrder() = 0;
+    virtual void setDataOrder(int order);
+    virtual int getDataOrder();
 
-    virtual void activateChannel(int channel) = 0;
-    virtual void deactivateChannel(int channel) = 0;
-    virtual void activateAllChannels() = 0;
-    virtual void deactivateAllChannels() = 0;
+    virtual void activateChannel(int channel);
+    virtual void deactivateChannel(int channel);
+    virtual void activateAllChannels();
+    virtual void deactivateAllChannels();
 
-    virtual int &channelData(int channel) = 0;
+    virtual int &channelData(int channel);
 
-    virtual bool channelIsActive(int channel) = 0;
-    virtual int numberOfActiveChannels() = 0;
+    virtual bool channelIsActive(int channel);
+    virtual int numberOfActiveChannels();
 
-    virtual void clearData() = 0;
+    virtual void clearData();
 
-    virtual int &flag(int flagNumber) = 0;
+    virtual int &flag(int flagNumber);
+
+    enum {
+        DataSet_8 = 8,
+        DataSet_16 = 16
+    };
+
+private:
+    vector<int> dataSet;
+    vector<bool> activeChannels;
+    vector<int> flags;
+    int dataOrder;
 };
 
 #endif // DATASET_H

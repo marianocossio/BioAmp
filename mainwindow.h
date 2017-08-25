@@ -3,10 +3,13 @@
 
 #include <QMainWindow>
 
-#include <QResizeEvent>
+#include <QCloseEvent>
 
-#include "dataset.h"
-#include "graph.h"
+#include <QCheckBox>
+#include <QVBoxLayout>
+#include <QActionGroup>
+
+#include "system.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,13 +24,24 @@ public:
     ~MainWindow();
 
 public slots:
-    void displayData(DataSet *data);
+    void closeEvent(QCloseEvent *event);
 
 protected:
-    void resizeEvent(QResizeEvent *event);
 
 private:
     Ui::MainWindow *ui;
+
+    QVector<QCheckBox*> channelsCheckBoxes;
+    QByteArray activateChannelsCommands, deactivateChannelsCommands;
+
+    QActionGroup *availablePorts, *operationModes;
+
+    System system;
+
+private slots:
+    void configureChannels();
+    void toggleCascadeMode(QAction *operationMode);
+    void selectPort(QAction *selectedPort);
 };
 
 #endif // MAINWINDOW_H
