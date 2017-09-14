@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     serverthread.cpp \
     dataset.cpp \
     graph.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    channellayout.cpp
 
 HEADERS  += \
     system.h \
@@ -43,6 +44,13 @@ HEADERS  += \
     serverthread.h \
     dataset.h \
     graph.h \
-    mainwindow.h
+    mainwindow.h \
+    channellayout.h
 
 FORMS    += mainwindow.ui
+
+win32 {
+    LIBS += -lOpengl32
+}
+
+RC_ICONS = bitmap.ico

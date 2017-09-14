@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>656</width>
+    <width>721</width>
     <height>420</height>
    </rect>
   </property>
@@ -14,16 +14,153 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QScrollArea" name="channelsLayout">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>30</y>
-      <width>160</width>
-      <height>311</height>
+      <x>10</x>
+      <y>80</y>
+      <width>701</width>
+      <height>301</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="channelsLayout"/>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="channelsLayoutWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>699</width>
+       <height>299</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="testSignalsLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>Signal</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="sampleRateComboBox">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>40</y>
+      <width>89</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <item>
+     <property name="text">
+      <string>250 [Hz]</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>500 [Hz]</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1 [KHz]</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2 [KHz]</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="testSignalsComboBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>235</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <item>
+     <property name="text">
+      <string>External Input</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>GND</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Square, 1.875 [mV], 0.97 [Hz]</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Square, 1.875 [mV], 1.95 [Hz]</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>DC</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Square, 3.75 [mV], 0.97 [Hz]</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Square, 3.75 [mV], 1.95 [Hz]</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="sampleRateLabel">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>84</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>Sample Rate</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -31,7 +168,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>656</width>
+     <width>721</width>
      <height>26</height>
     </rect>
    </property>

@@ -12,7 +12,7 @@ DataConditioner::~DataConditioner()
 
 void DataConditioner::newByte(unsigned char byte)
 {
-    if (byte == 0xA0)
+    if ((byte == 0xA0) && (byteNumber >= 33))
     {
         byteNumber = 1;
 

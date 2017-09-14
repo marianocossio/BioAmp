@@ -30,7 +30,8 @@ bool AcquisitionServer::portIsActive()
 
 void AcquisitionServer::write(QByteArray data)
 {
-    thread.write(data);
+    if (thread.portIsActive())
+        thread.write(data);
 }
 
 QList<QString> AcquisitionServer::availablePorts()
