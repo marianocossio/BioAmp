@@ -14,6 +14,18 @@ MainWindow::MainWindow(QWidget *parent) :
     operationModes = new QActionGroup(this);
     baudRates = new QActionGroup(this);
 
+    QFile configurations("conf.conf");
+    int formerBaudrate;
+
+    if (configurations.open(QFile::Text | QFile::ReadOnly))
+    {
+        formerBaudrate = configurations.readLine().toInt();
+        configurations.close();
+    }
+
+    else
+        formerBaudrate = 115200;
+
     baudRates->addAction("9600")->setCheckable(true);
     baudRates->addAction("14400")->setCheckable(true);
     baudRates->addAction("19200")->setCheckable(true);
@@ -29,7 +41,15 @@ MainWindow::MainWindow(QWidget *parent) :
     baudRates->addAction("460800")->setCheckable(true);
     baudRates->addAction("921600")->setCheckable(true);
 
-    baudRates->actions()[7]->setChecked(true);
+    for (int index = 0; index < baudRates->actions().size(); index++)
+    {
+        if (baudRates->actions()[index]->text() == QString::number(formerBaudrate))
+            baudRates->actions()[index]->setChecked(true);
+
+        else
+            baudRates->actions()[7]->setChecked(true);
+    }
+
 
     baudRates->setEnabled(false);
 
@@ -80,6 +100,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    QFile configurations("conf.conf");
+
+    if (configurations.open(QFile::Text | QFile::WriteOnly | QFile::Truncate))
+    {
+        for (int index; index < baudRates->actions().size(); index++)
+            if (baudRates->actions()[index]->isChecked())
+                configurations.write(baudRates->actions()[index]->text().toUtf8());
+
+        configurations.close();
+    }
+
     system.stop();
 }
 
@@ -128,17 +159,25 @@ void MainWindow::toggleCascadeMode(QAction *operationMode)
     }
 
     system.activateAllChannels();
-    system.updateChannels();
+    system.flush();
 }
 
 void MainWindow::selectPort(QAction *selectedPort)
-{
+{    
+    int presentBaudrate;
+
+    for (int index = 0; index < baudRates->children().size(); index++)
+        if (baudRates->actions()[index]->isChecked())
+            presentBaudrate = baudRates->actions()[index]->text().toInt();
+
     if (system.receivingData())
         system.stop();
 
-    if (system.start(selectedPort->text(), 115200))
+    if (system.start(selectedPort->text(), presentBaudrate))
     {
         system.setSampleRate(System::at250Hz);
+        system.flush();
+
         ui->sampleRateComboBox->setCurrentIndex(0);
 
         ui->menuOperation_Mode->setEnabled(true);
@@ -183,6 +222,8 @@ void MainWindow::selectBaudRate(QAction *selectedBaudRate)
     if (system.start(portName, selectedBaudRate->text().toInt()))
     {
         system.setSampleRate(System::at250Hz);
+        system.flush();
+
         ui->sampleRateComboBox->setCurrentIndex(0);
 
         ui->menuOperation_Mode->setEnabled(true);
@@ -226,6 +267,8 @@ void MainWindow::selectSampleRate(QString sampleRate)
 
     if (sampleRate == "2 [KHz]")
         system.setSampleRate(System::at2kHz);
+
+    system.flush();
 }
 
 void MainWindow::selectTestSignal(int testSignal)
@@ -240,14 +283,27 @@ void MainWindow::selectTestSignal(int testSignal)
     {        
         system.setTestSignal(testSignal - 1);
 
-        for (int index = 0; index < channelsCheckBoxes.size(); index++)
+        channelsCheckBoxes[0]->activateTestMode(true);
+
+        for (int index = 1; index < channelsCheckBoxes.size(); index++)
+        {
             channelsCheckBoxes[index]->activateTestMode(true);
+
+            if (channelsCheckBoxes[index]->isConnectedToTestSignal())
+                system.setChannelConnectionType(index - 1, System::test);
+
+            else
+                system.setChannelConnectionType(index - 1, System::input);
+        }
+
+        system.flush();
     }
 }
 
 void MainWindow::activateChannel(int channel, bool activated)
 {
     system.activateChannel(channel, activated);
+    system.flush();
 
     allChannelsModificationEnabled = false;
 
@@ -295,6 +351,8 @@ void MainWindow::setChannelGain(int channel, int gain)
         break;
     }
 
+    system.flush();
+
     allChannelsModificationEnabled = false;
 
     if (channelsCheckBoxes.size() > 1)
@@ -326,6 +384,8 @@ void MainWindow::toTestSignalToggled(int channel, bool status)
     else
         system.setChannelConnectionType(channel, System::input);
 
+    system.flush();
+
     allChannelsModificationEnabled = false;
 
     if (!status)
@@ -350,8 +410,6 @@ void MainWindow::selectAllChannels(int disregarded, bool status)
     if (allChannelsModificationEnabled)
         for (int index = 1; index < channelsCheckBoxes.size(); index++)
             channelsCheckBoxes[index]->select(status);
-
-    system.updateChannels();
 }
 
 void MainWindow::changeAllChannelsGain(int disregarded, int gain)
@@ -359,8 +417,6 @@ void MainWindow::changeAllChannelsGain(int disregarded, int gain)
     if (allChannelsModificationEnabled)
         for (int index = 1; index < channelsCheckBoxes.size(); index++)
             channelsCheckBoxes[index]->setGain(gain);
-
-    system.updateChannels();
 }
 
 void MainWindow::connectAllChannelsToTest(int disregarded, bool status)
@@ -368,6 +424,4 @@ void MainWindow::connectAllChannelsToTest(int disregarded, bool status)
     if (allChannelsModificationEnabled)
         for (int index = 1; index < channelsCheckBoxes.size(); index++)
             channelsCheckBoxes[index]->connectToTestSignal(status);
-
-    system.updateChannels();
 }

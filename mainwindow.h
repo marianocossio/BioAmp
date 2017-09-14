@@ -10,6 +10,8 @@
 #include <QGroupBox>
 #include <QActionGroup>
 
+#include <QFile>
+
 #include "system.h"
 #include "channellayout.h"
 

@@ -30,7 +30,7 @@ System::System(QObject *parent) : QObject(parent)
     channelConfigurationCommands.push_back("x@060110X");
 
     connect(&acquisitionServer, SIGNAL(dataReady(DataSet)), this, SLOT(receiveData(DataSet)));
-    connect(&delayGenerator, SIGNAL(timeout()), this, SLOT(updateChannelsSlot()));
+    connect(&ticker, SIGNAL(timeout()), this, SLOT(sendCommands()));
 }
 
 System::~System()
@@ -80,11 +80,10 @@ QList<QString> System::availablePorts()
     return acquisitionServer.availablePorts();
 }
 
-void System::updateChannels()
+void System::flush()
 {
-    delay(50);
-
-    delayGenerator.start(50);
+    if (!ticker.isActive())
+        ticker.start(50);
 }
 
 void System::activateChannel(int channel, bool activated)
@@ -92,15 +91,13 @@ void System::activateChannel(int channel, bool activated)
     if (activated)
     {
         acquisitionServer.activateChannel(channel);
-        acquisitionServer.write(activateChannelsCommands.mid(channel, 1));
-        qDebug(activateChannelsCommands.mid(channel, 1));
+        commandsBuffer.push_back(activateChannelsCommands.mid(channel, 1));
     }
 
     else
     {
         acquisitionServer.deactivateChannel(channel);
-        acquisitionServer.write(deactivateChannelsCommands.mid(channel, 1));
-        qDebug(deactivateChannelsCommands.mid(channel, 1));
+        commandsBuffer.push_back(deactivateChannelsCommands.mid(channel, 1));
     }
 }
 
@@ -109,12 +106,10 @@ void System::activateAllChannels()
     acquisitionServer.activateAllChannels();
 
     if (cascadeMode)
-        acquisitionServer.write(activateChannelsCommands);
+        commandsBuffer.push_back(activateChannelsCommands);
 
     else
-        acquisitionServer.write(activateChannelsCommands.mid(0, 8));
-
-    qDebug(activateChannelsCommands.mid(0, 8));
+        commandsBuffer.push_back(activateChannelsCommands.mid(0, 8));
 }
 
 void System::deactivateAllChannels()
@@ -122,38 +117,32 @@ void System::deactivateAllChannels()
     acquisitionServer.deactivateAllChannels();
 
     if (cascadeMode)
-        acquisitionServer.write(deactivateChannelsCommands);
+        commandsBuffer.push_back(deactivateChannelsCommands);
 
     else
-        acquisitionServer.write(deactivateChannelsCommands.mid(0, 8));
-
-    qDebug(deactivateChannelsCommands.mid(0, 8));
+        commandsBuffer.push_back(deactivateChannelsCommands.mid(0, 8));
 }
 
 void System::setTestSignal(int signal)
 {
-    acquisitionServer.write(testSignalCommands.mid(signal, 1));
-    qDebug(testSignalCommands.mid(signal, 1));
+    commandsBuffer.push_back(testSignalCommands.mid(signal, 1));
 }
 
 void System::setChannelConnectionType(int channel, int type)
 {
     channelConfigurationCommands[channel][4] = QByteArray::number(type)[0];
-    acquisitionServer.write(channelConfigurationCommands[channel]);
-    qDebug(channelConfigurationCommands[channel]);
+    commandsBuffer.push_back(channelConfigurationCommands[channel]);
 }
 
 void System::setChannelGain(int channel, int gain)
 {
     channelConfigurationCommands[channel][3] = QByteArray::number(gain)[0];
-    acquisitionServer.write(channelConfigurationCommands[channel]);
-    qDebug(channelConfigurationCommands[channel]);
+    commandsBuffer.push_back(channelConfigurationCommands[channel]);
 }
 
 void System::setSampleRate(int sampleRate)
 {
-    acquisitionServer.write(sampleRateCommands.mid(sampleRate, 1));
-    qDebug(sampleRateCommands.mid(sampleRate, 1));
+    commandsBuffer.push_back(sampleRateCommands.mid(sampleRate, 1));
 }
 
 void System::receiveData(DataSet data)
@@ -168,28 +157,15 @@ void System::receiveData(DataSet data)
     buffer.push_back(data);
 }
 
-void System::updateChannelsSlot()
+void System::sendCommands()
 {
-    int channelsQuatity;
-    acquisitionServer.write(channelConfigurationCommands[channelCommandIndex]);
-
-    if (cascadeMode)
-        channelsQuatity = 16;
-
-    else
-        channelsQuatity = 8;
-
-    if ((++channelCommandIndex) >= channelsQuatity)
+    if (commandsBuffer.size() > 0)
     {
-        delayGenerator.stop();
-        channelCommandIndex = 0;
+        acquisitionServer.write(commandsBuffer[0]);
+        //qDebug(commandsBuffer[0]);
+        commandsBuffer.pop_front();
+
+        if (commandsBuffer.size() == 0)
+            ticker.stop();
     }
-}
-
-void System::delay(int msec)
-{
-    QTime chronometer;
-    chronometer.start();
-
-    while (chronometer.elapsed() < msec);
 }

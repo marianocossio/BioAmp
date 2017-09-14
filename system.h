@@ -29,7 +29,7 @@ public:
 
     QList<QString> availablePorts();
 
-    void updateChannels();
+    void flush();
 
     enum Channels {
         channel1, channel2, channel3, channel4, channel5, channel6, channel7, channel8
@@ -67,7 +67,7 @@ public slots:
 
 private slots:
     void receiveData(DataSet data);
-    void updateChannelsSlot();
+    void sendCommands();
 
 private:
     AcquisitionServer acquisitionServer;
@@ -81,11 +81,9 @@ private:
     int channelCommandIndex;
 
     QByteArray activateChannelsCommands, deactivateChannelsCommands, testSignalCommands, sampleRateCommands;
-    QVector<QByteArray> channelConfigurationCommands;
+    QVector<QByteArray> channelConfigurationCommands, commandsBuffer;
 
-    QTimer delayGenerator;
-
-    void delay(int msec);
+    QTimer ticker;
 };
 
 #endif // SYSTEM_H
