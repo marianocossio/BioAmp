@@ -19,27 +19,15 @@ class System : public QObject
     Q_OBJECT
 
 public:
-    explicit System(QObject *parent = 0);
-    ~System();
-
-    bool start(QString portName, int baudRate);
-    void stop();
-    bool receivingData();
-    void send(QByteArray data);
-
-    QList<QString> availablePorts();
-
-    void flush();
-
-    enum Channels {
+    enum Channel {
         channel1, channel2, channel3, channel4, channel5, channel6, channel7, channel8
     };
 
-    enum ConnectionTypes {
+    enum ConnectionType {
         input, short_circuit, BIAS, MVDD, temp, test, BIAS_DRP, BIAS_DRN
     };
 
-    enum TestSignals {
+    enum TestSignal {
         GND, SQ1875x097, SQ1875x195, DC, SQ3750x097, SQ3750x195
     };
 
@@ -51,6 +39,19 @@ public:
         at2kHz, at1kHz, at500Hz, at250Hz
     };
 
+    explicit System(QObject *parent = 0);
+    ~System();
+
+    bool start(QString portName, int baudRate);
+    void stop();
+    void pause();
+    bool receivingData();
+    void send(QByteArray data);
+
+    QList<QString> availablePorts();
+
+    void flush();
+
 signals:
 
 public slots:    
@@ -60,10 +61,13 @@ public slots:
 
     void setTestSignal(int signal);
 
-    void setChannelConnectionType(int channel, int type);
+    void setChannelConnectionType(int channel, ConnectionType type);
     void setChannelGain(int channel, int gain);
+    void setChannelSRB2(int channel, bool set);
 
     void setSampleRate(int sampleRate);
+
+    void toggleGraphVisibility();
 
 private slots:
     void receiveData(DataSet data);
@@ -78,6 +82,7 @@ private:
     unsigned int bufferSize;
 
     bool cascadeMode;
+    int dataOutput;
     int channelCommandIndex;
 
     QByteArray activateChannelsCommands, deactivateChannelsCommands, testSignalCommands, sampleRateCommands;

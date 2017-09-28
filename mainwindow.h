@@ -57,11 +57,14 @@ private slots:
     void activateChannel(int channel, bool activated);
     void setChannelGain(int channel, int gain);
     void toTestSignalToggled(int channel, bool status);
+    void bipolarConfigurationToggled(int channel, bool status);
 
     void selectAllChannels(int disregarded, bool status);
     void changeAllChannelsGain(int disregarded, int gain);
     void connectAllChannelsToTest(int disregarded, bool status);
+    void setAllChannelsBipolarConfiguration(int disregarded, bool status);
 
+    void on_connectButton_clicked();
 };
 
 #endif // MAINWINDOW_H

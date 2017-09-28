@@ -7,6 +7,7 @@ ChannelLayout::ChannelLayout(QString displayedText, QWidget *parent) : QWidget(p
     channelGainCombobox = new QComboBox();
     channelSelectedCheckbox = new QCheckBox("Activate Channel");
     channelToTestCheckBox = new QCheckBox("Connect to test signal");
+    bipolarConfigurationCheckBox = new QCheckBox("Bipolar Configuration");
 
     testMode = false;
     channelNumber = 0;
@@ -24,11 +25,13 @@ ChannelLayout::ChannelLayout(QString displayedText, QWidget *parent) : QWidget(p
 
     channelSelectedCheckbox->setChecked(true);
     channelToTestCheckBox->setChecked(false);
+    bipolarConfigurationCheckBox->setChecked(true);
 
     channelSelectedCheckbox->setFixedWidth(135);
     channelGainLabel.setFixedWidth(30);
     channelGainCombobox->setFixedWidth(60);
     channelToTestCheckBox->setFixedWidth(170);
+    bipolarConfigurationCheckBox->setFixedWidth(170);
 
     configLayout->addWidget(channelSelectedCheckbox);
     configLayout->addSpacing(50);
@@ -36,15 +39,17 @@ ChannelLayout::ChannelLayout(QString displayedText, QWidget *parent) : QWidget(p
     configLayout->addWidget(channelGainCombobox);
     configLayout->addSpacing(50);
     configLayout->addWidget(channelToTestCheckBox);
+    configLayout->addWidget(bipolarConfigurationCheckBox);
 
     externalLayout->addWidget(&channelNameLabel);
     externalLayout->addLayout(configLayout);
 
-    setFixedWidth(550);
+    setFixedWidth(820);
 
     connect(channelSelectedCheckbox, SIGNAL(toggled(bool)), this, SLOT(selectCheckboxToggled(bool)));
     connect(channelGainCombobox, SIGNAL(currentIndexChanged(QString)), this, SLOT(gainComboboxChanged(QString)));
     connect(channelToTestCheckBox, SIGNAL(toggled(bool)), this, SLOT(toTestCheckboxToggled(bool)));
+    connect(bipolarConfigurationCheckBox, SIGNAL(toggled(bool)), this, SLOT(bipolarConfigurationCheckBoxToggled(bool)));
 }
 
 ChannelLayout::~ChannelLayout()
@@ -69,6 +74,11 @@ bool ChannelLayout::isActivated()
 bool ChannelLayout::isConnectedToTestSignal()
 {
     return channelToTestCheckBox->isChecked();
+}
+
+bool ChannelLayout::isBipolarModeActivated()
+{
+    return bipolarConfigurationCheckBox->isChecked();
 }
 
 int ChannelLayout::channelGain()
@@ -123,7 +133,9 @@ void ChannelLayout::setGain(int gain)
 
 void ChannelLayout::activateTestMode(bool activate)
 {
-    channelToTestCheckBox->setEnabled(activate);
+    if (isActivated())
+        channelToTestCheckBox->setEnabled(activate);
+
     testMode = activate;
 }
 
@@ -132,12 +144,18 @@ void ChannelLayout::connectToTestSignal(bool connect)
     channelToTestCheckBox->setChecked(connect);
 }
 
+void ChannelLayout::setBipolarConfiguration(bool set)
+{
+    bipolarConfigurationCheckBox->setChecked(set);
+}
+
 void ChannelLayout::selectCheckboxToggled(bool status)
 {
     channelGainLabel.setEnabled(status);
     channelGainCombobox->setEnabled(status);
     if (testMode)
         channelToTestCheckBox->setEnabled(status);
+    bipolarConfigurationCheckBox->setEnabled(status);
 
     emit channelSelected(channelNumber, status);
 }
@@ -166,5 +184,11 @@ void ChannelLayout::gainComboboxChanged(QString gain)
 
 void ChannelLayout::toTestCheckboxToggled(bool status)
 {
+    bipolarConfigurationCheckBox->setEnabled(!status);
     emit toTestSignalToggled(channelNumber, status);
+}
+
+void ChannelLayout::bipolarConfigurationCheckBoxToggled(bool status)
+{
+    emit bipolarConfigurationToggled(channelNumber, status);
 }

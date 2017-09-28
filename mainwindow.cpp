@@ -78,11 +78,26 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->sampleRateLabel->setEnabled(false);
     ui->sampleRateComboBox->setEnabled(false);
 
+    ui->showGraphPushButton->setToolTip("Show/Hide Graph");
+    ui->connectButton->setToolTip("Connect/Disconnect BioAmp");
+    ui->connectionStatusImage->setToolTip("BioAmp Connection Status");
+
+    ui->showGraphPushButton->setIcon(QIcon(":/screen/screen.png"));
+    ui->connectButton->setIcon(QIcon(":/connection/connect.png"));
+    ui->connectionStatusImage->setPixmap(QPixmap(":/connection/disconnected.png").scaledToHeight(ui->connectionStatusImage->height()));
+
+    ui->showGraphPushButton->setEnabled(false);
+    ui->connectButton->setEnabled(false);
+    ui->connectionStatusImage->setEnabled(false);
+
+    setWindowTitle("BioAmp - Configuration Window");
+
     connect(availablePorts, SIGNAL(triggered(QAction*)), this, SLOT(selectPort(QAction*)));
     connect(operationModes, SIGNAL(triggered(QAction*)), this, SLOT(toggleCascadeMode(QAction*)));
     connect(baudRates, SIGNAL(triggered(QAction*)), this, SLOT(selectBaudRate(QAction*)));
     connect(ui->sampleRateComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(selectSampleRate(QString)));
     connect(ui->testSignalsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(selectTestSignal(int)));
+    connect(ui->showGraphPushButton, SIGNAL(clicked()), &system, SLOT(toggleGraphVisibility()));
 }
 
 MainWindow::~MainWindow()
@@ -116,7 +131,12 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    ui->channelsLayout->resize(event->size().width() - 20, event->size().height() - 115);
+    ui->tabWidget->resize(event->size().width() - 10, event->size().height() - 35);
+    ui->channelsLayout->resize(ui->tabWidget->width() - 15, ui->tabWidget->height() - 110);
+
+    ui->showGraphPushButton->move(event->size().width() - 90, 5);
+    ui->connectButton->move(event->size().width() - 60, 5);
+    ui->connectionStatusImage->move(event->size().width() - 30, 10);
 
 }
 
@@ -142,6 +162,7 @@ void MainWindow::toggleCascadeMode(QAction *operationMode)
     connect(channelsCheckBoxes[0], SIGNAL(channelSelected(int,bool)), this, SLOT(selectAllChannels(int,bool)));
     connect(channelsCheckBoxes[0], SIGNAL(channelGainChanged(int,int)), this, SLOT(changeAllChannelsGain(int,int)));
     connect(channelsCheckBoxes[0], SIGNAL(toTestSignalToggled(int,bool)), this, SLOT(connectAllChannelsToTest(int,bool)));
+    connect(channelsCheckBoxes[0], SIGNAL(bipolarConfigurationToggled(int,bool)), this, SLOT(setAllChannelsBipolarConfiguration(int,bool)));
 
     for (int index = 0; index < channelsNumber; index++)
     {
@@ -150,6 +171,7 @@ void MainWindow::toggleCascadeMode(QAction *operationMode)
         connect(channelsCheckBoxes[index + 1], SIGNAL(channelSelected(int,bool)), this, SLOT(activateChannel(int,bool)));
         connect(channelsCheckBoxes[index + 1], SIGNAL(channelGainChanged(int,int)), this, SLOT(setChannelGain(int,int)));
         connect(channelsCheckBoxes[index + 1], SIGNAL(toTestSignalToggled(int,bool)), this, SLOT(toTestSignalToggled(int,bool)));
+        connect(channelsCheckBoxes[index + 1], SIGNAL(bipolarConfigurationToggled(int,bool)), this, SLOT(bipolarConfigurationToggled(int,bool)));
 
         channelsCheckBoxes[index + 1]->setChannelNumber(index);
         channelsCheckBoxes[index + 1]->activateTestMode(false);
@@ -157,6 +179,9 @@ void MainWindow::toggleCascadeMode(QAction *operationMode)
 
         channelsConfigurationBoxLayout->addWidget(channelsCheckBoxes[index + 1]);
     }
+
+    ui->testSignalsComboBox->setCurrentIndex(0);
+    ui->sampleRateComboBox->setCurrentIndex(0);
 
     system.activateAllChannels();
     system.flush();
@@ -188,6 +213,12 @@ void MainWindow::selectPort(QAction *selectedPort)
 
         baudRates->setEnabled(true);
 
+        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/connected.png").scaledToHeight(ui->connectionStatusImage->height()));
+
+        ui->showGraphPushButton->setEnabled(true);
+        ui->connectButton->setEnabled(true);
+        ui->connectionStatusImage->setEnabled(true);
+
         ui->action_8_Channels->trigger();
     }
 
@@ -200,6 +231,12 @@ void MainWindow::selectPort(QAction *selectedPort)
         ui->sampleRateComboBox->setEnabled(false);
 
         baudRates->setEnabled(false);
+
+        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/disconnected.png").scaledToHeight(ui->connectionStatusImage->height()));
+
+        ui->showGraphPushButton->setEnabled(false);
+        ui->connectButton->setEnabled(false);
+        ui->connectionStatusImage->setEnabled(false);
 
         for (int index = 0; index < channelsCheckBoxes.size(); index++)
             delete channelsCheckBoxes[index];
@@ -234,6 +271,12 @@ void MainWindow::selectBaudRate(QAction *selectedBaudRate)
 
         baudRates->setEnabled(true);
 
+        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/connected.png").scaledToHeight(ui->connectionStatusImage->height()));
+
+        ui->showGraphPushButton->setEnabled(true);
+        ui->connectButton->setEnabled(true);
+        ui->connectionStatusImage->setEnabled(true);
+
         ui->action_8_Channels->trigger();
     }
 
@@ -246,6 +289,12 @@ void MainWindow::selectBaudRate(QAction *selectedBaudRate)
         ui->sampleRateComboBox->setEnabled(false);
 
         baudRates->setEnabled(false);
+
+        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/disconnected.png").scaledToHeight(ui->connectionStatusImage->height()));
+
+        ui->showGraphPushButton->setEnabled(false);
+        ui->connectButton->setEnabled(false);
+        ui->connectionStatusImage->setEnabled(false);
 
         for (int index = 0; index < channelsCheckBoxes.size(); index++)
             delete channelsCheckBoxes[index];
@@ -405,6 +454,30 @@ void MainWindow::toTestSignalToggled(int channel, bool status)
     allChannelsModificationEnabled = true;
 }
 
+void MainWindow::bipolarConfigurationToggled(int channel, bool status)
+{
+    system.setChannelSRB2(channel, status);
+    system.flush();
+
+    allChannelsModificationEnabled = false;
+
+    if (!status)
+        channelsCheckBoxes[0]->setBipolarConfiguration(false);
+
+    else
+    {
+        bool channelsDeactivated = false;
+
+        for (int index = 1; index < channelsCheckBoxes.size(); index++)
+            if (!channelsCheckBoxes[index]->isBipolarModeActivated())
+                channelsDeactivated = true;
+
+        channelsCheckBoxes[0]->setBipolarConfiguration(!channelsDeactivated);
+    }
+
+    allChannelsModificationEnabled = true;
+}
+
 void MainWindow::selectAllChannels(int disregarded, bool status)
 {
     if (allChannelsModificationEnabled)
@@ -424,4 +497,39 @@ void MainWindow::connectAllChannelsToTest(int disregarded, bool status)
     if (allChannelsModificationEnabled)
         for (int index = 1; index < channelsCheckBoxes.size(); index++)
             channelsCheckBoxes[index]->connectToTestSignal(status);
+}
+
+void MainWindow::setAllChannelsBipolarConfiguration(int disregarded, bool status)
+{
+    if (allChannelsModificationEnabled)
+        for (int index = 1; index < channelsCheckBoxes.size(); index++)
+            channelsCheckBoxes[index]->setBipolarConfiguration(status);
+}
+
+void MainWindow::on_connectButton_clicked()
+{
+    if (system.receivingData())
+    {
+        system.pause();
+
+        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/disconnected.png").scaledToHeight(ui->connectionStatusImage->height()));
+    }
+
+    else
+    {
+        int presentBaudrate;
+        QString presentPort;
+
+        for (int index = 0; index < baudRates->children().size(); index++)
+            if (baudRates->actions()[index]->isChecked())
+                presentBaudrate = baudRates->actions()[index]->text().toInt();
+
+        for (int index = 0; index < availablePorts->actions().size(); index++)
+            if (availablePorts->actions()[index]->isChecked())
+                presentPort = availablePorts->actions()[index]->text();
+
+        system.start(presentPort, presentBaudrate);
+
+        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/connected.png").scaledToHeight(ui->connectionStatusImage->height()));
+    }
 }

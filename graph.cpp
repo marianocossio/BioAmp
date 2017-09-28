@@ -3,6 +3,22 @@
 Graph::Graph(QWidget *parent) : QOpenGLWidget(parent)
 {
     // setWindowFlags(Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint);
+    colors.push_back(QColor(52, 168, 83));
+    colors.push_back(QColor(66, 133, 244));
+    colors.push_back(QColor(237, 28, 36));
+    colors.push_back(QColor(251, 188, 5));
+    colors.push_back(QColor(165, 160, 169));
+    colors.push_back(QColor(236, 159, 159));
+    colors.push_back(QColor(26, 152, 117));
+    colors.push_back(QColor(140, 161, 63));
+
+    numberOfActiveChannels = 0;
+    viewChannelNames = true;
+}
+
+Graph::~Graph()
+{
+
 }
 
 void Graph::addData(DataSet data)
@@ -18,6 +34,8 @@ void Graph::addData(DataSet data)
 void Graph::initializeGL()
 {
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+    glEnable(GL_DEPTH_TEST);
 }
 
 void Graph::resizeGL(int w, int h)
@@ -26,9 +44,10 @@ void Graph::resizeGL(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    glOrtho(0.0f, width() * 1.0f, 0.0f, 50.0f, -1.0f, 1.0f);
+    glOrtho(0.0f, w * 1.0f, 0.0f, DataSet::DataSet_8 * SIGNAL_EXCURSION, -1.0f, 1.0f);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
 }
 
 void Graph::paintGL()
@@ -37,29 +56,54 @@ void Graph::paintGL()
     {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        int activeChannels = localSignals[localSignals.size() - 1].numberOfActiveChannels();
+        float signalOffset = SIGNAL_EXCURSION / 2.0f;
         int currentChannel = 0;
 
         glClear(GL_DEPTH_BUFFER_BIT);
 
         glPushMatrix();
 
+        float scaleRatio = localSignals[localSignals.size() - 1].getDataType() / (localSignals[localSignals.size() - 1].numberOfActiveChannels() * 1.0f);
+
+        glScalef(1.0f, scaleRatio, 1.0f);
+
         glBegin(GL_LINES);
 
-        glColor3f(0.0f, 1.0f, 0.0f);
+        for (int channelIndex = 0; channelIndex < localSignals[localSignals.size() - 1].getDataType(); channelIndex++)
+            if (localSignals[localSignals.size() - 1].channelIsActive(channelIndex))
+            {
+                glColor3f(colors[channelIndex].redF() * 0.15f, colors[channelIndex].greenF() * 0.15f, colors[channelIndex].blueF() * 0.15f);
 
-        for (int channelIndex = 0; channelIndex < 8; channelIndex++)
+                glVertex3f(0.0f,
+                           signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
+                           0.0f);
+                glVertex3f(width() * 1.0f,
+                           signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
+                           0.0f);
+
+                currentChannel++;
+            }
+
+        glEnd();
+
+        currentChannel = 0;
+
+        glBegin(GL_LINES);
+
+        for (int channelIndex = 0; channelIndex < localSignals[localSignals.size() - 1].getDataType(); channelIndex++)
             if (localSignals[localSignals.size() - 1].channelIsActive(channelIndex))
             {
                 for (int signalIndex = 0; signalIndex < (localSignals.size() - 1); signalIndex++)
-                {
+                {                    
+                    glColor3f(colors[channelIndex].redF(), colors[channelIndex].greenF(), colors[channelIndex].blueF());
+
                     glVertex3f(signalIndex * 1.0f,
-                               (localSignals[signalIndex].channelData(channelIndex) / ((0x7FFFFF) / 10.0f)) + (50.0f / (activeChannels * 2.0f)) + (50.0f / (activeChannels * 1.0f)) * (currentChannel * 1.0f),
+                               (localSignals[signalIndex].channelData(channelIndex) / (SIGNAL_MAX_VALUE * 1.0f)) + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
                                0.0f);
                     glVertex3f((signalIndex + 1) * 1.0f,
-                               (localSignals[signalIndex + 1].channelData(channelIndex) / ((0x7FFFFF) / 10.0f)) + (50.0f / (activeChannels * 2.0f)) + (50.0f / (activeChannels * 1.0f)) * (currentChannel * 1.0f),
+                               (localSignals[signalIndex + 1].channelData(channelIndex) / (SIGNAL_MAX_VALUE * 1.0f)) + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
                                0.0f);
-                }
+                    }
 
                 currentChannel++;
             }
@@ -69,5 +113,45 @@ void Graph::paintGL()
         glPopMatrix();
 
         glFlush();
+
+        if (viewChannelNames)
+            drawChannelNumbers();
     }
+}
+
+void Graph::keyReleaseEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case 'c':
+        viewChannelNames = !viewChannelNames;
+        break;
+    case 'C':
+        viewChannelNames = !viewChannelNames;
+        break;
+    default:
+        break;
+    }
+}
+
+void Graph::drawChannelNumbers()
+{
+    QPainter textPainter(this);
+    QFont font = textPainter.font();
+    font.setPointSize(height() / 60);
+
+    textPainter.setFont(font);
+
+    int currentChannel = 0;
+
+    for (int channelIndex = 0; channelIndex < localSignals[localSignals.size() - 1].getDataType(); channelIndex++)
+        if (localSignals[localSignals.size() - 1].channelIsActive(channelIndex))
+        {
+            textPainter.setPen(colors[channelIndex]);
+
+            textPainter.drawText(width() / 30, (height() - (currentChannel + 1) * (height() / localSignals[localSignals.size() - 1].numberOfActiveChannels())) + (2 * font.pointSize()),"Channel " + QString::number(channelIndex + 1));
+
+            currentChannel++;
+        }
+
+    textPainter.end();
 }

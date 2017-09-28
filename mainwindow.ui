@@ -14,154 +14,232 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QScrollArea" name="channelsLayout">
+   <widget class="QPushButton" name="connectButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>80</y>
-      <width>701</width>
-      <height>301</height>
+      <x>600</x>
+      <y>5</y>
+      <width>25</width>
+      <height>25</height>
      </rect>
     </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
+    <property name="text">
+     <string/>
     </property>
-    <widget class="QWidget" name="channelsLayoutWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>699</width>
-       <height>299</height>
-      </rect>
-     </property>
+    <property name="iconSize">
+     <size>
+      <width>18</width>
+      <height>18</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="connectionStatusImage">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>5</y>
+      <width>15</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="showGraphPushButton">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>5</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>18</width>
+      <height>18</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>701</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="basicConfigurationTab">
+     <attribute name="title">
+      <string>Basic Configuration</string>
+     </attribute>
+     <widget class="QComboBox" name="testSignalsComboBox">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>30</y>
+        <width>235</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <item>
+       <property name="text">
+        <string>External Input</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>GND</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Square, 1.875 [mV], 0.97 [Hz]</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Square, 1.875 [mV], 1.95 [Hz]</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DC</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Square, 3.75 [mV], 0.97 [Hz]</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Square, 3.75 [mV], 1.95 [Hz]</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="testSignalsLabel">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>5</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Signal</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="sampleRateComboBox">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>30</y>
+        <width>89</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <item>
+       <property name="text">
+        <string>250 [Hz]</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>500 [Hz]</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1 [KHz]</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2 [KHz]</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="sampleRateLabel">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>5</y>
+        <width>84</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Sample Rate</string>
+      </property>
+     </widget>
+     <widget class="QScrollArea" name="channelsLayout">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>70</y>
+        <width>681</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="channelsLayoutWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>679</width>
+         <height>269</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="advancedConfigurationTab">
+     <attribute name="title">
+      <string>Advanced Configuration</string>
+     </attribute>
     </widget>
    </widget>
-   <widget class="QLabel" name="testSignalsLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>80</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Signal</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="sampleRateComboBox">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>40</y>
-      <width>89</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <item>
-     <property name="text">
-      <string>250 [Hz]</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>500 [Hz]</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>1 [KHz]</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2 [KHz]</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QComboBox" name="testSignalsComboBox">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>235</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <item>
-     <property name="text">
-      <string>External Input</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>GND</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Square, 1.875 [mV], 0.97 [Hz]</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Square, 1.875 [mV], 1.95 [Hz]</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>DC</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Square, 3.75 [mV], 0.97 [Hz]</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Square, 3.75 [mV], 1.95 [Hz]</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="sampleRateLabel">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>10</y>
-      <width>84</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>Sample Rate</string>
-    </property>
-   </widget>
+   <zorder>tabWidget</zorder>
+   <zorder>connectButton</zorder>
+   <zorder>connectionStatusImage</zorder>
+   <zorder>showGraphPushButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

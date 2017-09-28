@@ -1,14 +1,13 @@
 #include "dataset.h"
 
-DataSet::DataSet(DataSet *parent)
+DataSet::DataSet(DataType type, DataSet *parent)
 {
     if (parent == 0)
     {
-        int _channels = 8;
         int _flags = 6;
 
-        dataSet.resize(_channels);
-        activeChannels.resize(_channels);
+        dataSet.resize(type);
+        activeChannels.resize(type);
         flags.resize(_flags);
 
         activateAllChannels();
@@ -90,4 +89,14 @@ void DataSet::clearData()
 int &DataSet::flag(int flagNumber)
 {
     return flags[flagNumber];
+}
+
+DataSet::DataType DataSet::getDataType()
+{
+    DataType type = DataSet_8;
+
+    if (dataSet.size() == 16)
+        type = DataSet_16;
+
+    return type;
 }

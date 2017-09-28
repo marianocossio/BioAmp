@@ -5,6 +5,7 @@ System::System(QObject *parent) : QObject(parent)
     bufferSize = 256;
 
     cascadeMode = false;
+    dataOutput = -1;
     channelCommandIndex = 0;
 
     activateChannelsCommands   = "!@#$%^&*QWERTYUI";
@@ -29,6 +30,8 @@ System::System(QObject *parent) : QObject(parent)
     channelConfigurationCommands.push_back("x?060110X");
     channelConfigurationCommands.push_back("x@060110X");
 
+    graph.setWindowTitle("BioAmp - Graphics");
+
     connect(&acquisitionServer, SIGNAL(dataReady(DataSet)), this, SLOT(receiveData(DataSet)));
     connect(&ticker, SIGNAL(timeout()), this, SLOT(sendCommands()));
 }
@@ -44,11 +47,7 @@ bool System::start(QString portName, int baudRate)
     bool result = acquisitionServer.startPort(portName);
 
     if (result)
-    {
-        graph.show();
         acquisitionServer.write("b");
-        qDebug("b");
-    }
 
     return result;
 }
@@ -58,10 +57,22 @@ void System::stop()
     if (acquisitionServer.portIsActive())
     {
         acquisitionServer.write("s");
-        qDebug("s");
+
         acquisitionServer.stopPort();
     }
-    graph.close();
+
+    if (graph.isVisible())
+        graph.close();
+}
+
+void System::pause()
+{
+    if (acquisitionServer.portIsActive())
+    {
+        acquisitionServer.write("s");
+
+        acquisitionServer.stopPort();
+    }
 }
 
 bool System::receivingData()
@@ -128,7 +139,7 @@ void System::setTestSignal(int signal)
     commandsBuffer.push_back(testSignalCommands.mid(signal, 1));
 }
 
-void System::setChannelConnectionType(int channel, int type)
+void System::setChannelConnectionType(int channel, ConnectionType type)
 {
     channelConfigurationCommands[channel][4] = QByteArray::number(type)[0];
     commandsBuffer.push_back(channelConfigurationCommands[channel]);
@@ -140,9 +151,24 @@ void System::setChannelGain(int channel, int gain)
     commandsBuffer.push_back(channelConfigurationCommands[channel]);
 }
 
+void System::setChannelSRB2(int channel, bool set)
+{
+    channelConfigurationCommands[channel][6] = QByteArray::number(set)[0];
+    commandsBuffer.push_back(channelConfigurationCommands[channel]);
+    qDebug(channelConfigurationCommands[channel]);
+}
+
 void System::setSampleRate(int sampleRate)
 {
     commandsBuffer.push_back(sampleRateCommands.mid(sampleRate, 1));
+}
+
+void System::toggleGraphVisibility()
+{
+    if (graph.isVisible())
+        graph.hide();
+    else
+        graph.show();
 }
 
 void System::receiveData(DataSet data)

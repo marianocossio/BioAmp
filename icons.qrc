@@ -1,1 +1,10 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/connection">
+        <file>connect.png</file>
+        <file>connected.png</file>
+        <file>disconnected.png</file>
+    </qresource>
+    <qresource prefix="/screen">
+        <file>screen.png</file>
+    </qresource>
+</RCC>

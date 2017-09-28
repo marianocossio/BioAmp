@@ -10,7 +10,12 @@ using namespace std;
 class DataSet
 {
 public:
-    DataSet(DataSet *parent = 0);
+    enum DataType{
+        DataSet_8 = 8,
+        DataSet_16 = 16
+    };
+
+    DataSet(DataType type = DataSet_8, DataSet *parent = 0);
     virtual ~DataSet();
 
     virtual void setDataOrder(int order);
@@ -30,10 +35,7 @@ public:
 
     virtual int &flag(int flagNumber);
 
-    enum {
-        DataSet_8 = 8,
-        DataSet_16 = 16
-    };
+    DataType getDataType();
 
 private:
     vector<int> dataSet;
