@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     dataset.cpp \
     graph.cpp \
     mainwindow.cpp \
-    channellayout.cpp
+    channellayout.cpp \
+    channellayoutadvanced.cpp
 
 HEADERS  += \
     system.h \
@@ -45,7 +46,8 @@ HEADERS  += \
     dataset.h \
     graph.h \
     mainwindow.h \
-    channellayout.h
+    channellayout.h \
+    channellayoutadvanced.h
 
 FORMS    += mainwindow.ui
 

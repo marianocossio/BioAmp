@@ -3,10 +3,9 @@
 System::System(QObject *parent) : QObject(parent)
 {
     bufferSize = 256;
+    buffer.resize(bufferSize);
 
     cascadeMode = false;
-    dataOutput = -1;
-    channelCommandIndex = 0;
 
     activateChannelsCommands   = "!@#$%^&*QWERTYUI";
     deactivateChannelsCommands = "12345678qwertyui";
@@ -34,6 +33,7 @@ System::System(QObject *parent) : QObject(parent)
 
     connect(&acquisitionServer, SIGNAL(dataReady(DataSet)), this, SLOT(receiveData(DataSet)));
     connect(&ticker, SIGNAL(timeout()), this, SLOT(sendCommands()));
+    connect(&impedanceTicker, SIGNAL(timeout()), this, SLOT(getChannelImpedance()));
 }
 
 System::~System()
@@ -83,7 +83,7 @@ bool System::receivingData()
 void System::send(QByteArray data)
 {
     acquisitionServer.write(data);
-    qDebug(data);
+    //qDebug(data);
 }
 
 QList<QString> System::availablePorts()
@@ -155,7 +155,6 @@ void System::setChannelSRB2(int channel, bool set)
 {
     channelConfigurationCommands[channel][6] = QByteArray::number(set)[0];
     commandsBuffer.push_back(channelConfigurationCommands[channel]);
-    qDebug(channelConfigurationCommands[channel]);
 }
 
 void System::setSampleRate(int sampleRate)
@@ -171,12 +170,73 @@ void System::toggleGraphVisibility()
         graph.show();
 }
 
+void System::startCheckingChannelImpedance(int channel, System::ChannelTerminal terminal)
+{
+    switch (terminal)
+    {
+    case P_Terminal:
+        commandsBuffer.push_back("z" + QByteArray::number(channel + 1) + "10Z");
+        break;
+    case N_Terminal:
+        commandsBuffer.push_back("z" + QByteArray::number(channel + 1) + "01Z");
+        break;
+    default:
+        break;
+    }
+
+    flush();
+
+    impedanceTicker.start(500);
+
+    channelCommandIndex = channel;
+    channelCommandTerminal = terminal;
+}
+
+void System::stopCheckingChannelImpedance()
+{
+    impedanceTicker.stop();
+
+    commandsBuffer.push_back("z" + QByteArray::number(channelCommandIndex + 1) + "00Z");
+    commandsBuffer.push_back(channelConfigurationCommands[channelCommandIndex]);
+
+    flush();
+}
+
+void System::connectToBIAS(int channel, bool connect)
+{
+    channelConfigurationCommands[channel][5] = QByteArray::number(connect)[0];
+    commandsBuffer.push_back(channelConfigurationCommands[channel]);
+}
+
+void System::getChannelImpedance()
+{
+    if (channelCommandIndex < buffer[0].getDataType())
+    {
+        double rmsSum = 0;
+        double rmsValue = 0;
+        double impedance = 0;
+        double DC = 0;
+
+        for (unsigned index = 0; index < bufferSize; index++)
+            DC += buffer[index].channelData(channelCommandIndex);
+
+        DC = DC / (bufferSize * 1.0);
+
+        for (unsigned index = 0; index < bufferSize; index++)
+            rmsSum += ((((buffer[index].channelData(channelCommandIndex) - DC) / (SIGNAL_MAX_VALUE * 1.0)) * 4.5)
+                       * (((buffer[index].channelData(channelCommandIndex) - DC) / (SIGNAL_MAX_VALUE * 1.0)) * 4.5));
+
+        rmsValue = sqrt(rmsSum / (bufferSize * 1.0));
+
+        impedance = rmsValue / (0.0006);
+
+        emit impedanceCalculated(channelCommandIndex, channelCommandTerminal, impedance);
+    }
+}
+
 void System::receiveData(DataSet data)
 {
-    if (buffer.size() >= bufferSize)
-    {
-        buffer.clear();
-    }
+    buffer.pop_front();
 
     graph.addData(data);
 

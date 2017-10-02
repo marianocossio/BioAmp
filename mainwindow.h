@@ -14,6 +14,7 @@
 
 #include "system.h"
 #include "channellayout.h"
+#include "channellayoutadvanced.h"
 
 namespace Ui {
 class MainWindow;
@@ -37,20 +38,24 @@ private:
     Ui::MainWindow *ui;
 
     QVector<ChannelLayout*> channelsCheckBoxes;
+    QVector<ChannelLayoutAdvanced*> channelsAdvancedCheckBoxes;
 
-    QWidget *channelsConfigurationBox;
-    QVBoxLayout *channelsConfigurationBoxLayout;
+    QWidget *channelsConfigurationBox, *channelsAdvancedConfigurationBox;
+    QVBoxLayout *channelsConfigurationBoxLayout, *channelsAdvancedConfigurationBoxLayout;
 
-    QActionGroup *availablePorts, *operationModes, *baudRates;
+    QActionGroup *availablePorts, *operationModes;//, *baudRates;
 
     System system;
 
     bool allChannelsModificationEnabled;
+    int baudrate;
 
 private slots:
     void toggleCascadeMode(QAction *operationMode);
     void selectPort(QAction *selectedPort);
+    /*
     void selectBaudRate(QAction *selectedBaudRate);
+    */
     void selectSampleRate(QString sampleRate);
     void selectTestSignal(int testSignal);
 
@@ -58,11 +63,13 @@ private slots:
     void setChannelGain(int channel, int gain);
     void toTestSignalToggled(int channel, bool status);
     void bipolarConfigurationToggled(int channel, bool status);
+    void BIASToggled(int channel, bool status);
 
     void selectAllChannels(int disregarded, bool status);
     void changeAllChannelsGain(int disregarded, int gain);
     void connectAllChannelsToTest(int disregarded, bool status);
     void setAllChannelsBipolarConfiguration(int disregarded, bool status);
+    void connectAllChannelsToBIAS(int disregarded, bool status);
 
     void on_connectButton_clicked();
 };

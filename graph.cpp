@@ -13,6 +13,7 @@ Graph::Graph(QWidget *parent) : QOpenGLWidget(parent)
     colors.push_back(QColor(140, 161, 63));
 
     numberOfActiveChannels = 0;
+    graphicZoom = 1;
     viewChannelNames = true;
 }
 
@@ -98,10 +99,10 @@ void Graph::paintGL()
                     glColor3f(colors[channelIndex].redF(), colors[channelIndex].greenF(), colors[channelIndex].blueF());
 
                     glVertex3f(signalIndex * 1.0f,
-                               (localSignals[signalIndex].channelData(channelIndex) / (SIGNAL_MAX_VALUE * 1.0f)) + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
+                               (localSignals[signalIndex].channelData(channelIndex) / (SIGNAL_MAX_VALUE * 1.0f)) * (float) graphicZoom + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
                                0.0f);
                     glVertex3f((signalIndex + 1) * 1.0f,
-                               (localSignals[signalIndex + 1].channelData(channelIndex) / (SIGNAL_MAX_VALUE * 1.0f)) + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
+                               (localSignals[signalIndex + 1].channelData(channelIndex) / (SIGNAL_MAX_VALUE * 1.0f)) * (float) graphicZoom + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
                                0.0f);
                     }
 
@@ -128,8 +129,25 @@ void Graph::keyReleaseEvent(QKeyEvent *event)
     case 'C':
         viewChannelNames = !viewChannelNames;
         break;
+    case '1':
+        graphicZoom = 1;
+        break;
     default:
         break;
+    }
+}
+
+void Graph::wheelEvent(QWheelEvent *event)
+{
+    if (!event->angleDelta().isNull())
+    {
+        if (event->angleDelta().y() > 0)
+            graphicZoom++;
+        else
+            if (--graphicZoom < 1)
+                graphicZoom = 1;
+
+        update();
     }
 }
 
@@ -148,10 +166,18 @@ void Graph::drawChannelNumbers()
         {
             textPainter.setPen(colors[channelIndex]);
 
-            textPainter.drawText(width() / 30, (height() - (currentChannel + 1) * (height() / localSignals[localSignals.size() - 1].numberOfActiveChannels())) + (2 * font.pointSize()),"Channel " + QString::number(channelIndex + 1));
+            textPainter.drawText(width() / 30,
+                                 (height() - (currentChannel + 1) * (height() / localSignals[localSignals.size() - 1].numberOfActiveChannels())) + (2 * font.pointSize()),
+                    "Channel " + QString::number(channelIndex + 1));
 
             currentChannel++;
         }
+
+    textPainter.setPen(QColor(255, 255, 255));
+
+    textPainter.drawText(width() - 8 * font.pointSize(),
+                         2 * font.pointSize(),
+                         "Zoom: x" + QString::number(graphicZoom));
 
     textPainter.end();
 }

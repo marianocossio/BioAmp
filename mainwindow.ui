@@ -234,6 +234,29 @@
      <attribute name="title">
       <string>Advanced Configuration</string>
      </attribute>
+     <widget class="QScrollArea" name="channelsAdvancedLayout">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>5</y>
+        <width>681</width>
+        <height>336</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>679</width>
+         <height>334</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
    <zorder>tabWidget</zorder>

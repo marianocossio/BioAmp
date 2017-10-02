@@ -10,9 +10,14 @@ MainWindow::MainWindow(QWidget *parent) :
     channelsConfigurationBox = new QWidget;
     channelsConfigurationBoxLayout = new QVBoxLayout;
 
+    channelsAdvancedConfigurationBox = new QWidget;
+    channelsAdvancedConfigurationBoxLayout = new QVBoxLayout;
+
     availablePorts = new QActionGroup(this);
     operationModes = new QActionGroup(this);
+    /*
     baudRates = new QActionGroup(this);
+
 
     QFile configurations("conf.conf");
     int formerBaudrate;
@@ -52,9 +57,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     baudRates->setEnabled(false);
+    */
+
+    allChannelsModificationEnabled = true;
+    baudrate = 115200;
 
     channelsConfigurationBox->setLayout(channelsConfigurationBoxLayout);
     ui->channelsLayout->setWidget(channelsConfigurationBox);
+
+    channelsAdvancedConfigurationBox->setLayout(channelsAdvancedConfigurationBoxLayout);
+    ui->channelsAdvancedLayout->setWidget(channelsAdvancedConfigurationBox);
 
     for (int portIndex = 0; portIndex < system.availablePorts().size(); portIndex++)
     {
@@ -64,13 +76,13 @@ MainWindow::MainWindow(QWidget *parent) :
         availablePorts->addAction(ui->menu_Port->actions()[portIndex]);
     }
 
+    /*
     ui->menu_Port->addSeparator();
     ui->menu_Port->addMenu("&Baudrate")->addActions(baudRates->actions());
+    */
 
     for (int modeIndex = 0; modeIndex < ui->menuOperation_Mode->actions().size(); modeIndex++)
         operationModes->addAction(ui->menuOperation_Mode->actions()[modeIndex]);
-
-    allChannelsModificationEnabled = true;
 
     ui->menuOperation_Mode->setEnabled(false);
     ui->testSignalsLabel->setEnabled(false);
@@ -94,7 +106,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(availablePorts, SIGNAL(triggered(QAction*)), this, SLOT(selectPort(QAction*)));
     connect(operationModes, SIGNAL(triggered(QAction*)), this, SLOT(toggleCascadeMode(QAction*)));
+    /*
     connect(baudRates, SIGNAL(triggered(QAction*)), this, SLOT(selectBaudRate(QAction*)));
+    */
     connect(ui->sampleRateComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(selectSampleRate(QString)));
     connect(ui->testSignalsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(selectTestSignal(int)));
     connect(ui->showGraphPushButton, SIGNAL(clicked()), &system, SLOT(toggleGraphVisibility()));
@@ -105,16 +119,24 @@ MainWindow::~MainWindow()
     for (int index = 0; index < channelsCheckBoxes.size(); index++)
         delete channelsCheckBoxes[index];
 
+    for (int index = 0; index < channelsAdvancedCheckBoxes.size(); index++)
+        delete channelsAdvancedCheckBoxes[index];
+
     delete availablePorts;
     delete operationModes;
+    /*
     delete baudRates;
+    */
     delete channelsConfigurationBoxLayout;
     delete channelsConfigurationBox;
+    delete channelsAdvancedConfigurationBoxLayout;
+    delete channelsAdvancedConfigurationBox;
     delete ui;
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    /*
     QFile configurations("conf.conf");
 
     if (configurations.open(QFile::Text | QFile::WriteOnly | QFile::Truncate))
@@ -125,6 +147,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
         configurations.close();
     }
+    */
 
     system.stop();
 }
@@ -133,6 +156,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 {
     ui->tabWidget->resize(event->size().width() - 10, event->size().height() - 35);
     ui->channelsLayout->resize(ui->tabWidget->width() - 15, ui->tabWidget->height() - 110);
+    ui->channelsAdvancedLayout->resize(ui->tabWidget->width() - 15, ui->tabWidget->height() - 45);
 
     ui->showGraphPushButton->move(event->size().width() - 90, 5);
     ui->connectButton->move(event->size().width() - 60, 5);
@@ -149,6 +173,11 @@ void MainWindow::toggleCascadeMode(QAction *operationMode)
 
     channelsCheckBoxes.clear();
 
+    for (int index = 0; index < channelsAdvancedCheckBoxes.size(); index++)
+        delete channelsAdvancedCheckBoxes[index];
+
+    channelsAdvancedCheckBoxes.clear();
+
     if (operationMode->text() == "&8 Channels")
         channelsNumber = 8;
     else
@@ -159,25 +188,41 @@ void MainWindow::toggleCascadeMode(QAction *operationMode)
     channelsCheckBoxes[0]->setGain(24);
     channelsConfigurationBoxLayout->addWidget(channelsCheckBoxes[0]);
 
+    channelsAdvancedCheckBoxes.push_back(new ChannelLayoutAdvanced("<b><u>All Channels</u></b>"));
+    channelsAdvancedConfigurationBoxLayout->addWidget(channelsAdvancedCheckBoxes[0]);
+
+    channelsAdvancedCheckBoxes[0]->setChannelNumber(-1);
+
     connect(channelsCheckBoxes[0], SIGNAL(channelSelected(int,bool)), this, SLOT(selectAllChannels(int,bool)));
     connect(channelsCheckBoxes[0], SIGNAL(channelGainChanged(int,int)), this, SLOT(changeAllChannelsGain(int,int)));
     connect(channelsCheckBoxes[0], SIGNAL(toTestSignalToggled(int,bool)), this, SLOT(connectAllChannelsToTest(int,bool)));
     connect(channelsCheckBoxes[0], SIGNAL(bipolarConfigurationToggled(int,bool)), this, SLOT(setAllChannelsBipolarConfiguration(int,bool)));
 
+    connect(channelsAdvancedCheckBoxes[0], SIGNAL(connectToBIASToggled(int,bool)), this, SLOT(connectAllChannelsToBIAS(int,bool)));
+
     for (int index = 0; index < channelsNumber; index++)
     {
         channelsCheckBoxes.push_back(new ChannelLayout("<u>Channel " + QString::number(index + 1) + "</u>"));
+        channelsAdvancedCheckBoxes.push_back(new ChannelLayoutAdvanced("<u>Channel " + QString::number(index + 1) + "</u>"));
+
+        channelsCheckBoxes[index + 1]->setChannelNumber(index);
+        channelsCheckBoxes[index + 1]->activateTestMode(false);
+        channelsCheckBoxes[index + 1]->setGain(24);
+
+        channelsAdvancedCheckBoxes[index + 1]->setChannelNumber(index);
 
         connect(channelsCheckBoxes[index + 1], SIGNAL(channelSelected(int,bool)), this, SLOT(activateChannel(int,bool)));
         connect(channelsCheckBoxes[index + 1], SIGNAL(channelGainChanged(int,int)), this, SLOT(setChannelGain(int,int)));
         connect(channelsCheckBoxes[index + 1], SIGNAL(toTestSignalToggled(int,bool)), this, SLOT(toTestSignalToggled(int,bool)));
         connect(channelsCheckBoxes[index + 1], SIGNAL(bipolarConfigurationToggled(int,bool)), this, SLOT(bipolarConfigurationToggled(int,bool)));
 
-        channelsCheckBoxes[index + 1]->setChannelNumber(index);
-        channelsCheckBoxes[index + 1]->activateTestMode(false);
-        channelsCheckBoxes[index + 1]->setGain(24);
+        connect(channelsAdvancedCheckBoxes[index + 1], SIGNAL(startCheckingImpedanceRequested(int,System::ChannelTerminal)), &system, SLOT(startCheckingChannelImpedance(int,System::ChannelTerminal)));
+        connect(channelsAdvancedCheckBoxes[index + 1], SIGNAL(stopCheckingImpedanceRequested()), &system, SLOT(stopCheckingChannelImpedance()));
+        connect(channelsAdvancedCheckBoxes[index + 1], SIGNAL(connectToBIASToggled(int,bool)), this, SLOT(BIASToggled(int,bool)));
+        connect(&system, SIGNAL(impedanceCalculated(int,System::ChannelTerminal,double)), channelsAdvancedCheckBoxes[index + 1], SLOT(updateImpedanceValue(int,System::ChannelTerminal,double)));
 
         channelsConfigurationBoxLayout->addWidget(channelsCheckBoxes[index + 1]);
+        channelsAdvancedConfigurationBoxLayout->addWidget(channelsAdvancedCheckBoxes[index + 1]);
     }
 
     ui->testSignalsComboBox->setCurrentIndex(0);
@@ -188,17 +233,17 @@ void MainWindow::toggleCascadeMode(QAction *operationMode)
 }
 
 void MainWindow::selectPort(QAction *selectedPort)
-{    
-    int presentBaudrate;
-
+{
+    /*
     for (int index = 0; index < baudRates->children().size(); index++)
         if (baudRates->actions()[index]->isChecked())
-            presentBaudrate = baudRates->actions()[index]->text().toInt();
+            baudrate = baudRates->actions()[index]->text().toInt();
 
     if (system.receivingData())
         system.stop();
+    */
 
-    if (system.start(selectedPort->text(), presentBaudrate))
+    if (system.start(selectedPort->text(), baudrate))
     {
         system.setSampleRate(System::at250Hz);
         system.flush();
@@ -211,7 +256,9 @@ void MainWindow::selectPort(QAction *selectedPort)
         ui->sampleRateLabel->setEnabled(true);
         ui->sampleRateComboBox->setEnabled(true);
 
+        /*
         baudRates->setEnabled(true);
+        */
 
         ui->connectionStatusImage->setPixmap(QPixmap(":/connection/connected.png").scaledToHeight(ui->connectionStatusImage->height()));
 
@@ -230,7 +277,9 @@ void MainWindow::selectPort(QAction *selectedPort)
         ui->sampleRateLabel->setEnabled(false);
         ui->sampleRateComboBox->setEnabled(false);
 
+        /*
         baudRates->setEnabled(false);
+        */
 
         ui->connectionStatusImage->setPixmap(QPixmap(":/connection/disconnected.png").scaledToHeight(ui->connectionStatusImage->height()));
 
@@ -245,6 +294,7 @@ void MainWindow::selectPort(QAction *selectedPort)
     }
 }
 
+/*
 void MainWindow::selectBaudRate(QAction *selectedBaudRate)
 {
     QString portName;
@@ -302,6 +352,7 @@ void MainWindow::selectBaudRate(QAction *selectedBaudRate)
         channelsCheckBoxes.clear();
     }
 }
+*/
 
 void MainWindow::selectSampleRate(QString sampleRate)
 {
@@ -325,7 +376,10 @@ void MainWindow::selectTestSignal(int testSignal)
     if (testSignal == 0)
     {
         for (int index = 0; index < channelsCheckBoxes.size(); index++)
+        {
+            channelsCheckBoxes[index]->connectToTestSignal(false);
             channelsCheckBoxes[index]->activateTestMode(false);
+        }
     }
 
     else
@@ -478,6 +532,30 @@ void MainWindow::bipolarConfigurationToggled(int channel, bool status)
     allChannelsModificationEnabled = true;
 }
 
+void MainWindow::BIASToggled(int channel, bool status)
+{
+    system.connectToBIAS(channel, status);
+    system.flush();
+
+    allChannelsModificationEnabled = false;
+
+    if (!status)
+        channelsAdvancedCheckBoxes[0]->setConnectedToBIAS(false);
+
+    else
+    {
+        bool channelsDeactivated = false;
+
+        for (int index = 1; index < channelsAdvancedCheckBoxes.size(); index++)
+            if (!channelsAdvancedCheckBoxes[index]->isConnectedToBIAS())
+                channelsDeactivated = true;
+
+        channelsAdvancedCheckBoxes[0]->setConnectedToBIAS(!channelsDeactivated);
+    }
+
+    allChannelsModificationEnabled = true;
+}
+
 void MainWindow::selectAllChannels(int disregarded, bool status)
 {
     if (allChannelsModificationEnabled)
@@ -506,6 +584,13 @@ void MainWindow::setAllChannelsBipolarConfiguration(int disregarded, bool status
             channelsCheckBoxes[index]->setBipolarConfiguration(status);
 }
 
+void MainWindow::connectAllChannelsToBIAS(int disregarded, bool status)
+{
+    if (allChannelsModificationEnabled)
+        for (int index = 1; index < channelsAdvancedCheckBoxes.size(); index++)
+            channelsAdvancedCheckBoxes[index]->setConnectedToBIAS(status);
+}
+
 void MainWindow::on_connectButton_clicked()
 {
     if (system.receivingData())
@@ -517,18 +602,19 @@ void MainWindow::on_connectButton_clicked()
 
     else
     {
-        int presentBaudrate;
         QString presentPort;
 
+        /*
         for (int index = 0; index < baudRates->children().size(); index++)
             if (baudRates->actions()[index]->isChecked())
-                presentBaudrate = baudRates->actions()[index]->text().toInt();
+                baudrate = baudRates->actions()[index]->text().toInt();
+        */
 
         for (int index = 0; index < availablePorts->actions().size(); index++)
             if (availablePorts->actions()[index]->isChecked())
                 presentPort = availablePorts->actions()[index]->text();
 
-        system.start(presentPort, presentBaudrate);
+        system.start(presentPort, baudrate);
 
         ui->connectionStatusImage->setPixmap(QPixmap(":/connection/connected.png").scaledToHeight(ui->connectionStatusImage->height()));
     }

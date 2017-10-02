@@ -5,6 +5,7 @@
 #include <QPainter>
 
 #include <QKeyEvent>
+#include <QWheelEvent>
 
 #include <QVector>
 
@@ -29,6 +30,7 @@ protected:
     void paintGL();
 
     void keyReleaseEvent(QKeyEvent *event);
+    void wheelEvent(QWheelEvent *event);
 
 private:
     QVector<DataSet> localSignals;
@@ -37,6 +39,7 @@ private:
     void drawChannelNumbers();
 
     int numberOfActiveChannels;
+    int graphicZoom;
     bool viewChannelNames;
 };
 

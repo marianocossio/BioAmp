@@ -6,6 +6,8 @@
 #include <QTimer>
 #include <QTime>
 
+#include <deque>
+
 #include <vector>
 
 #include "acquisitionserver.h"
@@ -39,6 +41,10 @@ public:
         at2kHz, at1kHz, at500Hz, at250Hz
     };
 
+    enum ChannelTerminal {
+        P_Terminal, N_Terminal
+    };
+
     explicit System(QObject *parent = 0);
     ~System();
 
@@ -53,6 +59,7 @@ public:
     void flush();
 
 signals:
+    void impedanceCalculated(int channelNumber, System::ChannelTerminal terminal, double impedance);
 
 public slots:    
     void activateChannel(int channel, bool activated);
@@ -69,7 +76,13 @@ public slots:
 
     void toggleGraphVisibility();
 
+    void startCheckingChannelImpedance(int channel, System::ChannelTerminal terminal);
+    void stopCheckingChannelImpedance();
+
+    void connectToBIAS(int channel, bool connect);
+
 private slots:
+    void getChannelImpedance();
     void receiveData(DataSet data);
     void sendCommands();
 
@@ -77,18 +90,18 @@ private:
     AcquisitionServer acquisitionServer;
     Graph graph;
 
-    vector<DataSet> buffer;
+    deque<DataSet> buffer;
 
     unsigned int bufferSize;
 
     bool cascadeMode;
-    int dataOutput;
     int channelCommandIndex;
+    ChannelTerminal channelCommandTerminal;
 
     QByteArray activateChannelsCommands, deactivateChannelsCommands, testSignalCommands, sampleRateCommands;
     QVector<QByteArray> channelConfigurationCommands, commandsBuffer;
 
-    QTimer ticker;
+    QTimer ticker, impedanceTicker;
 };
 
 #endif // SYSTEM_H
