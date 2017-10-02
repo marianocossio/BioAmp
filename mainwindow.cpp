@@ -60,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
     */
 
     allChannelsModificationEnabled = true;
-    baudrate = 115200;
+    baudrate = 921600;
 
     channelsConfigurationBox->setLayout(channelsConfigurationBoxLayout);
     ui->channelsLayout->setWidget(channelsConfigurationBox);
@@ -154,14 +154,29 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    ui->tabWidget->resize(event->size().width() - 10, event->size().height() - 35);
-    ui->channelsLayout->resize(ui->tabWidget->width() - 15, ui->tabWidget->height() - 110);
-    ui->channelsAdvancedLayout->resize(ui->tabWidget->width() - 15, ui->tabWidget->height() - 45);
+#if defined(Q_OS_WIN)
+    {
+        ui->tabWidget->move(5, 15);
+        ui->tabWidget->resize(event->size().width() - 10, event->size().height() - 40);
+        ui->channelsLayout->resize(ui->tabWidget->width() - 15, ui->tabWidget->height() - 100);
+        ui->channelsAdvancedLayout->resize(ui->tabWidget->width() - 15, ui->tabWidget->height() - 35);
 
-    ui->showGraphPushButton->move(event->size().width() - 90, 5);
-    ui->connectButton->move(event->size().width() - 60, 5);
-    ui->connectionStatusImage->move(event->size().width() - 30, 10);
+        ui->showGraphPushButton->move(event->size().width() - 90, 5);
+        ui->connectButton->move(event->size().width() - 60, 5);
+        ui->connectionStatusImage->move(event->size().width() - 30, 10);
+    }
+#elif defined(Q_OS_LINUX)
+    {
+        ui->tabWidget->move(5, 5);
+        ui->tabWidget->resize(event->size().width() - 10, event->size().height() - 35);
+        ui->channelsLayout->resize(ui->tabWidget->width() - 15, ui->tabWidget->height() - 110);
+        ui->channelsAdvancedLayout->resize(ui->tabWidget->width() - 15, ui->tabWidget->height() - 45);
 
+        ui->showGraphPushButton->move(event->size().width() - 90, 5);
+        ui->connectButton->move(event->size().width() - 60, 5);
+        ui->connectionStatusImage->move(event->size().width() - 30, 10);
+    }
+#endif
 }
 
 void MainWindow::toggleCascadeMode(QAction *operationMode)

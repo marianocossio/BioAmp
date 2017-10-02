@@ -113,10 +113,10 @@ void Graph::paintGL()
 
         glPopMatrix();
 
-        glFlush();
-
         if (viewChannelNames)
             drawChannelNumbers();
+
+        glFlush();
     }
 }
 
