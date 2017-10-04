@@ -33,16 +33,15 @@ private:
     QHBoxLayout *configLayout, *impedanceInnerSupLayout, *impedanceInnerInfLayout, *checkBoxesLayout;
     QVBoxLayout *externalLayout, *impedanceLayout;
     QPushButton *pTerminalImpedancePushButton, *nTerminalImpedancePushButton;
-    QLabel channelNameLabel, *pTerminalImpedanceLabel, *nTerminalImpedanceLabel;
+    QLabel channelNameLabel, *pTerminalValueOfImpedanceLabel, *nTerminalValueOfImpedanceLabel, *pTerminalImpedanceLabel, *nTerminalImpedanceLabel;
     QCheckBox *BIASCheckBox;
 
     int channelNumber;
+    bool checkingImpedance;
 
 private slots:
-    void pTerminalImpedancePushButtonPressed();
-    void pTerminalImpedancePushButtonReleased();
-    void nTerminalImpedancePushButtonPressed();
-    void nTerminalImpedancePushButtonReleased();
+    void pTerminalImpedancePushButtonClicked();
+    void nTerminalImpedancePushButtonClicked();
     void BIASCheckBoxToggled(bool status);
 };
 

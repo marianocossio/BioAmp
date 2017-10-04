@@ -5,6 +5,8 @@ ServerThread::ServerThread(QObject *parent) : QThread(parent)
     abort = false;
 
     baudRate = 115200;
+
+    connect(&portBioAmp, SIGNAL(readyRead()), this, SLOT(readData()));
 }
 
 ServerThread::~ServerThread()
@@ -105,28 +107,30 @@ void ServerThread::run()
     {
         if (abort)
             return;
+    }
+}
 
-        bool bytesAvailable;
+void ServerThread::readData()
+{
+    int bytesAvailable;
+
+    mutex.lock();
+
+    bytesAvailable = portBioAmp.bytesAvailable();
+
+    mutex.unlock();
+
+    if (bytesAvailable)
+    {
+        QByteArray receivedBytes;
 
         mutex.lock();
 
-        bytesAvailable = (portBioAmp.bytesAvailable() >= 1);
+        receivedBytes.append(portBioAmp.read(bytesAvailable));
 
         mutex.unlock();
 
-        if (bytesAvailable)
-        {
-            char receivedBytes;
-            int bytesRead;
-
-            mutex.lock();
-
-            bytesRead = portBioAmp.read(&receivedBytes, 1);
-
-            mutex.unlock();
-
-            if (bytesRead != (-1))
-                emit dataReceived((unsigned char) receivedBytes);
-        }
+        if (receivedBytes.size() > 0)
+            emit dataReceived(receivedBytes);
     }
 }

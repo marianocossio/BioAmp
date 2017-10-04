@@ -12,6 +12,8 @@
 
 #include <QFile>
 
+#include <QDialog>
+
 #include "system.h"
 #include "channellayout.h"
 #include "channellayoutadvanced.h"
@@ -47,6 +49,9 @@ private:
 
     System system;
 
+    QWidget *guideImageDialog;
+    QLabel *guideImageLabel;
+
     bool allChannelsModificationEnabled;
     int baudrate;
 
@@ -72,6 +77,7 @@ private slots:
     void connectAllChannelsToBIAS(int disregarded, bool status);
 
     void on_connectButton_clicked();
+    void on_actionConnection_Guide_triggered();
 };
 
 #endif // MAINWINDOW_H

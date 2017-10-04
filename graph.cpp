@@ -99,10 +99,10 @@ void Graph::paintGL()
                     glColor3f(colors[channelIndex].redF(), colors[channelIndex].greenF(), colors[channelIndex].blueF());
 
                     glVertex3f(signalIndex * 1.0f,
-                               (localSignals[signalIndex].channelData(channelIndex) / (SIGNAL_MAX_VALUE * 1.0f)) * (float) graphicZoom + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
+                               localSignals[signalIndex].channelData(channelIndex) * (4.5 / SIGNAL_MAX_VALUE) * (float) graphicZoom + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
                                0.0f);
                     glVertex3f((signalIndex + 1) * 1.0f,
-                               (localSignals[signalIndex + 1].channelData(channelIndex) / (SIGNAL_MAX_VALUE * 1.0f)) * (float) graphicZoom + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
+                               localSignals[signalIndex + 1].channelData(channelIndex) * (4.5 / SIGNAL_MAX_VALUE) * (float) graphicZoom + signalOffset + (signalOffset * 2.0f) * (currentChannel * 1.0f),
                                0.0f);
                     }
 
@@ -170,14 +170,18 @@ void Graph::drawChannelNumbers()
                                  (height() - (currentChannel + 1) * (height() / localSignals[localSignals.size() - 1].numberOfActiveChannels())) + (2 * font.pointSize()),
                     "Channel " + QString::number(channelIndex + 1));
 
+            textPainter.drawText(width() - 3 * font.pointSize(),
+                                 (height() - (currentChannel + 1) * (height() / localSignals[localSignals.size() - 1].numberOfActiveChannels())) + (2 * font.pointSize()),
+                    "x" + QString::number(localSignals[localSignals.size() - 1].channelGain(channelIndex)));
+
             currentChannel++;
         }
 
     textPainter.setPen(QColor(255, 255, 255));
 
-    textPainter.drawText(width() - 8 * font.pointSize(),
-                         2 * font.pointSize(),
-                         "Zoom: x" + QString::number(graphicZoom));
+    textPainter.drawText(width() - 16 * font.pointSize(),
+                         1.5 * font.pointSize(),
+                         "Graphic Zoom: x" + QString::number(graphicZoom));
 
     textPainter.end();
 }

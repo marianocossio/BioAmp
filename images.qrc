@@ -7,4 +7,10 @@
     <qresource prefix="/screen">
         <file>screen.png</file>
     </qresource>
+    <qresource prefix="/connection_guide">
+        <file>BioAmpFE.png</file>
+    </qresource>
+    <qresource prefix="/logo">
+        <file>logo_ingenieria.png</file>
+    </qresource>
 </RCC>

@@ -27,7 +27,7 @@ public:
     QList<QString> availablePorts();
 
 signals:
-    void dataReceived(unsigned char data);
+    void dataReceived(QByteArray data);
     void portOpened();
     void portClosed();
 
@@ -45,6 +45,9 @@ private:
 
     bool abort;
     long baudRate;
+
+private slots:
+    void readData();
 };
 
 #endif // SERVERTHREAD_H

@@ -15,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     availablePorts = new QActionGroup(this);
     operationModes = new QActionGroup(this);
+
+    guideImageDialog = new QDialog();
+    guideImageLabel = new QLabel(guideImageDialog);
+
     /*
     baudRates = new QActionGroup(this);
 
@@ -60,7 +64,12 @@ MainWindow::MainWindow(QWidget *parent) :
     */
 
     allChannelsModificationEnabled = true;
-    baudrate = 921600;
+    baudrate = 115200;
+
+    guideImageLabel->setPixmap(QPixmap(":/connection_guide/BioAmpFE.png"));
+    guideImageLabel->adjustSize();
+    guideImageDialog->adjustSize();
+    guideImageDialog->setWindowFlags(Qt::WindowTitleHint);
 
     channelsConfigurationBox->setLayout(channelsConfigurationBoxLayout);
     ui->channelsLayout->setWidget(channelsConfigurationBox);
@@ -92,15 +101,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->showGraphPushButton->setToolTip("Show/Hide Graph");
     ui->connectButton->setToolTip("Connect/Disconnect BioAmp");
-    ui->connectionStatusImage->setToolTip("BioAmp Connection Status");
-
-    ui->showGraphPushButton->setIcon(QIcon(":/screen/screen.png"));
-    ui->connectButton->setIcon(QIcon(":/connection/connect.png"));
-    ui->connectionStatusImage->setPixmap(QPixmap(":/connection/disconnected.png").scaledToHeight(ui->connectionStatusImage->height()));
+    ui->connectedStatusImage->setToolTip("BioAmp Connection Status");
+    ui->disconnectedStatusImage->setToolTip("BioAmp Connection Status");
 
     ui->showGraphPushButton->setEnabled(false);
     ui->connectButton->setEnabled(false);
-    ui->connectionStatusImage->setEnabled(false);
+    ui->connectedStatusImage->setEnabled(false);
+    ui->disconnectedStatusImage->setEnabled(false);
+
+    ui->connectedStatusImage->setVisible(false);
+    ui->disconnectedStatusImage->setVisible(true);
 
     setWindowTitle("BioAmp - Configuration Window");
 
@@ -121,6 +131,9 @@ MainWindow::~MainWindow()
 
     for (int index = 0; index < channelsAdvancedCheckBoxes.size(); index++)
         delete channelsAdvancedCheckBoxes[index];
+
+    delete guideImageLabel;
+    delete guideImageDialog;
 
     delete availablePorts;
     delete operationModes;
@@ -148,6 +161,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
         configurations.close();
     }
     */
+    if (guideImageDialog->isVisible())
+        guideImageDialog->close();
 
     system.stop();
 }
@@ -163,7 +178,10 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
         ui->showGraphPushButton->move(event->size().width() - 90, 5);
         ui->connectButton->move(event->size().width() - 60, 5);
-        ui->connectionStatusImage->move(event->size().width() - 30, 10);
+        ui->connectedStatusImage->move(event->size().width() - 30, 10);
+        ui->disconnectedStatusImage->move(event->size().width() - 30, 10);
+
+        ui->logoLabel->move(ui->tabWidget->width() - 190, 5);
     }
 #elif defined(Q_OS_LINUX)
     {
@@ -174,7 +192,10 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
         ui->showGraphPushButton->move(event->size().width() - 90, 5);
         ui->connectButton->move(event->size().width() - 60, 5);
-        ui->connectionStatusImage->move(event->size().width() - 30, 10);
+        ui->connectedStatusImage->move(event->size().width() - 30, 10);
+        ui->disconnectedStatusImage->move(event->size().width() - 30, 10);
+
+        ui->logoLabel->move(ui->tabWidget->width() - 190, 5);
     }
 #endif
 }
@@ -275,11 +296,13 @@ void MainWindow::selectPort(QAction *selectedPort)
         baudRates->setEnabled(true);
         */
 
-        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/connected.png").scaledToHeight(ui->connectionStatusImage->height()));
-
         ui->showGraphPushButton->setEnabled(true);
         ui->connectButton->setEnabled(true);
-        ui->connectionStatusImage->setEnabled(true);
+        ui->connectedStatusImage->setEnabled(true);
+        ui->disconnectedStatusImage->setEnabled(true);
+
+        ui->connectedStatusImage->setVisible(true);
+        ui->disconnectedStatusImage->setVisible(false);
 
         ui->action_8_Channels->trigger();
     }
@@ -296,11 +319,13 @@ void MainWindow::selectPort(QAction *selectedPort)
         baudRates->setEnabled(false);
         */
 
-        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/disconnected.png").scaledToHeight(ui->connectionStatusImage->height()));
-
         ui->showGraphPushButton->setEnabled(false);
         ui->connectButton->setEnabled(false);
-        ui->connectionStatusImage->setEnabled(false);
+        ui->connectedStatusImage->setEnabled(false);
+        ui->disconnectedStatusImage->setEnabled(false);
+
+        ui->connectedStatusImage->setVisible(false);
+        ui->disconnectedStatusImage->setVisible(true);
 
         for (int index = 0; index < channelsCheckBoxes.size(); index++)
             delete channelsCheckBoxes[index];
@@ -336,8 +361,6 @@ void MainWindow::selectBaudRate(QAction *selectedBaudRate)
 
         baudRates->setEnabled(true);
 
-        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/connected.png").scaledToHeight(ui->connectionStatusImage->height()));
-
         ui->showGraphPushButton->setEnabled(true);
         ui->connectButton->setEnabled(true);
         ui->connectionStatusImage->setEnabled(true);
@@ -354,8 +377,6 @@ void MainWindow::selectBaudRate(QAction *selectedBaudRate)
         ui->sampleRateComboBox->setEnabled(false);
 
         baudRates->setEnabled(false);
-
-        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/disconnected.png").scaledToHeight(ui->connectionStatusImage->height()));
 
         ui->showGraphPushButton->setEnabled(false);
         ui->connectButton->setEnabled(false);
@@ -422,6 +443,8 @@ void MainWindow::activateChannel(int channel, bool activated)
 {
     system.activateChannel(channel, activated);
     system.flush();
+
+    channelsAdvancedCheckBoxes[channel + 1]->setEnabled(activated);
 
     allChannelsModificationEnabled = false;
 
@@ -574,8 +597,13 @@ void MainWindow::BIASToggled(int channel, bool status)
 void MainWindow::selectAllChannels(int disregarded, bool status)
 {
     if (allChannelsModificationEnabled)
+    {
         for (int index = 1; index < channelsCheckBoxes.size(); index++)
             channelsCheckBoxes[index]->select(status);
+
+        for (int channelCheckBoxIndex = 0; channelCheckBoxIndex < channelsAdvancedCheckBoxes.size(); channelCheckBoxIndex++)
+            channelsAdvancedCheckBoxes[channelCheckBoxIndex]->setEnabled(status);
+    }
 }
 
 void MainWindow::changeAllChannelsGain(int disregarded, int gain)
@@ -612,7 +640,10 @@ void MainWindow::on_connectButton_clicked()
     {
         system.pause();
 
-        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/disconnected.png").scaledToHeight(ui->connectionStatusImage->height()));
+        ui->tabWidget->setEnabled(false);
+
+        ui->connectedStatusImage->setVisible(false);
+        ui->disconnectedStatusImage->setVisible(true);
     }
 
     else
@@ -631,6 +662,14 @@ void MainWindow::on_connectButton_clicked()
 
         system.start(presentPort, baudrate);
 
-        ui->connectionStatusImage->setPixmap(QPixmap(":/connection/connected.png").scaledToHeight(ui->connectionStatusImage->height()));
+        ui->tabWidget->setEnabled(true);
+
+        ui->connectedStatusImage->setVisible(true);
+        ui->disconnectedStatusImage->setVisible(false);
     }
+}
+
+void MainWindow::on_actionConnection_Guide_triggered()
+{
+    guideImageDialog->show();
 }

@@ -5,13 +5,13 @@
 
 #include <QTimer>
 #include <QTime>
+#include <QDate>
 
 #include <deque>
-
 #include <vector>
+#include <fstream>
 
 #include "acquisitionserver.h"
-#include "dataconditioner.h"
 #include "graph.h"
 
 using namespace std;
@@ -85,16 +85,22 @@ private slots:
     void getChannelImpedance();
     void receiveData(DataSet data);
     void sendCommands();
+    void responseReceived(string response);
 
 private:
     AcquisitionServer acquisitionServer;
     Graph graph;
 
     deque<DataSet> buffer;
+    vector<int> channelGains;
+
+    vector < vector <double> > filterConstants;
+
+    ofstream logFile;
 
     unsigned int bufferSize;
 
-    bool cascadeMode;
+    bool cascadeMode, firstRun;
     int channelCommandIndex;
     ChannelTerminal channelCommandTerminal;
 

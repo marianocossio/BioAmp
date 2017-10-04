@@ -27,6 +27,7 @@ public:
     virtual void deactivateAllChannels();
 
     virtual int &channelData(int channel);
+    virtual int &channelGain(int channel);
 
     virtual bool channelIsActive(int channel);
     virtual int numberOfActiveChannels();
@@ -41,6 +42,7 @@ private:
     vector<int> dataSet;
     vector<bool> activeChannels;
     vector<int> flags;
+    vector<int> channelGains;
     int dataOrder;
 };
 

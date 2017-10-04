@@ -26,6 +26,10 @@
     <property name="text">
      <string/>
     </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/connection/connect.png</normaloff>:/connection/connect.png</iconset>
+    </property>
     <property name="iconSize">
      <size>
       <width>18</width>
@@ -33,7 +37,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QLabel" name="connectionStatusImage">
+   <widget class="QLabel" name="connectedStatusImage">
     <property name="geometry">
      <rect>
       <x>660</x>
@@ -44,6 +48,12 @@
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/connection/connected.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="showGraphPushButton">
@@ -57,6 +67,10 @@
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/screen/screen.png</normaloff>:/screen/screen.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -229,6 +243,25 @@
        </property>
       </widget>
      </widget>
+     <widget class="QLabel" name="logoLabel">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>5</y>
+        <width>185</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="images.qrc">:/logo/logo_ingenieria.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="advancedConfigurationTab">
      <attribute name="title">
@@ -259,10 +292,30 @@
      </widget>
     </widget>
    </widget>
+   <widget class="QLabel" name="disconnectedStatusImage">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>5</y>
+      <width>15</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/connection/disconnected.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
    <zorder>tabWidget</zorder>
    <zorder>connectButton</zorder>
-   <zorder>connectionStatusImage</zorder>
+   <zorder>connectedStatusImage</zorder>
    <zorder>showGraphPushButton</zorder>
+   <zorder>disconnectedStatusImage</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -270,7 +323,7 @@
      <x>0</x>
      <y>0</y>
      <width>721</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Tools">
@@ -291,6 +344,7 @@
     </widget>
     <addaction name="menuOperation_Mode"/>
     <addaction name="menu_Port"/>
+    <addaction name="actionConnection_Guide"/>
    </widget>
    <addaction name="menu_Tools"/>
   </widget>
@@ -313,8 +367,15 @@
     <string>1&amp;6 Channels</string>
    </property>
   </action>
+  <action name="actionConnection_Guide">
+   <property name="text">
+    <string>Connection &amp;Guide</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

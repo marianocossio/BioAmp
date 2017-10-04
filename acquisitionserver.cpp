@@ -2,10 +2,11 @@
 
 AcquisitionServer::AcquisitionServer(QObject *parent) : QObject(parent)
 {
-    connect(&thread, SIGNAL(dataReceived(unsigned char)), &dataConditioner, SLOT(newByte(unsigned char)));
+    connect(&thread, SIGNAL(dataReceived(QByteArray)), &dataConditioner, SLOT(newBytes(QByteArray)));
     connect(&thread, SIGNAL(portOpened()), this, SLOT(portOpenedSignalReceived()));
     connect(&thread, SIGNAL(portClosed()), this, SLOT(portClosedSignalReceived()));
     connect(&dataConditioner, SIGNAL(dataReady(DataSet)), this, SLOT(dataReadySignalReceived(DataSet)));
+    connect(&dataConditioner, SIGNAL(responseReceived(string)), this, SLOT(responseSignalReceived(string)));
 }
 
 AcquisitionServer::~AcquisitionServer()
@@ -31,7 +32,12 @@ bool AcquisitionServer::portIsActive()
 void AcquisitionServer::write(QByteArray data)
 {
     if (thread.portIsActive())
+    {
+        if (data == "?")
+            dataConditioner.getResponse();
+
         thread.write(data);
+    }
 }
 
 QList<QString> AcquisitionServer::availablePorts()
@@ -77,4 +83,9 @@ void AcquisitionServer::portOpenedSignalReceived()
 void AcquisitionServer::portClosedSignalReceived()
 {
     emit portClosed();
+}
+
+void AcquisitionServer::responseSignalReceived(string response)
+{
+    emit responseReceived(response);
 }

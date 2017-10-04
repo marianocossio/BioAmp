@@ -58,4 +58,4 @@ win32 {
 RC_ICONS = bitmap.ico
 
 RESOURCES += \
-    icons.qrc
+    images.qrc

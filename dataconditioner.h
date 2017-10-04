@@ -3,7 +3,11 @@
 
 #include <QObject>
 
+#include <string>
+
 #include "dataset.h"
+
+using namespace std;
 
 class DataConditioner : public QObject
 {
@@ -13,11 +17,14 @@ public:
     explicit DataConditioner(QObject *parent = 0);
     virtual ~DataConditioner();
 
+    void getResponse();
+
 signals:
     void dataReady(DataSet data);
+    void responseReceived(string resp);
 
 public slots:
-    virtual void newByte(unsigned char byte);
+    virtual void newBytes(QByteArray byte);
 
     virtual void activateChannel(int channel);
     virtual void deactivateChannel(int channel);
@@ -28,6 +35,10 @@ protected:
 
 private:
     int byteNumber;
+
+    bool responseExpected;
+
+    QByteArray response;
 
     DataSet conditionedData;
 };

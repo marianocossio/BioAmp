@@ -6,6 +6,8 @@
 #include "serverthread.h"
 #include "dataconditioner.h"
 
+using namespace std;
+
 class AcquisitionServer : public QObject
 {
     Q_OBJECT
@@ -25,6 +27,7 @@ signals:
     void dataReady(DataSet data);
     void portOpened();
     void portClosed();
+    void responseReceived(string reponse);
 
 public slots:
     virtual void setBaudRate(long baudRate);
@@ -44,6 +47,7 @@ private slots:
     virtual void dataReadySignalReceived(DataSet data);
     virtual void portOpenedSignalReceived();
     virtual void portClosedSignalReceived();
+    virtual void responseSignalReceived(string response);
 
 };
 

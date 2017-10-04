@@ -9,10 +9,14 @@ ChannelLayoutAdvanced::ChannelLayoutAdvanced(QString displayedText, QWidget *par
     impedanceInnerSupLayout = new QHBoxLayout();
     impedanceInnerInfLayout = new QHBoxLayout();
 
-    pTerminalImpedancePushButton = new QPushButton("Check P-Terminal Impedance");
-    nTerminalImpedancePushButton = new QPushButton("Check N-Terminal Impedance");
-    pTerminalImpedanceLabel = new QLabel();
-    nTerminalImpedanceLabel = new QLabel();
+    pTerminalImpedancePushButton = new QPushButton("Start");
+    nTerminalImpedancePushButton = new QPushButton("Start");
+    pTerminalImpedanceLabel = new QLabel("Check P-Terminal Impedance");
+    nTerminalImpedanceLabel = new QLabel("Check N-Terminal Impedance");
+    pTerminalValueOfImpedanceLabel = new QLabel();
+    nTerminalValueOfImpedanceLabel = new QLabel();
+
+    checkingImpedance = false;
 
     BIASCheckBox = new QCheckBox("Connect to BIAS");
 
@@ -20,16 +24,20 @@ ChannelLayoutAdvanced::ChannelLayoutAdvanced(QString displayedText, QWidget *par
 
     BIASCheckBox->setChecked(true);
 
-    pTerminalImpedancePushButton->setFixedWidth(200);
-    nTerminalImpedancePushButton->setFixedWidth(200);
-    pTerminalImpedanceLabel->setFixedWidth(110);
-    nTerminalImpedanceLabel->setFixedWidth(110);
+    pTerminalImpedanceLabel->setFixedWidth(200);
+    nTerminalImpedanceLabel->setFixedWidth(200);
+    pTerminalImpedancePushButton->setFixedWidth(50);
+    nTerminalImpedancePushButton->setFixedWidth(50);
+    pTerminalValueOfImpedanceLabel->setFixedWidth(110);
+    nTerminalValueOfImpedanceLabel->setFixedWidth(110);
     BIASCheckBox->setFixedWidth(150);
 
-    impedanceInnerSupLayout->addWidget(pTerminalImpedancePushButton);
     impedanceInnerSupLayout->addWidget(pTerminalImpedanceLabel);
-    impedanceInnerInfLayout->addWidget(nTerminalImpedancePushButton);
+    impedanceInnerSupLayout->addWidget(pTerminalImpedancePushButton);
+    impedanceInnerSupLayout->addWidget(pTerminalValueOfImpedanceLabel);
     impedanceInnerInfLayout->addWidget(nTerminalImpedanceLabel);
+    impedanceInnerInfLayout->addWidget(nTerminalImpedancePushButton);
+    impedanceInnerInfLayout->addWidget(nTerminalValueOfImpedanceLabel);
 
     impedanceLayout->addLayout(impedanceInnerSupLayout);
     impedanceLayout->addLayout(impedanceInnerInfLayout);
@@ -42,12 +50,10 @@ ChannelLayoutAdvanced::ChannelLayoutAdvanced(QString displayedText, QWidget *par
     externalLayout->addWidget(&channelNameLabel);
     externalLayout->addLayout(configLayout);
 
-    setFixedWidth(500);
+    setFixedWidth(600);
 
-    connect(pTerminalImpedancePushButton, SIGNAL(pressed()), this, SLOT(pTerminalImpedancePushButtonPressed()));
-    connect(pTerminalImpedancePushButton, SIGNAL(released()), this, SLOT(pTerminalImpedancePushButtonReleased()));
-    connect(nTerminalImpedancePushButton, SIGNAL(pressed()), this, SLOT(nTerminalImpedancePushButtonPressed()));
-    connect(nTerminalImpedancePushButton, SIGNAL(released()), this, SLOT(nTerminalImpedancePushButtonReleased()));
+    connect(pTerminalImpedancePushButton, SIGNAL(pressed()), this, SLOT(pTerminalImpedancePushButtonClicked()));
+    connect(nTerminalImpedancePushButton, SIGNAL(pressed()), this, SLOT(nTerminalImpedancePushButtonClicked()));
     connect(BIASCheckBox, SIGNAL(toggled(bool)), this, SLOT(BIASCheckBoxToggled(bool)));
 }
 
@@ -57,6 +63,8 @@ ChannelLayoutAdvanced::~ChannelLayoutAdvanced()
     delete nTerminalImpedancePushButton;
     delete pTerminalImpedanceLabel;
     delete nTerminalImpedanceLabel;
+    delete pTerminalValueOfImpedanceLabel;
+    delete nTerminalValueOfImpedanceLabel;
 
     delete impedanceInnerSupLayout;
     delete impedanceInnerInfLayout;
@@ -77,21 +85,25 @@ void ChannelLayoutAdvanced::setChannelNumber(int number)
 
     if (number < 0)
     {
-        pTerminalImpedancePushButton->setVisible(false);
         pTerminalImpedanceLabel->setVisible(false);
-        nTerminalImpedancePushButton->setVisible(false);
+        pTerminalImpedancePushButton->setVisible(false);
+        pTerminalValueOfImpedanceLabel->setVisible(false);
         nTerminalImpedanceLabel->setVisible(false);
+        nTerminalImpedancePushButton->setVisible(false);
+        nTerminalValueOfImpedanceLabel->setVisible(false);
 
-        impedanceInnerSupLayout->addSpacing(320);
-        impedanceInnerInfLayout->addSpacing(320);
+        impedanceInnerSupLayout->addSpacing(395);
+        impedanceInnerInfLayout->addSpacing(395);
     }
 
     else
     {
-        pTerminalImpedancePushButton->setVisible(true);
         pTerminalImpedanceLabel->setVisible(true);
-        nTerminalImpedancePushButton->setVisible(true);
+        pTerminalImpedancePushButton->setVisible(true);
+        pTerminalValueOfImpedanceLabel->setVisible(true);
         nTerminalImpedanceLabel->setVisible(true);
+        nTerminalImpedancePushButton->setVisible(true);
+        nTerminalValueOfImpedanceLabel->setVisible(true);
     }
 }
 
@@ -107,10 +119,10 @@ void ChannelLayoutAdvanced::updateImpedanceValue(int channelNumber, System::Chan
         switch (terminal)
         {
         case System::P_Terminal:
-            pTerminalImpedanceLabel->setText(QString::number(value) + " [Ohm]");
+            pTerminalValueOfImpedanceLabel->setText(QString::number((int) value) + " [Ohm]");
             break;
         case System::N_Terminal:
-            nTerminalImpedanceLabel->setText(QString::number(value) + " [Ohm]");
+            nTerminalValueOfImpedanceLabel->setText(QString::number((int) value) + " [Ohm]");
             break;
         default:
             break;
@@ -123,32 +135,60 @@ void ChannelLayoutAdvanced::setConnectedToBIAS(bool set)
     BIASCheckBox->setChecked(set);
 }
 
-void ChannelLayoutAdvanced::pTerminalImpedancePushButtonPressed()
+void ChannelLayoutAdvanced::pTerminalImpedancePushButtonClicked()
 {
-    pTerminalImpedanceLabel->setText("Calculating...");
+    if(!checkingImpedance)
+    {
+        pTerminalValueOfImpedanceLabel->setText("Calculating...");
 
-    emit startCheckingImpedanceRequested(channelNumber, System::P_Terminal);
+        pTerminalImpedancePushButton->setText("Stop");
+
+        nTerminalImpedancePushButton->setEnabled(false);
+
+        checkingImpedance = true;
+
+        emit startCheckingImpedanceRequested(channelNumber, System::P_Terminal);
+    }
+    else
+    {
+        pTerminalValueOfImpedanceLabel->clear();
+
+        pTerminalImpedancePushButton->setText("Start");
+
+        nTerminalImpedancePushButton->setEnabled(true);
+
+        checkingImpedance = false;
+
+        emit stopCheckingImpedanceRequested();
+    }
 }
 
-void ChannelLayoutAdvanced::pTerminalImpedancePushButtonReleased()
+void ChannelLayoutAdvanced::nTerminalImpedancePushButtonClicked()
 {
-    pTerminalImpedanceLabel->clear();
+    if(!checkingImpedance)
+    {
+        nTerminalValueOfImpedanceLabel->setText("Calculating...");
 
-    emit stopCheckingImpedanceRequested();
-}
+        nTerminalImpedancePushButton->setText("Stop");
 
-void ChannelLayoutAdvanced::nTerminalImpedancePushButtonPressed()
-{
-    nTerminalImpedanceLabel->setText("Calculating...");
+        pTerminalImpedancePushButton->setEnabled(false);
 
-    emit startCheckingImpedanceRequested(channelNumber, System::N_Terminal);
-}
+        checkingImpedance = true;
 
-void ChannelLayoutAdvanced::nTerminalImpedancePushButtonReleased()
-{
-    nTerminalImpedanceLabel->clear();
+        emit startCheckingImpedanceRequested(channelNumber, System::N_Terminal);
+    }
+    else
+    {
+        nTerminalValueOfImpedanceLabel->clear();
 
-    emit stopCheckingImpedanceRequested();
+        nTerminalImpedancePushButton->setText("Start");
+
+        pTerminalImpedancePushButton->setEnabled(true);
+
+        checkingImpedance = false;
+
+        emit stopCheckingImpedanceRequested();
+    }
 }
 
 void ChannelLayoutAdvanced::BIASCheckBoxToggled(bool status)

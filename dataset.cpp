@@ -8,6 +8,7 @@ DataSet::DataSet(DataType type, DataSet *parent)
 
         dataSet.resize(type);
         activeChannels.resize(type);
+        channelGains.resize(type);
         flags.resize(_flags);
 
         activateAllChannels();
@@ -57,6 +58,11 @@ void DataSet::deactivateAllChannels()
 int &DataSet::channelData(int channel)
 {
     return dataSet[channel];
+}
+
+int &DataSet::channelGain(int channel)
+{
+    return channelGains[channel];
 }
 
 bool DataSet::channelIsActive(int channel)
