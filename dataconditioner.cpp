@@ -5,6 +5,10 @@ DataConditioner::DataConditioner(QObject *parent) : QObject(parent)
     byteNumber = 33;
 
     responseExpected = false;
+
+    timer.setSingleShot(true);
+
+    connect(&timer, SIGNAL(timeout()), this, SLOT(timerOverflow()));
 }
 
 DataConditioner::~DataConditioner()
@@ -12,11 +16,23 @@ DataConditioner::~DataConditioner()
 
 }
 
-void DataConditioner::getResponse()
+void DataConditioner::getResponse(bool get)
 {
-    response.clear();
+    if (get)
+    {
+        response.clear();
 
-    responseExpected = true;
+        responseExpected = true;
+
+        timer.start(100);
+    }
+
+    else
+    {
+        responseExpected = false;
+
+        timer.stop();
+    }
 }
 
 void DataConditioner::newBytes(QByteArray bytes)
@@ -29,7 +45,9 @@ void DataConditioner::newBytes(QByteArray bytes)
         {
             responseExpected = false;
 
-            emit responseReceived(response.toStdString());
+            timer.stop();
+
+            emit responseReceived(response);
         }
     }
     else
@@ -118,4 +136,10 @@ void DataConditioner::activateAllChannels()
 void DataConditioner::deactivateAllChannels()
 {
     conditionedData.deactivateAllChannels();
+}
+
+void DataConditioner::timerOverflow()
+{
+    if (responseExpected)
+        emit connectionError();
 }

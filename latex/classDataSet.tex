@@ -1,0 +1,198 @@
+\hypertarget{classDataSet}{\section{Data\+Set Class Reference}
+\label{classDataSet}\index{Data\+Set@{Data\+Set}}
+}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDataSet_a7fd8108f656db008dea5cf035ddfd85e}{enum {\bfseries Data\+Type} \{ {\bfseries Data\+Set\+\_\+8} = 8, 
+{\bfseries Data\+Set\+\_\+16} = 16
+ \}}\label{classDataSet_a7fd8108f656db008dea5cf035ddfd85e}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDataSet_add582898d638653c323b04b8747e23f0}{Data\+Set} (Data\+Type type=Data\+Set\+\_\+8, \hyperlink{classDataSet}{Data\+Set} $\ast$parent=0)
+\item 
+virtual void \hyperlink{classDataSet_a4d3cdc4163a6df9860da8fd77be53380}{set\+Data\+Order} (int order)
+\item 
+virtual int \hyperlink{classDataSet_a96b0344b1c0177389288559b6968fb06}{get\+Data\+Order} ()
+\item 
+virtual void \hyperlink{classDataSet_a834f924af9e0331f1fbda00e3c994659}{activate\+Channel} (int channel)
+\item 
+virtual void \hyperlink{classDataSet_a4bd82cb866f395b14e6c370ed6750044}{deactivate\+Channel} (int channel)
+\item 
+\hypertarget{classDataSet_a51059276326b2d21458eb1e2b979ad06}{virtual void {\bfseries activate\+All\+Channels} ()}\label{classDataSet_a51059276326b2d21458eb1e2b979ad06}
+
+\item 
+\hypertarget{classDataSet_a17824b7103e546c40fbe83f93a5dfc6a}{virtual void {\bfseries deactivate\+All\+Channels} ()}\label{classDataSet_a17824b7103e546c40fbe83f93a5dfc6a}
+
+\item 
+virtual int \& \hyperlink{classDataSet_a9714f8ca542300f722b5f1ae802ab2fa}{channel\+Data} (int channel)
+\item 
+virtual int \& \hyperlink{classDataSet_adb6471efd6fe3f9bbcbf5df5a2c527a0}{channel\+Gain} (int channel)
+\item 
+virtual bool \hyperlink{classDataSet_aa7e7790945a346a7c8db46b360d9febf}{channel\+Is\+Active} (int channel)
+\item 
+virtual int \hyperlink{classDataSet_a7f26dba838ee5b5ad03cab51676d8162}{number\+Of\+Active\+Channels} ()
+\item 
+\hypertarget{classDataSet_a90dbe67f61080c32ab770c6173806b07}{virtual void {\bfseries clear\+Data} ()}\label{classDataSet_a90dbe67f61080c32ab770c6173806b07}
+
+\item 
+virtual int \& \hyperlink{classDataSet_a8b3ab62f1de202b5163bb02dd84f22af}{flag} (int flag\+Number)
+\item 
+Data\+Type \hyperlink{classDataSet_ac03684e5474ecf5d08e507f7709b5f87}{get\+Data\+Type} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classDataSet_add582898d638653c323b04b8747e23f0}{\index{Data\+Set@{Data\+Set}!Data\+Set@{Data\+Set}}
+\index{Data\+Set@{Data\+Set}!Data\+Set@{Data\+Set}}
+\subsubsection[{Data\+Set}]{\setlength{\rightskip}{0pt plus 5cm}Data\+Set\+::\+Data\+Set (
+\begin{DoxyParamCaption}
+\item[{Data\+Type}]{type = {\ttfamily DataSet\+\_\+8}, }
+\item[{{\bf Data\+Set} $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{classDataSet_add582898d638653c323b04b8747e23f0}
+
+\begin{DoxyParams}{Parameters}
+{\em type} & \\
+\hline
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classDataSet_a834f924af9e0331f1fbda00e3c994659}{\index{Data\+Set@{Data\+Set}!activate\+Channel@{activate\+Channel}}
+\index{activate\+Channel@{activate\+Channel}!Data\+Set@{Data\+Set}}
+\subsubsection[{activate\+Channel}]{\setlength{\rightskip}{0pt plus 5cm}void Data\+Set\+::activate\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classDataSet_a834f924af9e0331f1fbda00e3c994659}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDataSet_a9714f8ca542300f722b5f1ae802ab2fa}{\index{Data\+Set@{Data\+Set}!channel\+Data@{channel\+Data}}
+\index{channel\+Data@{channel\+Data}!Data\+Set@{Data\+Set}}
+\subsubsection[{channel\+Data}]{\setlength{\rightskip}{0pt plus 5cm}int \& Data\+Set\+::channel\+Data (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classDataSet_a9714f8ca542300f722b5f1ae802ab2fa}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classDataSet_adb6471efd6fe3f9bbcbf5df5a2c527a0}{\index{Data\+Set@{Data\+Set}!channel\+Gain@{channel\+Gain}}
+\index{channel\+Gain@{channel\+Gain}!Data\+Set@{Data\+Set}}
+\subsubsection[{channel\+Gain}]{\setlength{\rightskip}{0pt plus 5cm}int \& Data\+Set\+::channel\+Gain (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classDataSet_adb6471efd6fe3f9bbcbf5df5a2c527a0}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classDataSet_aa7e7790945a346a7c8db46b360d9febf}{\index{Data\+Set@{Data\+Set}!channel\+Is\+Active@{channel\+Is\+Active}}
+\index{channel\+Is\+Active@{channel\+Is\+Active}!Data\+Set@{Data\+Set}}
+\subsubsection[{channel\+Is\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Data\+Set\+::channel\+Is\+Active (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classDataSet_aa7e7790945a346a7c8db46b360d9febf}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classDataSet_a4bd82cb866f395b14e6c370ed6750044}{\index{Data\+Set@{Data\+Set}!deactivate\+Channel@{deactivate\+Channel}}
+\index{deactivate\+Channel@{deactivate\+Channel}!Data\+Set@{Data\+Set}}
+\subsubsection[{deactivate\+Channel}]{\setlength{\rightskip}{0pt plus 5cm}void Data\+Set\+::deactivate\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classDataSet_a4bd82cb866f395b14e6c370ed6750044}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDataSet_a8b3ab62f1de202b5163bb02dd84f22af}{\index{Data\+Set@{Data\+Set}!flag@{flag}}
+\index{flag@{flag}!Data\+Set@{Data\+Set}}
+\subsubsection[{flag}]{\setlength{\rightskip}{0pt plus 5cm}int \& Data\+Set\+::flag (
+\begin{DoxyParamCaption}
+\item[{int}]{flag\+Number}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classDataSet_a8b3ab62f1de202b5163bb02dd84f22af}
+
+\begin{DoxyParams}{Parameters}
+{\em flag\+Number} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classDataSet_a96b0344b1c0177389288559b6968fb06}{\index{Data\+Set@{Data\+Set}!get\+Data\+Order@{get\+Data\+Order}}
+\index{get\+Data\+Order@{get\+Data\+Order}!Data\+Set@{Data\+Set}}
+\subsubsection[{get\+Data\+Order}]{\setlength{\rightskip}{0pt plus 5cm}int Data\+Set\+::get\+Data\+Order (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classDataSet_a96b0344b1c0177389288559b6968fb06}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classDataSet_ac03684e5474ecf5d08e507f7709b5f87}{\index{Data\+Set@{Data\+Set}!get\+Data\+Type@{get\+Data\+Type}}
+\index{get\+Data\+Type@{get\+Data\+Type}!Data\+Set@{Data\+Set}}
+\subsubsection[{get\+Data\+Type}]{\setlength{\rightskip}{0pt plus 5cm}Data\+Set\+::\+Data\+Type Data\+Set\+::get\+Data\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDataSet_ac03684e5474ecf5d08e507f7709b5f87}
+\begin{DoxyReturn}{Returns}
+Data\+Type 
+\end{DoxyReturn}
+\hypertarget{classDataSet_a7f26dba838ee5b5ad03cab51676d8162}{\index{Data\+Set@{Data\+Set}!number\+Of\+Active\+Channels@{number\+Of\+Active\+Channels}}
+\index{number\+Of\+Active\+Channels@{number\+Of\+Active\+Channels}!Data\+Set@{Data\+Set}}
+\subsubsection[{number\+Of\+Active\+Channels}]{\setlength{\rightskip}{0pt plus 5cm}int Data\+Set\+::number\+Of\+Active\+Channels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classDataSet_a7f26dba838ee5b5ad03cab51676d8162}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classDataSet_a4d3cdc4163a6df9860da8fd77be53380}{\index{Data\+Set@{Data\+Set}!set\+Data\+Order@{set\+Data\+Order}}
+\index{set\+Data\+Order@{set\+Data\+Order}!Data\+Set@{Data\+Set}}
+\subsubsection[{set\+Data\+Order}]{\setlength{\rightskip}{0pt plus 5cm}void Data\+Set\+::set\+Data\+Order (
+\begin{DoxyParamCaption}
+\item[{int}]{order}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classDataSet_a4d3cdc4163a6df9860da8fd77be53380}
+
+\begin{DoxyParams}{Parameters}
+{\em order} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+dataset.\+h\item 
+dataset.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,239 @@
+\hypertarget{classAcquisitionServer}{\section{Acquisition\+Server Class Reference}
+\label{classAcquisitionServer}\index{Acquisition\+Server@{Acquisition\+Server}}
+}
+
+
+Provides basic functionality to access serial ports. You can start and stop the port, and write to it. Whenever a \hyperlink{classDataSet}{Data\+Set} object is received an digested, the \hyperlink{classAcquisitionServer_afe942f82316df744efea514192eab408}{data\+Ready(\+Data\+Set)} signal will be emitted.  
+
+
+
+
+{\ttfamily \#include $<$acquisitionserver.\+h$>$}
+
+
+
+Inheritance diagram for Acquisition\+Server\+:
+
+
+Collaboration diagram for Acquisition\+Server\+:
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classAcquisitionServer_a6fd77361e5704bc75d3b33a64b4be9c1}{set\+Baud\+Rate} (long baud\+Rate)
+\begin{DoxyCompactList}\small\item\em Sets the baudrate that the port will use to communicate. Its default value is 115200, so you do not need to call this method if you will use this baudrate. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classAcquisitionServer_ad197a4fd5e3c4d9f4edde8e43f27c8e4}{activate\+Channel} (int channel)
+\begin{DoxyCompactList}\small\item\em Activates the specified channel, sending the proper commmand to the port. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classAcquisitionServer_ac4cc199b5d0610892f7fc6054a235a92}{deactivate\+Channel} (int channel)
+\begin{DoxyCompactList}\small\item\em Deactivates the specified channel, sending the proper commmand to the port. \end{DoxyCompactList}\item 
+\hypertarget{classAcquisitionServer_a799383970298f957c0498b50dcdd8d4c}{virtual void \hyperlink{classAcquisitionServer_a799383970298f957c0498b50dcdd8d4c}{activate\+All\+Channels} ()}\label{classAcquisitionServer_a799383970298f957c0498b50dcdd8d4c}
+
+\begin{DoxyCompactList}\small\item\em Activates all the available channels, sending the proper commands to the port. \end{DoxyCompactList}\item 
+\hypertarget{classAcquisitionServer_aca854d4811b4749eb2472781d5710597}{virtual void \hyperlink{classAcquisitionServer_aca854d4811b4749eb2472781d5710597}{deactivate\+All\+Channels} ()}\label{classAcquisitionServer_aca854d4811b4749eb2472781d5710597}
+
+\begin{DoxyCompactList}\small\item\em Deactivates all the available channels, sending the proper commands to the port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classAcquisitionServer_afe942f82316df744efea514192eab408}{data\+Ready} (\hyperlink{classDataSet}{Data\+Set} data)
+\begin{DoxyCompactList}\small\item\em This signal is emitted whenever a \hyperlink{classDataSet}{Data\+Set} data is received and digested. You should not use this method in any other ways. \end{DoxyCompactList}\item 
+\hypertarget{classAcquisitionServer_aed4b01d28af98b861b01dc78be3f3a22}{void \hyperlink{classAcquisitionServer_aed4b01d28af98b861b01dc78be3f3a22}{port\+Opened} ()}\label{classAcquisitionServer_aed4b01d28af98b861b01dc78be3f3a22}
+
+\begin{DoxyCompactList}\small\item\em Signal emitted when the port is opened (starts receiving data, or is ready to receive). \end{DoxyCompactList}\item 
+\hypertarget{classAcquisitionServer_ad3778a6c70cb04d68c9bfbdb0d0b4a1d}{void \hyperlink{classAcquisitionServer_ad3778a6c70cb04d68c9bfbdb0d0b4a1d}{port\+Closed} ()}\label{classAcquisitionServer_ad3778a6c70cb04d68c9bfbdb0d0b4a1d}
+
+\begin{DoxyCompactList}\small\item\em Signal emitted when the port is closed. \end{DoxyCompactList}\item 
+void \hyperlink{classAcquisitionServer_a3c338c806917b259b5ba50d2da353569}{response\+Received} (string reponse)
+\begin{DoxyCompactList}\small\item\em This signal is emitted when a response is received. This happens after you send a \char`\"{}?\char`\"{} Q\+Byte\+Array through \hyperlink{classAcquisitionServer_af5fd99ccd1a3bef0dd0ef8eff2935423}{write(\+Q\+Byte\+Array data)}. In order for it to work properly, you should use \char`\"{}using namespace std;\char`\"{} at the beginning of your header file. With Qt version 5.\+8.\+0, this does not work with std\+::string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAcquisitionServer_aa46879983f2e52ac9d7a3025a7cd5db1}{Acquisition\+Server} (Q\+Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Class Constructor. Usually no Q\+Object $\ast$parent is needed. You can provide a parent if you want the object to be associated to some Q\+Object, but do not expect to create an Aquisition\+Server object from another Aquisition\+Server object with this constructor. This method is inherited from Q\+Object. \end{DoxyCompactList}\item 
+\hypertarget{classAcquisitionServer_ab338a259f798ee4aae5138eab86be25c}{virtual \hyperlink{classAcquisitionServer_ab338a259f798ee4aae5138eab86be25c}{$\sim$\+Acquisition\+Server} ()}\label{classAcquisitionServer_ab338a259f798ee4aae5138eab86be25c}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classAcquisitionServer_acef57dade37889fb65b3026578e33522}{start\+Port} (Q\+String port\+Name)
+\begin{DoxyCompactList}\small\item\em Starts the port addressed by port\+Name. Returns true if successful, otherwise returns false. \end{DoxyCompactList}\item 
+\hypertarget{classAcquisitionServer_a8599a0d29401fdc387870a7bfbbdbdaf}{virtual void \hyperlink{classAcquisitionServer_a8599a0d29401fdc387870a7bfbbdbdaf}{stop\+Port} ()}\label{classAcquisitionServer_a8599a0d29401fdc387870a7bfbbdbdaf}
+
+\begin{DoxyCompactList}\small\item\em Closes the port. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classAcquisitionServer_ad9a1defcb18ae035cf9d776afaec7977}{port\+Is\+Active} ()
+\begin{DoxyCompactList}\small\item\em Returns true is the port is active and running (receiving data, or ready to receive). Otherwise returns false. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classAcquisitionServer_af5fd99ccd1a3bef0dd0ef8eff2935423}{write} (Q\+Byte\+Array data)
+\begin{DoxyCompactList}\small\item\em Writes provided data to the port. As for now, this method has no ways of reporting errors. \end{DoxyCompactList}\item 
+virtual Q\+List$<$ Q\+String $>$ \hyperlink{classAcquisitionServer_a0b4b7b5cad944237aafad929305df236}{available\+Ports} ()
+\begin{DoxyCompactList}\small\item\em Lists all the currently available Serial Ports. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides basic functionality to access serial ports. You can start and stop the port, and write to it. Whenever a \hyperlink{classDataSet}{Data\+Set} object is received an digested, the \hyperlink{classAcquisitionServer_afe942f82316df744efea514192eab408}{data\+Ready(\+Data\+Set)} signal will be emitted. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAcquisitionServer_aa46879983f2e52ac9d7a3025a7cd5db1}{\index{Acquisition\+Server@{Acquisition\+Server}!Acquisition\+Server@{Acquisition\+Server}}
+\index{Acquisition\+Server@{Acquisition\+Server}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{Acquisition\+Server}]{\setlength{\rightskip}{0pt plus 5cm}Acquisition\+Server\+::\+Acquisition\+Server (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{classAcquisitionServer_aa46879983f2e52ac9d7a3025a7cd5db1}
+
+
+Class Constructor. Usually no Q\+Object $\ast$parent is needed. You can provide a parent if you want the object to be associated to some Q\+Object, but do not expect to create an Aquisition\+Server object from another Aquisition\+Server object with this constructor. This method is inherited from Q\+Object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAcquisitionServer_ad197a4fd5e3c4d9f4edde8e43f27c8e4}{\index{Acquisition\+Server@{Acquisition\+Server}!activate\+Channel@{activate\+Channel}}
+\index{activate\+Channel@{activate\+Channel}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{activate\+Channel}]{\setlength{\rightskip}{0pt plus 5cm}void Acquisition\+Server\+::activate\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [slot]}}}\label{classAcquisitionServer_ad197a4fd5e3c4d9f4edde8e43f27c8e4}
+
+
+Activates the specified channel, sending the proper commmand to the port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Expected values\+: 0 to 15. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAcquisitionServer_a0b4b7b5cad944237aafad929305df236}{\index{Acquisition\+Server@{Acquisition\+Server}!available\+Ports@{available\+Ports}}
+\index{available\+Ports@{available\+Ports}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{available\+Ports}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List$<$ Q\+String $>$ Acquisition\+Server\+::available\+Ports (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAcquisitionServer_a0b4b7b5cad944237aafad929305df236}
+
+
+Lists all the currently available Serial Ports. 
+
+\begin{DoxyReturn}{Returns}
+Q\+List$<$\+Q\+String$>$ A list containing all the availabe Serial Port addresses. You could use one of these directly as the parameter for \hyperlink{classAcquisitionServer_acef57dade37889fb65b3026578e33522}{start\+Port(\+Q\+String port\+Name)}. 
+\end{DoxyReturn}
+\hypertarget{classAcquisitionServer_afe942f82316df744efea514192eab408}{\index{Acquisition\+Server@{Acquisition\+Server}!data\+Ready@{data\+Ready}}
+\index{data\+Ready@{data\+Ready}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{data\+Ready}]{\setlength{\rightskip}{0pt plus 5cm}void Acquisition\+Server\+::data\+Ready (
+\begin{DoxyParamCaption}
+\item[{{\bf Data\+Set}}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classAcquisitionServer_afe942f82316df744efea514192eab408}
+
+
+This signal is emitted whenever a \hyperlink{classDataSet}{Data\+Set} data is received and digested. You should not use this method in any other ways. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Holds the value of the recently generated \hyperlink{classDataSet}{Data\+Set}. You should use this with a proper S\+L\+O\+T that also receives a \hyperlink{classDataSet}{Data\+Set}, and there you can use it. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAcquisitionServer_ac4cc199b5d0610892f7fc6054a235a92}{\index{Acquisition\+Server@{Acquisition\+Server}!deactivate\+Channel@{deactivate\+Channel}}
+\index{deactivate\+Channel@{deactivate\+Channel}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{deactivate\+Channel}]{\setlength{\rightskip}{0pt plus 5cm}void Acquisition\+Server\+::deactivate\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [slot]}}}\label{classAcquisitionServer_ac4cc199b5d0610892f7fc6054a235a92}
+
+
+Deactivates the specified channel, sending the proper commmand to the port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Expected values\+: 0 to 15. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAcquisitionServer_ad9a1defcb18ae035cf9d776afaec7977}{\index{Acquisition\+Server@{Acquisition\+Server}!port\+Is\+Active@{port\+Is\+Active}}
+\index{port\+Is\+Active@{port\+Is\+Active}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{port\+Is\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Acquisition\+Server\+::port\+Is\+Active (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAcquisitionServer_ad9a1defcb18ae035cf9d776afaec7977}
+
+
+Returns true is the port is active and running (receiving data, or ready to receive). Otherwise returns false. 
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classAcquisitionServer_a3c338c806917b259b5ba50d2da353569}{\index{Acquisition\+Server@{Acquisition\+Server}!response\+Received@{response\+Received}}
+\index{response\+Received@{response\+Received}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{response\+Received}]{\setlength{\rightskip}{0pt plus 5cm}void Acquisition\+Server\+::response\+Received (
+\begin{DoxyParamCaption}
+\item[{string}]{reponse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classAcquisitionServer_a3c338c806917b259b5ba50d2da353569}
+
+
+This signal is emitted when a response is received. This happens after you send a \char`\"{}?\char`\"{} Q\+Byte\+Array through \hyperlink{classAcquisitionServer_af5fd99ccd1a3bef0dd0ef8eff2935423}{write(\+Q\+Byte\+Array data)}. In order for it to work properly, you should use \char`\"{}using namespace std;\char`\"{} at the beginning of your header file. With Qt version 5.\+8.\+0, this does not work with std\+::string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reponse} & Holds the response received from the port. You should use this with a proper S\+L\+O\+T that also receives a Q\+Byte\+Array, and there you can use it. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAcquisitionServer_a6fd77361e5704bc75d3b33a64b4be9c1}{\index{Acquisition\+Server@{Acquisition\+Server}!set\+Baud\+Rate@{set\+Baud\+Rate}}
+\index{set\+Baud\+Rate@{set\+Baud\+Rate}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{set\+Baud\+Rate}]{\setlength{\rightskip}{0pt plus 5cm}void Acquisition\+Server\+::set\+Baud\+Rate (
+\begin{DoxyParamCaption}
+\item[{long}]{baud\+Rate}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [slot]}}}\label{classAcquisitionServer_a6fd77361e5704bc75d3b33a64b4be9c1}
+
+
+Sets the baudrate that the port will use to communicate. Its default value is 115200, so you do not need to call this method if you will use this baudrate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em baud\+Rate} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAcquisitionServer_acef57dade37889fb65b3026578e33522}{\index{Acquisition\+Server@{Acquisition\+Server}!start\+Port@{start\+Port}}
+\index{start\+Port@{start\+Port}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{start\+Port}]{\setlength{\rightskip}{0pt plus 5cm}bool Acquisition\+Server\+::start\+Port (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{port\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAcquisitionServer_acef57dade37889fb65b3026578e33522}
+
+
+Starts the port addressed by port\+Name. Returns true if successful, otherwise returns false. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classAcquisitionServer_af5fd99ccd1a3bef0dd0ef8eff2935423}{\index{Acquisition\+Server@{Acquisition\+Server}!write@{write}}
+\index{write@{write}!Acquisition\+Server@{Acquisition\+Server}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}void Acquisition\+Server\+::write (
+\begin{DoxyParamCaption}
+\item[{Q\+Byte\+Array}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAcquisitionServer_af5fd99ccd1a3bef0dd0ef8eff2935423}
+
+
+Writes provided data to the port. As for now, this method has no ways of reporting errors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+acquisitionserver.\+h\item 
+acquisitionserver.\+cpp\end{DoxyCompactItemize}

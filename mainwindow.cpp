@@ -19,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent) :
     guideImageDialog = new QDialog();
     guideImageLabel = new QLabel(guideImageDialog);
 
+    connectionLostDialog = new ConnectionLostDialog(this);
+    waitForCloseDialog = new WaitForCloseDialog(this);
+
     /*
     baudRates = new QActionGroup(this);
 
@@ -64,6 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
     */
 
     allChannelsModificationEnabled = true;
+    closeRequested = false;
     baudrate = 115200;
 
     guideImageLabel->setPixmap(QPixmap(":/connection_guide/BioAmpFE.png"));
@@ -77,13 +81,7 @@ MainWindow::MainWindow(QWidget *parent) :
     channelsAdvancedConfigurationBox->setLayout(channelsAdvancedConfigurationBoxLayout);
     ui->channelsAdvancedLayout->setWidget(channelsAdvancedConfigurationBox);
 
-    for (int portIndex = 0; portIndex < system.availablePorts().size(); portIndex++)
-    {
-        ui->menu_Port->addAction(system.availablePorts()[portIndex]);
-        ui->menu_Port->actions()[portIndex]->setCheckable(true);
-
-        availablePorts->addAction(ui->menu_Port->actions()[portIndex]);
-    }
+    updatePorts();
 
     /*
     ui->menu_Port->addSeparator();
@@ -122,6 +120,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->sampleRateComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(selectSampleRate(QString)));
     connect(ui->testSignalsComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(selectTestSignal(int)));
     connect(ui->showGraphPushButton, SIGNAL(clicked()), &system, SLOT(toggleGraphVisibility()));
+    connect(&system, SIGNAL(portConnectionError()), this, SLOT(connectionError()));
+    connect(&system, SIGNAL(lastCommandSent()), this, SLOT(closeWindow()));
+#if defined(Q_OS_LINUX)
+    connect(&searchPortTicker, SIGNAL(timeout()), this, SLOT(updatePorts()));
+#endif
 }
 
 MainWindow::~MainWindow()
@@ -134,6 +137,9 @@ MainWindow::~MainWindow()
 
     delete guideImageLabel;
     delete guideImageDialog;
+
+    delete connectionLostDialog;
+    delete waitForCloseDialog;
 
     delete availablePorts;
     delete operationModes;
@@ -149,22 +155,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    /*
-    QFile configurations("conf.conf");
-
-    if (configurations.open(QFile::Text | QFile::WriteOnly | QFile::Truncate))
+    if (system.sendingData())
     {
-        for (int index; index < baudRates->actions().size(); index++)
-            if (baudRates->actions()[index]->isChecked())
-                configurations.write(baudRates->actions()[index]->text().toUtf8());
+        event->ignore();
 
-        configurations.close();
+        closeRequested = true;
+
+        waitForCloseDialog->show();
     }
-    */
-    if (guideImageDialog->isVisible())
-        guideImageDialog->close();
 
-    system.stop();
+    else
+    {
+        if (guideImageDialog->isVisible())
+            guideImageDialog->close();
+
+        system.stop();
+    }
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)
@@ -279,10 +285,15 @@ void MainWindow::selectPort(QAction *selectedPort)
         system.stop();
     */
 
+    if (system.receivingData())
+        system.stop();
+
     if (system.start(selectedPort->text(), baudrate))
     {
         system.setSampleRate(System::at250Hz);
         system.flush();
+
+        ui->tabWidget->setEnabled(true);
 
         ui->sampleRateComboBox->setCurrentIndex(0);
 
@@ -304,7 +315,12 @@ void MainWindow::selectPort(QAction *selectedPort)
         ui->connectedStatusImage->setVisible(true);
         ui->disconnectedStatusImage->setVisible(false);
 
+#if defined(Q_OS_LINUX)
+        searchPortTicker.stop();
+#endif
+
         ui->action_8_Channels->trigger();
+
     }
 
     else
@@ -437,6 +453,62 @@ void MainWindow::selectTestSignal(int testSignal)
 
         system.flush();
     }
+}
+
+void MainWindow::connectionError()
+{
+    ui->tabWidget->setEnabled(false);
+    ui->menuOperation_Mode->setEnabled(false);
+
+    ui->connectedStatusImage->setVisible(false);
+    ui->disconnectedStatusImage->setVisible(true);
+
+#if defined(Q_OS_LINUX)
+    updatePorts();
+
+    searchPortTicker.start(2000);
+#endif
+
+    connectionLostDialog->exec();
+}
+
+void MainWindow::updatePorts()
+{
+    for (int portIndex = 0; portIndex < ui->menu_Port->actions().size(); portIndex++)
+        availablePorts->removeAction(ui->menu_Port->actions()[portIndex]);
+
+    ui->menu_Port->clear();
+
+    for (int portIndex = 0; portIndex < system.availablePorts().size(); portIndex++)
+    {
+        ui->menu_Port->addAction(system.availablePorts()[portIndex]);
+        ui->menu_Port->actions()[portIndex]->setCheckable(true);
+
+        availablePorts->addAction(ui->menu_Port->actions()[portIndex]);
+    }
+
+    ui->menu_Port->addSeparator();
+
+    ui->menu_Port->addAction("&Update Ports");
+
+    connect(ui->menu_Port->actions()[ui->menu_Port->actions().size() - 1], SIGNAL(triggered(bool)), this, SLOT(updatePortsFromMenu()));
+}
+
+void MainWindow::updatePortsFromMenu()
+{
+    updatePorts();
+
+    ui->menu_Tools->show();
+    ui->menu_Port->show();
+
+    ui->menu_Tools->setFocus();
+    ui->menu_Port->setFocus();
+}
+
+void MainWindow::closeWindow()
+{
+    if (closeRequested)
+        close();
 }
 
 void MainWindow::activateChannel(int channel, bool activated)
@@ -660,12 +732,13 @@ void MainWindow::on_connectButton_clicked()
             if (availablePorts->actions()[index]->isChecked())
                 presentPort = availablePorts->actions()[index]->text();
 
-        system.start(presentPort, baudrate);
+        if (system.start(presentPort, baudrate))
+        {
+            ui->tabWidget->setEnabled(true);
 
-        ui->tabWidget->setEnabled(true);
-
-        ui->connectedStatusImage->setVisible(true);
-        ui->disconnectedStatusImage->setVisible(false);
+            ui->connectedStatusImage->setVisible(true);
+            ui->disconnectedStatusImage->setVisible(false);
+        }
     }
 }
 

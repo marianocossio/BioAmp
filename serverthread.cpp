@@ -6,7 +6,10 @@ ServerThread::ServerThread(QObject *parent) : QThread(parent)
 
     baudRate = 115200;
 
+    connectionAttempts = 0;
+
     connect(&portBioAmp, SIGNAL(readyRead()), this, SLOT(readData()));
+    connect(&portBioAmp, SIGNAL(errorOccurred(QSerialPort::SerialPortError)), this, SLOT(errorOccurredReceived()));
 }
 
 ServerThread::~ServerThread()
@@ -42,14 +45,21 @@ bool ServerThread::startPort(QString portName)
     {
         abort = false;
 
+        connectionAttempts = 10;
+
         emit portOpened();
     }
+
+    else
+        emit connectionError();
 
     return result;
 }
 
 void ServerThread::stopPort()
 {
+    connectionAttempts = 0;
+
     mutex.lock();
 
     if (portBioAmp.isOpen())
@@ -132,5 +142,18 @@ void ServerThread::readData()
 
         if (receivedBytes.size() > 0)
             emit dataReceived(receivedBytes);
+    }
+}
+
+void ServerThread::errorOccurredReceived()
+{
+    if (connectionAttempts < 10)
+        connectionAttempts++;
+
+    else
+    {
+        connectionAttempts = 0;
+
+        emit connectionError();
     }
 }

@@ -13,4 +13,7 @@
     <qresource prefix="/logo">
         <file>logo_ingenieria.png</file>
     </qresource>
+    <qresource prefix="/error">
+        <file>error.png</file>
+    </qresource>
 </RCC>

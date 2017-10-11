@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+  <namespace>org.uner.BioAmp</namespace>
+  <virtualFolder>doc</virtualFolder>
+  <filterSection>
+    <filterAttribute>doxygen</filterAttribute>
+    <toc>
+      <section title="BioAmp" ref="index.html">
+        <section title="Classes">
+          <section title="Class List" ref="annotated.html">
+            <section title="AcquisitionServer" ref="classAcquisitionServer.html">
+              <section title="AcquisitionServer" ref="classAcquisitionServer.html#aa46879983f2e52ac9d7a3025a7cd5db1" />
+              <section title="~AcquisitionServer" ref="classAcquisitionServer.html#ab338a259f798ee4aae5138eab86be25c" />
+              <section title="activateAllChannels" ref="classAcquisitionServer.html#a799383970298f957c0498b50dcdd8d4c" />
+              <section title="activateChannel" ref="classAcquisitionServer.html#ad197a4fd5e3c4d9f4edde8e43f27c8e4" />
+              <section title="availablePorts" ref="classAcquisitionServer.html#a0b4b7b5cad944237aafad929305df236" />
+              <section title="dataReady" ref="classAcquisitionServer.html#afe942f82316df744efea514192eab408" />
+              <section title="deactivateAllChannels" ref="classAcquisitionServer.html#aca854d4811b4749eb2472781d5710597" />
+              <section title="deactivateChannel" ref="classAcquisitionServer.html#ac4cc199b5d0610892f7fc6054a235a92" />
+              <section title="portClosed" ref="classAcquisitionServer.html#ad3778a6c70cb04d68c9bfbdb0d0b4a1d" />
+              <section title="portIsActive" ref="classAcquisitionServer.html#ad9a1defcb18ae035cf9d776afaec7977" />
+              <section title="portOpened" ref="classAcquisitionServer.html#aed4b01d28af98b861b01dc78be3f3a22" />
+              <section title="responseReceived" ref="classAcquisitionServer.html#a3c338c806917b259b5ba50d2da353569" />
+              <section title="setBaudRate" ref="classAcquisitionServer.html#a6fd77361e5704bc75d3b33a64b4be9c1" />
+              <section title="startPort" ref="classAcquisitionServer.html#acef57dade37889fb65b3026578e33522" />
+              <section title="stopPort" ref="classAcquisitionServer.html#a8599a0d29401fdc387870a7bfbbdbdaf" />
+              <section title="write" ref="classAcquisitionServer.html#af5fd99ccd1a3bef0dd0ef8eff2935423" />
+            </section>
+            <section title="ChannelLayout" ref="classChannelLayout.html">
+              <section title="ChannelLayout" ref="classChannelLayout.html#a36135c95c4635b8e2b426b8968dc4847" />
+              <section title="~ChannelLayout" ref="classChannelLayout.html#a82661948d3b9d44c3cb5850564dd12c7" />
+              <section title="activateTestMode" ref="classChannelLayout.html#a2fc7025ace239041152a6b7f01141e55" />
+              <section title="bipolarConfigurationToggled" ref="classChannelLayout.html#a3e4ce867e174d9ec8533f17b43247c0f" />
+              <section title="channelGain" ref="classChannelLayout.html#a9600cfa0fc34bf00df5af7ce718fb518" />
+              <section title="channelGainChanged" ref="classChannelLayout.html#a12fa160d0f7b87c66d0e08e6f0abc996" />
+              <section title="channelSelected" ref="classChannelLayout.html#a2a9870b08695ba89559f5fc29628d018" />
+              <section title="connectToTestSignal" ref="classChannelLayout.html#a05f0a5b58375512683943c5aa92dc75c" />
+              <section title="isActivated" ref="classChannelLayout.html#a5da445dac029cce162e4ef9854b513e6" />
+              <section title="isBipolarModeActivated" ref="classChannelLayout.html#a9eb37631caab95945c6b7443740a396f" />
+              <section title="isConnectedToTestSignal" ref="classChannelLayout.html#ad4b21ae7682d344ac142241a79778142" />
+              <section title="select" ref="classChannelLayout.html#a9a030de719c4df6b68a0dcb5ea733f0e" />
+              <section title="setBipolarConfiguration" ref="classChannelLayout.html#a84a2f0c9aa038d4863486b975868bed3" />
+              <section title="setChannelNumber" ref="classChannelLayout.html#a8af1129c9668ad666f3f8b5884bc2e26" />
+              <section title="setGain" ref="classChannelLayout.html#a79f01917e46190d8e7e1cfaeb66b5334" />
+              <section title="toggleVoidGain" ref="classChannelLayout.html#a3417dcaf9e7632b9b5c1c77d0dcf8d73" />
+              <section title="toTestSignalToggled" ref="classChannelLayout.html#ac515619c820628a614d25802f7ebde23" />
+            </section>
+            <section title="ChannelLayoutAdvanced" ref="classChannelLayoutAdvanced.html">
+              <section title="ChannelLayoutAdvanced" ref="classChannelLayoutAdvanced.html#a47fca52a45fbbd3584e6e3ee1f4fdcdb" />
+              <section title="~ChannelLayoutAdvanced" ref="classChannelLayoutAdvanced.html#a81ecdc295cd9d4a097d76556442029be" />
+              <section title="connectToBIASToggled" ref="classChannelLayoutAdvanced.html#a4b26746769cd4eeeb22c9f7004e4b657" />
+              <section title="isConnectedToBIAS" ref="classChannelLayoutAdvanced.html#a9481d8caaf83aa07d440cf13941f1198" />
+              <section title="setChannelNumber" ref="classChannelLayoutAdvanced.html#afa83505f555a87d3e0ebf4e7d7f1e407" />
+              <section title="setConnectedToBIAS" ref="classChannelLayoutAdvanced.html#a283b1c5b0870dd9949f864b9fcd73000" />
+              <section title="startCheckingImpedanceRequested" ref="classChannelLayoutAdvanced.html#a91b635650fbb638df5b460de69560eb3" />
+              <section title="stopCheckingImpedanceRequested" ref="classChannelLayoutAdvanced.html#a30fa307005ac38bb11ad3829decc335c" />
+              <section title="updateImpedanceValue" ref="classChannelLayoutAdvanced.html#ad48eeec3ecdc2f9ce95eee211fc39ba7" />
+            </section>
+            <section title="DataConditioner" ref="classDataConditioner.html">
+              <section title="DataConditioner" ref="classDataConditioner.html#ac0c2bf7b85c555e743488d49cef1494f" />
+              <section title="~DataConditioner" ref="classDataConditioner.html#af85b419855b9a847a284ae4d3306c4de" />
+              <section title="activateAllChannels" ref="classDataConditioner.html#adba5c53fe671c8e95dce70d2b178d9e9" />
+              <section title="activateChannel" ref="classDataConditioner.html#ac798325df3b24313fa1d9db1904d484f" />
+              <section title="dataReady" ref="classDataConditioner.html#aabc0d8e3f9f549d3ba37846ff5b296eb" />
+              <section title="deactivateAllChannels" ref="classDataConditioner.html#a0b90c8af111e957c62bfc2e80f53ce3d" />
+              <section title="deactivateChannel" ref="classDataConditioner.html#a2539b9cdfd4d6e46a06dbe2a2a038abd" />
+              <section title="getResponse" ref="classDataConditioner.html#a07dbe2cd939c275dbbce01a0cce23d53" />
+              <section title="newBytes" ref="classDataConditioner.html#a79187835a69de44cf8d104bd972055c8" />
+              <section title="responseReceived" ref="classDataConditioner.html#a527d8428ead1da99018d36f77ea617cc" />
+            </section>
+            <section title="DataSet" ref="classDataSet.html">
+              <section title="DataType" ref="classDataSet.html#a7fd8108f656db008dea5cf035ddfd85e">
+                <section title="DataSet_8" ref="classDataSet.html#a7fd8108f656db008dea5cf035ddfd85eac55754a9d7170ea3297700b6c8d2b206" />
+                <section title="DataSet_16" ref="classDataSet.html#a7fd8108f656db008dea5cf035ddfd85ea442c4e13ce9d7c37e6365879df47a162" />
+              </section>
+              <section title="DataSet" ref="classDataSet.html#add582898d638653c323b04b8747e23f0" />
+              <section title="~DataSet" ref="classDataSet.html#a2cdb84d32331956b413ca36933e516bd" />
+              <section title="activateAllChannels" ref="classDataSet.html#a51059276326b2d21458eb1e2b979ad06" />
+              <section title="activateChannel" ref="classDataSet.html#a834f924af9e0331f1fbda00e3c994659" />
+              <section title="channelData" ref="classDataSet.html#a9714f8ca542300f722b5f1ae802ab2fa" />
+              <section title="channelGain" ref="classDataSet.html#adb6471efd6fe3f9bbcbf5df5a2c527a0" />
+              <section title="channelIsActive" ref="classDataSet.html#aa7e7790945a346a7c8db46b360d9febf" />
+              <section title="clearData" ref="classDataSet.html#a90dbe67f61080c32ab770c6173806b07" />
+              <section title="deactivateAllChannels" ref="classDataSet.html#a17824b7103e546c40fbe83f93a5dfc6a" />
+              <section title="deactivateChannel" ref="classDataSet.html#a4bd82cb866f395b14e6c370ed6750044" />
+              <section title="flag" ref="classDataSet.html#a8b3ab62f1de202b5163bb02dd84f22af" />
+              <section title="getDataOrder" ref="classDataSet.html#a96b0344b1c0177389288559b6968fb06" />
+              <section title="getDataType" ref="classDataSet.html#ac03684e5474ecf5d08e507f7709b5f87" />
+              <section title="numberOfActiveChannels" ref="classDataSet.html#a7f26dba838ee5b5ad03cab51676d8162" />
+              <section title="setDataOrder" ref="classDataSet.html#a4d3cdc4163a6df9860da8fd77be53380" />
+            </section>
+            <section title="FileHandler" ref="classFileHandler.html">
+              <section title="FileHandler" ref="classFileHandler.html#a05021cda3604e44ef090ad8d37776bd1" />
+              <section title="~FileHandler" ref="classFileHandler.html#a1ce10cd0ad31b313a8d526fba6f1e676" />
+            </section>
+            <section title="Filter" ref="classFilter.html">
+              <section title="Filter" ref="classFilter.html#a63401236b02925be21f62de930864aa7" />
+              <section title="~Filter" ref="classFilter.html#a502ee334d42eac3edbaf32b599f9c35e" />
+            </section>
+            <section title="Graph" ref="classGraph.html">
+              <section title="Graph" ref="classGraph.html#a16c725d15f3725ecf6e467ea021cc211" />
+              <section title="~Graph" ref="classGraph.html#a902c5b3eacb66d60752525ab23297a95" />
+              <section title="addData" ref="classGraph.html#ad1c4128fb8dff472c28b66a6b894f708" />
+              <section title="initializeGL" ref="classGraph.html#ad208b467ea8e2e6e92ce6f61464a63bd" />
+              <section title="keyReleaseEvent" ref="classGraph.html#a3405cfd1c9cfc798267d4b27b7c3547a" />
+              <section title="paintGL" ref="classGraph.html#a221957f6b0c8c8d98bb9e436c7bc2361" />
+              <section title="resizeGL" ref="classGraph.html#aae95a3ed8d33852633dd3cf309fb65c3" />
+              <section title="wheelEvent" ref="classGraph.html#ac44a1cc63f488e8eb7c16b3acf4f0d71" />
+            </section>
+            <section title="MainWindow" ref="classMainWindow.html">
+              <section title="MainWindow" ref="classMainWindow.html#a8b244be8b7b7db1b08de2a2acb9409db" />
+              <section title="~MainWindow" ref="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7" />
+              <section title="closeEvent" ref="classMainWindow.html#a4e20a4a065fbb0e4d3532a45a0a91425" />
+              <section title="resizeEvent" ref="classMainWindow.html#ae12f8f63791595567b6250f8bb002bda" />
+            </section>
+            <section title="ServerThread" ref="classServerThread.html">
+              <section title="ServerThread" ref="classServerThread.html#a552106ab27d9cff73b7ed8bb28b63171" />
+              <section title="~ServerThread" ref="classServerThread.html#abe8eca98c2b2b3c6665026461b0c917d" />
+              <section title="availablePorts" ref="classServerThread.html#a8647882b35b461817de51025bd97b5b9" />
+              <section title="dataReceived" ref="classServerThread.html#af556f75e493771e636ffb39d5c7fcc6c" />
+              <section title="portClosed" ref="classServerThread.html#a500d464163002ba2c87670af08ecbd40" />
+              <section title="portIsActive" ref="classServerThread.html#ae4a93a55ae78933c32d2c56c8d7faac0" />
+              <section title="portOpened" ref="classServerThread.html#ada857cd9723bf0b135b7e03bef2bb1f5" />
+              <section title="run" ref="classServerThread.html#ac2e96a0d05bc1f9eb7f1c36deb45a9f3" />
+              <section title="setBaudRate" ref="classServerThread.html#a5a2fd84aec757a4475d9bb26ea53e896" />
+              <section title="startPort" ref="classServerThread.html#a9cdcb660181ea510dd011e709abeb130" />
+              <section title="stopPort" ref="classServerThread.html#a030b9a76d680d92bcab92bebf8ac3ed8" />
+              <section title="write" ref="classServerThread.html#acafe1f651556eddc49b97b40b9d526f0" />
+            </section>
+            <section title="System" ref="classSystem.html">
+              <section title="Channel" ref="classSystem.html#accbb532702c1994c649a41ba3e0b91c5">
+                <section title="channel1" ref="classSystem.html#accbb532702c1994c649a41ba3e0b91c5ae48c04f3a524b55af4299ff7074f0eea" />
+                <section title="channel2" ref="classSystem.html#accbb532702c1994c649a41ba3e0b91c5a7f6517cd0f049b3f549576b69ae70ee9" />
+                <section title="channel3" ref="classSystem.html#accbb532702c1994c649a41ba3e0b91c5a66dc4f8902be429f158b1f7130c6e52b" />
+                <section title="channel4" ref="classSystem.html#accbb532702c1994c649a41ba3e0b91c5a441c7b998722fbc2a515d683426b877a" />
+                <section title="channel5" ref="classSystem.html#accbb532702c1994c649a41ba3e0b91c5ae3361c0199daa4c58aaeeaa6d0ec2390" />
+                <section title="channel6" ref="classSystem.html#accbb532702c1994c649a41ba3e0b91c5a465640794dd7612f03759c11f2351cb4" />
+                <section title="channel7" ref="classSystem.html#accbb532702c1994c649a41ba3e0b91c5a23241017ccb4b27e9f32dd310846882c" />
+                <section title="channel8" ref="classSystem.html#accbb532702c1994c649a41ba3e0b91c5ad6f07d9459e4d3f4aa013e61c68fbaa9" />
+              </section>
+              <section title="ChannelTerminal" ref="classSystem.html#a209625b11d630ae69c8f059551cab7f6">
+                <section title="P_Terminal" ref="classSystem.html#a209625b11d630ae69c8f059551cab7f6a7184902e9dd6448bf9116f9ce317989f" />
+                <section title="N_Terminal" ref="classSystem.html#a209625b11d630ae69c8f059551cab7f6adeb171e995e92657119d177dd7ac5b16" />
+              </section>
+              <section title="ConnectionType" ref="classSystem.html#af3382dec151558280d2d38b6a07f2c57">
+                <section title="input" ref="classSystem.html#af3382dec151558280d2d38b6a07f2c57a2167ac2bcf4241cf29eb1fbe33cf02ce" />
+                <section title="short_circuit" ref="classSystem.html#af3382dec151558280d2d38b6a07f2c57ac866256c12ea2b140ed0521a8d9888fc" />
+                <section title="BIAS" ref="classSystem.html#af3382dec151558280d2d38b6a07f2c57a9a45ec260f55fb55c54d41baf26953fc" />
+                <section title="MVDD" ref="classSystem.html#af3382dec151558280d2d38b6a07f2c57ab4aee1613246156a2a07ba32aa05fc0e" />
+                <section title="temp" ref="classSystem.html#af3382dec151558280d2d38b6a07f2c57a542aa9a8c6c687d0f69c2bef5d218027" />
+                <section title="test" ref="classSystem.html#af3382dec151558280d2d38b6a07f2c57ae65be44192c5279b75ff3c80a7882890" />
+                <section title="BIAS_DRP" ref="classSystem.html#af3382dec151558280d2d38b6a07f2c57aada1ba5bf35b5f9d02947008bfbc88ab" />
+                <section title="BIAS_DRN" ref="classSystem.html#af3382dec151558280d2d38b6a07f2c57a37c553f640ec7bd180c76e9ad9a54c61" />
+              </section>
+              <section title="Gain" ref="classSystem.html#a198df846d1ea72a0e2407146f0650e87">
+                <section title="x1" ref="classSystem.html#a198df846d1ea72a0e2407146f0650e87ae1ceabd6e7349a35cd5f14b8213c9f42" />
+                <section title="x2" ref="classSystem.html#a198df846d1ea72a0e2407146f0650e87ad269f786e8140ab3d2feebc5f644d07a" />
+                <section title="x4" ref="classSystem.html#a198df846d1ea72a0e2407146f0650e87a24ab58a044bec99f457adcdc9b6973e8" />
+                <section title="x6" ref="classSystem.html#a198df846d1ea72a0e2407146f0650e87aea0436679885aba30e9fd81bde8a0179" />
+                <section title="x8" ref="classSystem.html#a198df846d1ea72a0e2407146f0650e87ac02ef7c355ad2f50bf14a8aa0864709e" />
+                <section title="x16" ref="classSystem.html#a198df846d1ea72a0e2407146f0650e87acac3db504cbb6c69cee71ceb5557fc57" />
+                <section title="x24" ref="classSystem.html#a198df846d1ea72a0e2407146f0650e87a32bff98d197c772d96b138658f5c32bd" />
+              </section>
+              <section title="SampleRate" ref="classSystem.html#a4bec9be96e7c64e4544b86b6467d002a">
+                <section title="at2kHz" ref="classSystem.html#a4bec9be96e7c64e4544b86b6467d002aa7054464f4b6e1b85fe20b29e9ce05084" />
+                <section title="at1kHz" ref="classSystem.html#a4bec9be96e7c64e4544b86b6467d002aa94a78da07b57c5dff264adf66be900a9" />
+                <section title="at500Hz" ref="classSystem.html#a4bec9be96e7c64e4544b86b6467d002aaaf8cf96d391747d2bfb5e71f20dd88ad" />
+                <section title="at250Hz" ref="classSystem.html#a4bec9be96e7c64e4544b86b6467d002aab55be77e5b3a7bbdfeb694daa48027d7" />
+              </section>
+              <section title="TestSignal" ref="classSystem.html#a5ad11f039305a0628b65a43ce5aa8f14">
+                <section title="GND" ref="classSystem.html#a5ad11f039305a0628b65a43ce5aa8f14aebccc3bcb119340c0781a78b916e5208" />
+                <section title="SQ1875x097" ref="classSystem.html#a5ad11f039305a0628b65a43ce5aa8f14a5f3f4c6a5972af930df89c2bc5bf779b" />
+                <section title="SQ1875x195" ref="classSystem.html#a5ad11f039305a0628b65a43ce5aa8f14a5340bba832cb45b47d3d2c72bc535851" />
+                <section title="DC" ref="classSystem.html#a5ad11f039305a0628b65a43ce5aa8f14a5a49d9e3226344ada9810e22dd9e059f" />
+                <section title="SQ3750x097" ref="classSystem.html#a5ad11f039305a0628b65a43ce5aa8f14a96a3243003731b69cb0d5b7732063f06" />
+                <section title="SQ3750x195" ref="classSystem.html#a5ad11f039305a0628b65a43ce5aa8f14ab57e84307041e917ba7f393d3b5e4bb7" />
+              </section>
+              <section title="System" ref="classSystem.html#a33366b5aa0be50bc0e7a40d63c01a659" />
+              <section title="~System" ref="classSystem.html#a3be70bb338e3f062f821173fd15680d0" />
+              <section title="activateAllChannels" ref="classSystem.html#a1fed588e1273e8ea44394c91732a895b" />
+              <section title="activateChannel" ref="classSystem.html#a2b4ee1465036831f1025add301e6809d" />
+              <section title="availablePorts" ref="classSystem.html#ab862daac1ca6d32acea10b21d57bf2aa" />
+              <section title="connectToBIAS" ref="classSystem.html#a984ebba834ed5f9a1b24eb761f2f846b" />
+              <section title="deactivateAllChannels" ref="classSystem.html#ad2364ef8bc782840a0962ad00bcc1e0f" />
+              <section title="flush" ref="classSystem.html#aacb9dc3ab085d9537755319fa7493982" />
+              <section title="impedanceCalculated" ref="classSystem.html#a008f5e16f2732d0d9c965b58cba0d1b5" />
+              <section title="pause" ref="classSystem.html#ad50c9e438a7f4250232951d8e4f7f9ac" />
+              <section title="receivingData" ref="classSystem.html#a803cd09e1ddb2ca4209b6611feec743b" />
+              <section title="send" ref="classSystem.html#ad86ad1f5eff614f155f2f33a668b0cc7" />
+              <section title="setChannelConnectionType" ref="classSystem.html#ab3600fd2a9b8263f832cbe150a65be44" />
+              <section title="setChannelGain" ref="classSystem.html#a843b4c13738156abc2e7ccac51ad46e6" />
+              <section title="setChannelSRB2" ref="classSystem.html#a40fd7729f43e5ac269a07723ed583ad1" />
+              <section title="setSampleRate" ref="classSystem.html#a49b471ea98c2431ad472d3701fca6db6" />
+              <section title="setTestSignal" ref="classSystem.html#ad6c8a797a836088d9d1706ece4b5480e" />
+              <section title="start" ref="classSystem.html#abbfb0ffce4c588ded910071268171a87" />
+              <section title="startCheckingChannelImpedance" ref="classSystem.html#adbecfc00974b9aeb256abd8c00a1607a" />
+              <section title="stop" ref="classSystem.html#aec90bf08b30b1944e5c8074387ed7354" />
+              <section title="stopCheckingChannelImpedance" ref="classSystem.html#aac1d5642fa6941c6a42a84d2014caaad" />
+              <section title="toggleGraphVisibility" ref="classSystem.html#a147f252c0eacc362e062b9413441abf8" />
+            </section>
+          </section>
+          <section title="Class Index" ref="classes.html" />
+          <section title="Class Hierarchy" ref="hierarchy.html">
+            <section title="DataSet" ref="classDataSet.html" />
+            <section title="QMainWindow">
+              <section title="MainWindow" ref="classMainWindow.html" />
+            </section>
+            <section title="QObject">
+              <section title="AcquisitionServer" ref="classAcquisitionServer.html" />
+              <section title="DataConditioner" ref="classDataConditioner.html" />
+              <section title="FileHandler" ref="classFileHandler.html" />
+              <section title="Filter" ref="classFilter.html" />
+              <section title="System" ref="classSystem.html" />
+            </section>
+            <section title="QOpenGLWidget">
+              <section title="Graph" ref="classGraph.html" />
+            </section>
+            <section title="QThread">
+              <section title="ServerThread" ref="classServerThread.html" />
+            </section>
+            <section title="QWidget">
+              <section title="ChannelLayout" ref="classChannelLayout.html" />
+              <section title="ChannelLayoutAdvanced" ref="classChannelLayoutAdvanced.html" />
+            </section>
+          </section>
+          <section title="Class Members" ref="functions.html">
+            <section title="All" ref="functions.html" />
+            <section title="Functions" ref="functions_func.html" />
+          </section>
+        </section>
+        <section title="Files">
+          <section title="File List" ref="files.html">
+            <section title="acquisitionserver.h" ref="acquisitionserver_8h_source.html" />
+            <section title="channellayout.h" ref="channellayout_8h_source.html" />
+            <section title="channellayoutadvanced.h" ref="channellayoutadvanced_8h_source.html" />
+            <section title="dataconditioner.h" ref="dataconditioner_8h_source.html" />
+            <section title="dataset.h" ref="dataset_8h_source.html" />
+            <section title="filehandler.h" ref="filehandler_8h_source.html" />
+            <section title="filter.h" ref="filter_8h_source.html" />
+            <section title="graph.h" ref="graph_8h_source.html" />
+            <section title="mainwindow.h" ref="mainwindow_8h_source.html" />
+            <section title="serverthread.h" ref="serverthread_8h_source.html" />
+            <section title="system.h" ref="system_8h_source.html" />
+          </section>
+        </section>
+      </section>
+    </toc>
+    <keywords>
+      <keyword name="AcquisitionServer" id="AcquisitionServer" ref="classAcquisitionServer.html" />
+      <keyword name="setBaudRate" id="AcquisitionServer::setBaudRate" ref="classAcquisitionServer.html#a6fd77361e5704bc75d3b33a64b4be9c1" />
+      <keyword name="activateChannel" id="AcquisitionServer::activateChannel" ref="classAcquisitionServer.html#ad197a4fd5e3c4d9f4edde8e43f27c8e4" />
+      <keyword name="deactivateChannel" id="AcquisitionServer::deactivateChannel" ref="classAcquisitionServer.html#ac4cc199b5d0610892f7fc6054a235a92" />
+      <keyword name="activateAllChannels" id="AcquisitionServer::activateAllChannels" ref="classAcquisitionServer.html#a799383970298f957c0498b50dcdd8d4c" />
+      <keyword name="deactivateAllChannels" id="AcquisitionServer::deactivateAllChannels" ref="classAcquisitionServer.html#aca854d4811b4749eb2472781d5710597" />
+      <keyword name="dataReady" id="AcquisitionServer::dataReady" ref="classAcquisitionServer.html#afe942f82316df744efea514192eab408" />
+      <keyword name="portOpened" id="AcquisitionServer::portOpened" ref="classAcquisitionServer.html#aed4b01d28af98b861b01dc78be3f3a22" />
+      <keyword name="portClosed" id="AcquisitionServer::portClosed" ref="classAcquisitionServer.html#ad3778a6c70cb04d68c9bfbdb0d0b4a1d" />
+      <keyword name="responseReceived" id="AcquisitionServer::responseReceived" ref="classAcquisitionServer.html#a3c338c806917b259b5ba50d2da353569" />
+      <keyword name="AcquisitionServer" id="AcquisitionServer::AcquisitionServer" ref="classAcquisitionServer.html#aa46879983f2e52ac9d7a3025a7cd5db1" />
+      <keyword name="~AcquisitionServer" id="AcquisitionServer::~AcquisitionServer" ref="classAcquisitionServer.html#ab338a259f798ee4aae5138eab86be25c" />
+      <keyword name="startPort" id="AcquisitionServer::startPort" ref="classAcquisitionServer.html#acef57dade37889fb65b3026578e33522" />
+      <keyword name="stopPort" id="AcquisitionServer::stopPort" ref="classAcquisitionServer.html#a8599a0d29401fdc387870a7bfbbdbdaf" />
+      <keyword name="portIsActive" id="AcquisitionServer::portIsActive" ref="classAcquisitionServer.html#ad9a1defcb18ae035cf9d776afaec7977" />
+      <keyword name="write" id="AcquisitionServer::write" ref="classAcquisitionServer.html#af5fd99ccd1a3bef0dd0ef8eff2935423" />
+      <keyword name="availablePorts" id="AcquisitionServer::availablePorts" ref="classAcquisitionServer.html#a0b4b7b5cad944237aafad929305df236" />
+      <keyword name="ChannelLayout" id="ChannelLayout" ref="classChannelLayout.html" />
+      <keyword name="select" id="ChannelLayout::select" ref="classChannelLayout.html#a9a030de719c4df6b68a0dcb5ea733f0e" />
+      <keyword name="setGain" id="ChannelLayout::setGain" ref="classChannelLayout.html#a79f01917e46190d8e7e1cfaeb66b5334" />
+      <keyword name="activateTestMode" id="ChannelLayout::activateTestMode" ref="classChannelLayout.html#a2fc7025ace239041152a6b7f01141e55" />
+      <keyword name="connectToTestSignal" id="ChannelLayout::connectToTestSignal" ref="classChannelLayout.html#a05f0a5b58375512683943c5aa92dc75c" />
+      <keyword name="setBipolarConfiguration" id="ChannelLayout::setBipolarConfiguration" ref="classChannelLayout.html#a84a2f0c9aa038d4863486b975868bed3" />
+      <keyword name="channelSelected" id="ChannelLayout::channelSelected" ref="classChannelLayout.html#a2a9870b08695ba89559f5fc29628d018" />
+      <keyword name="channelGainChanged" id="ChannelLayout::channelGainChanged" ref="classChannelLayout.html#a12fa160d0f7b87c66d0e08e6f0abc996" />
+      <keyword name="toTestSignalToggled" id="ChannelLayout::toTestSignalToggled" ref="classChannelLayout.html#ac515619c820628a614d25802f7ebde23" />
+      <keyword name="bipolarConfigurationToggled" id="ChannelLayout::bipolarConfigurationToggled" ref="classChannelLayout.html#a3e4ce867e174d9ec8533f17b43247c0f" />
+      <keyword name="ChannelLayout" id="ChannelLayout::ChannelLayout" ref="classChannelLayout.html#a36135c95c4635b8e2b426b8968dc4847" />
+      <keyword name="~ChannelLayout" id="ChannelLayout::~ChannelLayout" ref="classChannelLayout.html#a82661948d3b9d44c3cb5850564dd12c7" />
+      <keyword name="setChannelNumber" id="ChannelLayout::setChannelNumber" ref="classChannelLayout.html#a8af1129c9668ad666f3f8b5884bc2e26" />
+      <keyword name="isActivated" id="ChannelLayout::isActivated" ref="classChannelLayout.html#a5da445dac029cce162e4ef9854b513e6" />
+      <keyword name="isConnectedToTestSignal" id="ChannelLayout::isConnectedToTestSignal" ref="classChannelLayout.html#ad4b21ae7682d344ac142241a79778142" />
+      <keyword name="isBipolarModeActivated" id="ChannelLayout::isBipolarModeActivated" ref="classChannelLayout.html#a9eb37631caab95945c6b7443740a396f" />
+      <keyword name="channelGain" id="ChannelLayout::channelGain" ref="classChannelLayout.html#a9600cfa0fc34bf00df5af7ce718fb518" />
+      <keyword name="toggleVoidGain" id="ChannelLayout::toggleVoidGain" ref="classChannelLayout.html#a3417dcaf9e7632b9b5c1c77d0dcf8d73" />
+      <keyword name="ChannelLayoutAdvanced" id="ChannelLayoutAdvanced" ref="classChannelLayoutAdvanced.html" />
+      <keyword name="updateImpedanceValue" id="ChannelLayoutAdvanced::updateImpedanceValue" ref="classChannelLayoutAdvanced.html#ad48eeec3ecdc2f9ce95eee211fc39ba7" />
+      <keyword name="setConnectedToBIAS" id="ChannelLayoutAdvanced::setConnectedToBIAS" ref="classChannelLayoutAdvanced.html#a283b1c5b0870dd9949f864b9fcd73000" />
+      <keyword name="startCheckingImpedanceRequested" id="ChannelLayoutAdvanced::startCheckingImpedanceRequested" ref="classChannelLayoutAdvanced.html#a91b635650fbb638df5b460de69560eb3" />
+      <keyword name="stopCheckingImpedanceRequested" id="ChannelLayoutAdvanced::stopCheckingImpedanceRequested" ref="classChannelLayoutAdvanced.html#a30fa307005ac38bb11ad3829decc335c" />
+      <keyword name="connectToBIASToggled" id="ChannelLayoutAdvanced::connectToBIASToggled" ref="classChannelLayoutAdvanced.html#a4b26746769cd4eeeb22c9f7004e4b657" />
+      <keyword name="ChannelLayoutAdvanced" id="ChannelLayoutAdvanced::ChannelLayoutAdvanced" ref="classChannelLayoutAdvanced.html#a47fca52a45fbbd3584e6e3ee1f4fdcdb" />
+      <keyword name="~ChannelLayoutAdvanced" id="ChannelLayoutAdvanced::~ChannelLayoutAdvanced" ref="classChannelLayoutAdvanced.html#a81ecdc295cd9d4a097d76556442029be" />
+      <keyword name="setChannelNumber" id="ChannelLayoutAdvanced::setChannelNumber" ref="classChannelLayoutAdvanced.html#afa83505f555a87d3e0ebf4e7d7f1e407" />
+      <keyword name="isConnectedToBIAS" id="ChannelLayoutAdvanced::isConnectedToBIAS" ref="classChannelLayoutAdvanced.html#a9481d8caaf83aa07d440cf13941f1198" />
+      <keyword name="DataConditioner" id="DataConditioner" ref="classDataConditioner.html" />
+      <keyword name="newBytes" id="DataConditioner::newBytes" ref="classDataConditioner.html#a79187835a69de44cf8d104bd972055c8" />
+      <keyword name="activateChannel" id="DataConditioner::activateChannel" ref="classDataConditioner.html#ac798325df3b24313fa1d9db1904d484f" />
+      <keyword name="deactivateChannel" id="DataConditioner::deactivateChannel" ref="classDataConditioner.html#a2539b9cdfd4d6e46a06dbe2a2a038abd" />
+      <keyword name="activateAllChannels" id="DataConditioner::activateAllChannels" ref="classDataConditioner.html#adba5c53fe671c8e95dce70d2b178d9e9" />
+      <keyword name="deactivateAllChannels" id="DataConditioner::deactivateAllChannels" ref="classDataConditioner.html#a0b90c8af111e957c62bfc2e80f53ce3d" />
+      <keyword name="dataReady" id="DataConditioner::dataReady" ref="classDataConditioner.html#aabc0d8e3f9f549d3ba37846ff5b296eb" />
+      <keyword name="responseReceived" id="DataConditioner::responseReceived" ref="classDataConditioner.html#a527d8428ead1da99018d36f77ea617cc" />
+      <keyword name="DataConditioner" id="DataConditioner::DataConditioner" ref="classDataConditioner.html#ac0c2bf7b85c555e743488d49cef1494f" />
+      <keyword name="getResponse" id="DataConditioner::getResponse" ref="classDataConditioner.html#a07dbe2cd939c275dbbce01a0cce23d53" />
+      <keyword name="DataSet" id="DataSet" ref="classDataSet.html" />
+      <keyword name="DataSet" id="DataSet::DataSet" ref="classDataSet.html#add582898d638653c323b04b8747e23f0" />
+      <keyword name="setDataOrder" id="DataSet::setDataOrder" ref="classDataSet.html#a4d3cdc4163a6df9860da8fd77be53380" />
+      <keyword name="getDataOrder" id="DataSet::getDataOrder" ref="classDataSet.html#a96b0344b1c0177389288559b6968fb06" />
+      <keyword name="activateChannel" id="DataSet::activateChannel" ref="classDataSet.html#a834f924af9e0331f1fbda00e3c994659" />
+      <keyword name="deactivateChannel" id="DataSet::deactivateChannel" ref="classDataSet.html#a4bd82cb866f395b14e6c370ed6750044" />
+      <keyword name="activateAllChannels" id="DataSet::activateAllChannels" ref="classDataSet.html#a51059276326b2d21458eb1e2b979ad06" />
+      <keyword name="deactivateAllChannels" id="DataSet::deactivateAllChannels" ref="classDataSet.html#a17824b7103e546c40fbe83f93a5dfc6a" />
+      <keyword name="channelData" id="DataSet::channelData" ref="classDataSet.html#a9714f8ca542300f722b5f1ae802ab2fa" />
+      <keyword name="channelGain" id="DataSet::channelGain" ref="classDataSet.html#adb6471efd6fe3f9bbcbf5df5a2c527a0" />
+      <keyword name="channelIsActive" id="DataSet::channelIsActive" ref="classDataSet.html#aa7e7790945a346a7c8db46b360d9febf" />
+      <keyword name="numberOfActiveChannels" id="DataSet::numberOfActiveChannels" ref="classDataSet.html#a7f26dba838ee5b5ad03cab51676d8162" />
+      <keyword name="clearData" id="DataSet::clearData" ref="classDataSet.html#a90dbe67f61080c32ab770c6173806b07" />
+      <keyword name="flag" id="DataSet::flag" ref="classDataSet.html#a8b3ab62f1de202b5163bb02dd84f22af" />
+      <keyword name="getDataType" id="DataSet::getDataType" ref="classDataSet.html#ac03684e5474ecf5d08e507f7709b5f87" />
+      <keyword name="FileHandler" id="FileHandler" ref="classFileHandler.html" />
+      <keyword name="FileHandler" id="FileHandler::FileHandler" ref="classFileHandler.html#a05021cda3604e44ef090ad8d37776bd1" />
+      <keyword name="Filter" id="Filter" ref="classFilter.html" />
+      <keyword name="Filter" id="Filter::Filter" ref="classFilter.html#a63401236b02925be21f62de930864aa7" />
+      <keyword name="Graph" id="Graph" ref="classGraph.html" />
+      <keyword name="Graph" id="Graph::Graph" ref="classGraph.html#a16c725d15f3725ecf6e467ea021cc211" />
+      <keyword name="addData" id="Graph::addData" ref="classGraph.html#ad1c4128fb8dff472c28b66a6b894f708" />
+      <keyword name="initializeGL" id="Graph::initializeGL" ref="classGraph.html#ad208b467ea8e2e6e92ce6f61464a63bd" />
+      <keyword name="resizeGL" id="Graph::resizeGL" ref="classGraph.html#aae95a3ed8d33852633dd3cf309fb65c3" />
+      <keyword name="paintGL" id="Graph::paintGL" ref="classGraph.html#a221957f6b0c8c8d98bb9e436c7bc2361" />
+      <keyword name="keyReleaseEvent" id="Graph::keyReleaseEvent" ref="classGraph.html#a3405cfd1c9cfc798267d4b27b7c3547a" />
+      <keyword name="wheelEvent" id="Graph::wheelEvent" ref="classGraph.html#ac44a1cc63f488e8eb7c16b3acf4f0d71" />
+      <keyword name="MainWindow" id="MainWindow" ref="classMainWindow.html" />
+      <keyword name="closeEvent" id="MainWindow::closeEvent" ref="classMainWindow.html#a4e20a4a065fbb0e4d3532a45a0a91425" />
+      <keyword name="resizeEvent" id="MainWindow::resizeEvent" ref="classMainWindow.html#ae12f8f63791595567b6250f8bb002bda" />
+      <keyword name="MainWindow" id="MainWindow::MainWindow" ref="classMainWindow.html#a8b244be8b7b7db1b08de2a2acb9409db" />
+      <keyword name="ServerThread" id="ServerThread" ref="classServerThread.html" />
+      <keyword name="setBaudRate" id="ServerThread::setBaudRate" ref="classServerThread.html#a5a2fd84aec757a4475d9bb26ea53e896" />
+      <keyword name="dataReceived" id="ServerThread::dataReceived" ref="classServerThread.html#af556f75e493771e636ffb39d5c7fcc6c" />
+      <keyword name="portOpened" id="ServerThread::portOpened" ref="classServerThread.html#ada857cd9723bf0b135b7e03bef2bb1f5" />
+      <keyword name="portClosed" id="ServerThread::portClosed" ref="classServerThread.html#a500d464163002ba2c87670af08ecbd40" />
+      <keyword name="ServerThread" id="ServerThread::ServerThread" ref="classServerThread.html#a552106ab27d9cff73b7ed8bb28b63171" />
+      <keyword name="startPort" id="ServerThread::startPort" ref="classServerThread.html#a9cdcb660181ea510dd011e709abeb130" />
+      <keyword name="stopPort" id="ServerThread::stopPort" ref="classServerThread.html#a030b9a76d680d92bcab92bebf8ac3ed8" />
+      <keyword name="portIsActive" id="ServerThread::portIsActive" ref="classServerThread.html#ae4a93a55ae78933c32d2c56c8d7faac0" />
+      <keyword name="write" id="ServerThread::write" ref="classServerThread.html#acafe1f651556eddc49b97b40b9d526f0" />
+      <keyword name="availablePorts" id="ServerThread::availablePorts" ref="classServerThread.html#a8647882b35b461817de51025bd97b5b9" />
+      <keyword name="run" id="ServerThread::run" ref="classServerThread.html#ac2e96a0d05bc1f9eb7f1c36deb45a9f3" />
+      <keyword name="System" id="System" ref="classSystem.html" />
+      <keyword name="activateChannel" id="System::activateChannel" ref="classSystem.html#a2b4ee1465036831f1025add301e6809d" />
+      <keyword name="activateAllChannels" id="System::activateAllChannels" ref="classSystem.html#a1fed588e1273e8ea44394c91732a895b" />
+      <keyword name="deactivateAllChannels" id="System::deactivateAllChannels" ref="classSystem.html#ad2364ef8bc782840a0962ad00bcc1e0f" />
+      <keyword name="setTestSignal" id="System::setTestSignal" ref="classSystem.html#ad6c8a797a836088d9d1706ece4b5480e" />
+      <keyword name="setChannelConnectionType" id="System::setChannelConnectionType" ref="classSystem.html#ab3600fd2a9b8263f832cbe150a65be44" />
+      <keyword name="setChannelGain" id="System::setChannelGain" ref="classSystem.html#a843b4c13738156abc2e7ccac51ad46e6" />
+      <keyword name="setChannelSRB2" id="System::setChannelSRB2" ref="classSystem.html#a40fd7729f43e5ac269a07723ed583ad1" />
+      <keyword name="setSampleRate" id="System::setSampleRate" ref="classSystem.html#a49b471ea98c2431ad472d3701fca6db6" />
+      <keyword name="toggleGraphVisibility" id="System::toggleGraphVisibility" ref="classSystem.html#a147f252c0eacc362e062b9413441abf8" />
+      <keyword name="startCheckingChannelImpedance" id="System::startCheckingChannelImpedance" ref="classSystem.html#adbecfc00974b9aeb256abd8c00a1607a" />
+      <keyword name="stopCheckingChannelImpedance" id="System::stopCheckingChannelImpedance" ref="classSystem.html#aac1d5642fa6941c6a42a84d2014caaad" />
+      <keyword name="connectToBIAS" id="System::connectToBIAS" ref="classSystem.html#a984ebba834ed5f9a1b24eb761f2f846b" />
+      <keyword name="impedanceCalculated" id="System::impedanceCalculated" ref="classSystem.html#a008f5e16f2732d0d9c965b58cba0d1b5" />
+      <keyword name="System" id="System::System" ref="classSystem.html#a33366b5aa0be50bc0e7a40d63c01a659" />
+      <keyword name="start" id="System::start" ref="classSystem.html#abbfb0ffce4c588ded910071268171a87" />
+      <keyword name="stop" id="System::stop" ref="classSystem.html#aec90bf08b30b1944e5c8074387ed7354" />
+      <keyword name="pause" id="System::pause" ref="classSystem.html#ad50c9e438a7f4250232951d8e4f7f9ac" />
+      <keyword name="receivingData" id="System::receivingData" ref="classSystem.html#a803cd09e1ddb2ca4209b6611feec743b" />
+      <keyword name="send" id="System::send" ref="classSystem.html#ad86ad1f5eff614f155f2f33a668b0cc7" />
+      <keyword name="availablePorts" id="System::availablePorts" ref="classSystem.html#ab862daac1ca6d32acea10b21d57bf2aa" />
+      <keyword name="flush" id="System::flush" ref="classSystem.html#aacb9dc3ab085d9537755319fa7493982" />
+    </keywords>
+    <files>
+      <file>tabs.css</file>
+      <file>tab_a.png</file>
+      <file>tab_b.png</file>
+      <file>tab_h.png</file>
+      <file>tab_s.png</file>
+      <file>nav_h.png</file>
+      <file>nav_f.png</file>
+      <file>bc_s.png</file>
+      <file>doxygen.png</file>
+      <file>closed.png</file>
+      <file>open.png</file>
+      <file>bdwn.png</file>
+      <file>sync_on.png</file>
+      <file>sync_off.png</file>
+      <file>ftv2blank.png</file>
+      <file>ftv2doc.png</file>
+      <file>ftv2folderclosed.png</file>
+      <file>ftv2folderopen.png</file>
+      <file>ftv2lastnode.png</file>
+      <file>ftv2link.png</file>
+      <file>ftv2mlastnode.png</file>
+      <file>ftv2mnode.png</file>
+      <file>ftv2node.png</file>
+      <file>ftv2plastnode.png</file>
+      <file>ftv2pnode.png</file>
+      <file>ftv2vertline.png</file>
+      <file>ftv2splitbar.png</file>
+      <file>doxygen.css</file>
+      <file>/search/mag_sel.png</file>
+      <file>/search/search_l.png</file>
+      <file>/search/search_m.png</file>
+      <file>/search/search_r.png</file>
+      <file>/search/close.png</file>
+      <file>search/search.css</file>
+      <file>search/search.js</file>
+      <file>acquisitionserver_8h_source.html</file>
+      <file>channellayout_8h_source.html</file>
+      <file>channellayoutadvanced_8h_source.html</file>
+      <file>dataconditioner_8h_source.html</file>
+      <file>dataset_8h_source.html</file>
+      <file>filehandler_8h_source.html</file>
+      <file>filter_8h_source.html</file>
+      <file>graph_8h_source.html</file>
+      <file>mainwindow_8h_source.html</file>
+      <file>serverthread_8h_source.html</file>
+      <file>system_8h_source.html</file>
+      <file>classAcquisitionServer.html</file>
+      <file>classAcquisitionServer__inherit__graph.png</file>
+      <file>classAcquisitionServer__inherit__graph.png</file>
+      <file>classAcquisitionServer__coll__graph.png</file>
+      <file>classAcquisitionServer__coll__graph.png</file>
+      <file>classAcquisitionServer-members.html</file>
+      <file>classChannelLayout.html</file>
+      <file>classChannelLayout__inherit__graph.png</file>
+      <file>classChannelLayout__inherit__graph.png</file>
+      <file>classChannelLayout__coll__graph.png</file>
+      <file>classChannelLayout__coll__graph.png</file>
+      <file>classChannelLayout-members.html</file>
+      <file>classChannelLayoutAdvanced.html</file>
+      <file>classChannelLayoutAdvanced__inherit__graph.png</file>
+      <file>classChannelLayoutAdvanced__inherit__graph.png</file>
+      <file>classChannelLayoutAdvanced__coll__graph.png</file>
+      <file>classChannelLayoutAdvanced__coll__graph.png</file>
+      <file>classChannelLayoutAdvanced-members.html</file>
+      <file>classDataConditioner.html</file>
+      <file>classDataConditioner__inherit__graph.png</file>
+      <file>classDataConditioner__inherit__graph.png</file>
+      <file>classDataConditioner__coll__graph.png</file>
+      <file>classDataConditioner__coll__graph.png</file>
+      <file>classDataConditioner-members.html</file>
+      <file>classDataSet.html</file>
+      <file>classDataSet-members.html</file>
+      <file>classFileHandler.html</file>
+      <file>classFileHandler__inherit__graph.png</file>
+      <file>classFileHandler__inherit__graph.png</file>
+      <file>classFileHandler__coll__graph.png</file>
+      <file>classFileHandler__coll__graph.png</file>
+      <file>classFileHandler-members.html</file>
+      <file>classFilter.html</file>
+      <file>classFilter__inherit__graph.png</file>
+      <file>classFilter__inherit__graph.png</file>
+      <file>classFilter__coll__graph.png</file>
+      <file>classFilter__coll__graph.png</file>
+      <file>classFilter-members.html</file>
+      <file>classGraph.html</file>
+      <file>classGraph__inherit__graph.png</file>
+      <file>classGraph__inherit__graph.png</file>
+      <file>classGraph__coll__graph.png</file>
+      <file>classGraph__coll__graph.png</file>
+      <file>classGraph-members.html</file>
+      <file>classMainWindow.html</file>
+      <file>classMainWindow__inherit__graph.png</file>
+      <file>classMainWindow__inherit__graph.png</file>
+      <file>classMainWindow__coll__graph.png</file>
+      <file>classMainWindow__coll__graph.png</file>
+      <file>classMainWindow-members.html</file>
+      <file>classServerThread.html</file>
+      <file>classServerThread__inherit__graph.png</file>
+      <file>classServerThread__inherit__graph.png</file>
+      <file>classServerThread__coll__graph.png</file>
+      <file>classServerThread__coll__graph.png</file>
+      <file>classServerThread-members.html</file>
+      <file>classSystem.html</file>
+      <file>classSystem__inherit__graph.png</file>
+      <file>classSystem__inherit__graph.png</file>
+      <file>classSystem__coll__graph.png</file>
+      <file>classSystem__coll__graph.png</file>
+      <file>classSystem-members.html</file>
+      <file>graph_legend.png</file>
+      <file>graph_legend.html</file>
+      <file>index.html</file>
+      <file>annotated.html</file>
+      <file>classes.html</file>
+      <file>hierarchy.html</file>
+      <file>inherits.html</file>
+      <file>inherit_graph_0.png</file>
+      <file>inherit_graph_1.png</file>
+      <file>inherit_graph_2.png</file>
+      <file>inherit_graph_3.png</file>
+      <file>inherit_graph_4.png</file>
+      <file>inherit_graph_5.png</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>functions_func.html</file>
+      <file>files.html</file>
+    </files>
+  </filterSection>
+</QtHelpProject>

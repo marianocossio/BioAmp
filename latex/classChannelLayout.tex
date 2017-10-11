@@ -1,0 +1,407 @@
+\hypertarget{classChannelLayout}{\section{Channel\+Layout Class Reference}
+\label{classChannelLayout}\index{Channel\+Layout@{Channel\+Layout}}
+}
+
+
+Graphic class to be used in a Q\+Widget. It provides all the basic configuration fields for a channel.  
+
+
+
+
+{\ttfamily \#include $<$channellayout.\+h$>$}
+
+
+
+Inheritance diagram for Channel\+Layout\+:
+
+
+Collaboration diagram for Channel\+Layout\+:
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classChannelLayout_a9a030de719c4df6b68a0dcb5ea733f0e}{select} (bool status)
+\begin{DoxyCompactList}\small\item\em If {\itshape status} is true, sets the channel as Activated. Otherwise, sets the channel to Deactivated. Triggers \hyperlink{classChannelLayout_a2a9870b08695ba89559f5fc29628d018}{channel\+Selected(int channel, bool status)} S\+I\+G\+N\+A\+L. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually activated when you set the graphic representation of it. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries bool} parameter. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayout_a79f01917e46190d8e7e1cfaeb66b5334}{set\+Gain} (int gain)
+\begin{DoxyCompactList}\small\item\em Sets the gain value displayed in the \char`\"{}\+Gain\char`\"{} Combo\+Box to {\itshape gain}. Triggers \hyperlink{classChannelLayout_a12fa160d0f7b87c66d0e08e6f0abc996}{channel\+Gain\+Changed(int channel, int gain)} S\+I\+G\+N\+A\+L. This is from a graphic point of view; you should add the proper logic to ensure that the channel gain is actually changed when you set the graphic representation of it. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries int} parameter. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayout_a2fc7025ace239041152a6b7f01141e55}{activate\+Test\+Mode} (bool activate)
+\begin{DoxyCompactList}\small\item\em If {\itshape activate} is true, enables the connection of the channel to Test Signal. Otherwise, disables the connection. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries bool} parameter. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayout_a05f0a5b58375512683943c5aa92dc75c}{connect\+To\+Test\+Signal} (bool connect)
+\begin{DoxyCompactList}\small\item\em If {\itshape connect} is true, sets the channel as connected to Test Signal. Otherwise, sets the channel to disconnected from Test Signal. Triggers \hyperlink{classChannelLayout_ac515619c820628a614d25802f7ebde23}{to\+Test\+Signal\+Toggled(int channel, bool status)} S\+I\+G\+N\+A\+L. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to Test Signal when you set the graphic representation of it as connected. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries bool} parameter. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayout_a84a2f0c9aa038d4863486b975868bed3}{set\+Bipolar\+Configuration} (bool set)
+\begin{DoxyCompactList}\small\item\em If {\itshape set} is true, sets the channel as connected to Signal Reference (\char`\"{}\+Bipolar Configuration\char`\"{} Check\+Box). Otherwise, sets the channel to disconnected from Signal Reference. Triggers \hyperlink{classChannelLayout_a3e4ce867e174d9ec8533f17b43247c0f}{bipolar\+Configuration\+Toggled(int channel, bool status)} S\+I\+G\+N\+A\+L. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to Signal Reference when you set the graphic representation of it as connected. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries bool} parameter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classChannelLayout_a2a9870b08695ba89559f5fc29628d018}{channel\+Selected} (int channel, bool status)
+\begin{DoxyCompactList}\small\item\em This signal is emitted when the \char`\"{}\+Activate Channel\char`\"{} Check\+Box is toggled, or when \hyperlink{classChannelLayout_a9a030de719c4df6b68a0dcb5ea733f0e}{select(bool status)} is called. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayout_a12fa160d0f7b87c66d0e08e6f0abc996}{channel\+Gain\+Changed} (int channel, int gain)
+\begin{DoxyCompactList}\small\item\em This signal is emitted when the \char`\"{}\+Gain\char`\"{} Combo\+Box has its value changed, or when \hyperlink{classChannelLayout_a79f01917e46190d8e7e1cfaeb66b5334}{set\+Gain(int gain)} is called. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayout_ac515619c820628a614d25802f7ebde23}{to\+Test\+Signal\+Toggled} (int channel, bool status)
+\begin{DoxyCompactList}\small\item\em This signal is emitted when the \char`\"{}\+Connect to test signal\char`\"{} Check\+Box is toggled, or when \hyperlink{classChannelLayout_a05f0a5b58375512683943c5aa92dc75c}{connect\+To\+Test\+Signal(bool connect)} is called. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayout_a3e4ce867e174d9ec8533f17b43247c0f}{bipolar\+Configuration\+Toggled} (int channel, bool status)
+\begin{DoxyCompactList}\small\item\em This signal is emitted when the \char`\"{}\+Bipolar Configuration\char`\"{} Check\+Box is toggled, or when \hyperlink{classChannelLayout_a84a2f0c9aa038d4863486b975868bed3}{set\+Bipolar\+Configuration(bool set)} is called. (i.\+e. when the channel is connected/disconnected to Signal Reference) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classChannelLayout_a36135c95c4635b8e2b426b8968dc4847}{Channel\+Layout} (Q\+String displayed\+Text, Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Class constructor. It receives the text to be displayed as a title. This method is inherited from Q\+Widget. \end{DoxyCompactList}\item 
+\hypertarget{classChannelLayout_a82661948d3b9d44c3cb5850564dd12c7}{\hyperlink{classChannelLayout_a82661948d3b9d44c3cb5850564dd12c7}{$\sim$\+Channel\+Layout} ()}\label{classChannelLayout_a82661948d3b9d44c3cb5850564dd12c7}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. You should call delete on this object before you delete the parent (or containing) Qwidget. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayout_a8af1129c9668ad666f3f8b5884bc2e26}{set\+Channel\+Number} (int number)
+\begin{DoxyCompactList}\small\item\em Sets the channel number for the current channel. This is needed for several control logic algorithms within the class, so you should call this method if possible. \end{DoxyCompactList}\item 
+bool \hyperlink{classChannelLayout_a5da445dac029cce162e4ef9854b513e6}{is\+Activated} ()
+\begin{DoxyCompactList}\small\item\em Returns true if the channel is activated, otherwise returns false. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually activated when you activate the graphic representation of it. \end{DoxyCompactList}\item 
+bool \hyperlink{classChannelLayout_ad4b21ae7682d344ac142241a79778142}{is\+Connected\+To\+Test\+Signal} ()
+\begin{DoxyCompactList}\small\item\em Returns true if the channel is connected to a Test Signal, otherwise returns false. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to a Test Signal when you set the graphic representation of it as connected. \end{DoxyCompactList}\item 
+bool \hyperlink{classChannelLayout_a9eb37631caab95945c6b7443740a396f}{is\+Bipolar\+Mode\+Activated} ()
+\begin{DoxyCompactList}\small\item\em Returns true if the channel is connected to Signal Reference, otherwise returns false. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to Signal Reference when you set the graphic representation of it as connected. \end{DoxyCompactList}\item 
+int \hyperlink{classChannelLayout_a9600cfa0fc34bf00df5af7ce718fb518}{channel\+Gain} ()
+\begin{DoxyCompactList}\small\item\em Returns the value of channel gain. This is from a graphic point of view; you should add the proper logic to ensure that the channel has this gain value actually set, when you set the graphic representation of it. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayout_a3417dcaf9e7632b9b5c1c77d0dcf8d73}{toggle\+Void\+Gain} (bool void\+Gain)
+\begin{DoxyCompactList}\small\item\em This method should only be called when you have a generic \hyperlink{classChannelLayout}{Channel\+Layout} that commands the behaviour of several actual channels, and thus does not represent a channel itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Graphic class to be used in a Q\+Widget. It provides all the basic configuration fields for a channel. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classChannelLayout_a36135c95c4635b8e2b426b8968dc4847}{\index{Channel\+Layout@{Channel\+Layout}!Channel\+Layout@{Channel\+Layout}}
+\index{Channel\+Layout@{Channel\+Layout}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{Channel\+Layout}]{\setlength{\rightskip}{0pt plus 5cm}Channel\+Layout\+::\+Channel\+Layout (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{displayed\+Text, }
+\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{classChannelLayout_a36135c95c4635b8e2b426b8968dc4847}
+
+
+Class constructor. It receives the text to be displayed as a title. This method is inherited from Q\+Widget. 
+
+A basic configuration example could be\+: 
+\begin{DoxyCode}
+QVBoxLayout *channelsConfigurationBoxLayout;
+\hyperlink{classChannelLayout}{ChannelLayout} *channel1;
+
+channelsConfigurationBoxLayout = \textcolor{keyword}{new} QVBoxLayout(\textcolor{keyword}{this});
+channel1 = \textcolor{keyword}{new} \hyperlink{classChannelLayout_a36135c95c4635b8e2b426b8968dc4847}{ChannelLayout}(\textcolor{stringliteral}{"<u>Channel "} + QString::number(1) + \textcolor{stringliteral}{"</u>"});
+
+channel1->\hyperlink{classChannelLayout_a8af1129c9668ad666f3f8b5884bc2e26}{setChannelNumber}(0);                  \textcolor{comment}{// First Channel.}
+channel1->\hyperlink{classChannelLayout_a2fc7025ace239041152a6b7f01141e55}{activateTestMode}(\textcolor{keyword}{false});
+channel1->\hyperlink{classChannelLayout_a79f01917e46190d8e7e1cfaeb66b5334}{setGain}(24);                          \textcolor{comment}{// Sets the Gain ComboBox to display 24. Triggers
+       channelGainChanged(int channel, int gain) signal.}
+
+channelsConfigurationBoxLayout->addWidget(channel1);
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em displayed\+Text} & The text to be displayed as a title for the channel. Could be the channel name. \\
+\hline
+{\em parent} & The Q\+Widget that contains this object. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classChannelLayout_a2fc7025ace239041152a6b7f01141e55}{\index{Channel\+Layout@{Channel\+Layout}!activate\+Test\+Mode@{activate\+Test\+Mode}}
+\index{activate\+Test\+Mode@{activate\+Test\+Mode}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{activate\+Test\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::activate\+Test\+Mode (
+\begin{DoxyParamCaption}
+\item[{bool}]{activate}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classChannelLayout_a2fc7025ace239041152a6b7f01141e55}
+
+
+If {\itshape activate} is true, enables the connection of the channel to Test Signal. Otherwise, disables the connection. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries bool} parameter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em activate} & Receives the new status for de \char`\"{}\+Connect to test signal\char`\"{} Check\+Box {\bfseries enable} parameter. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_a3e4ce867e174d9ec8533f17b43247c0f}{\index{Channel\+Layout@{Channel\+Layout}!bipolar\+Configuration\+Toggled@{bipolar\+Configuration\+Toggled}}
+\index{bipolar\+Configuration\+Toggled@{bipolar\+Configuration\+Toggled}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{bipolar\+Configuration\+Toggled}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::bipolar\+Configuration\+Toggled (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{bool}]{status}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classChannelLayout_a3e4ce867e174d9ec8533f17b43247c0f}
+
+
+This signal is emitted when the \char`\"{}\+Bipolar Configuration\char`\"{} Check\+Box is toggled, or when \hyperlink{classChannelLayout_a84a2f0c9aa038d4863486b975868bed3}{set\+Bipolar\+Configuration(bool set)} is called. (i.\+e. when the channel is connected/disconnected to Signal Reference) 
+
+See also \hyperlink{classChannelLayout_a84a2f0c9aa038d4863486b975868bed3}{set\+Bipolar\+Configuration(bool set)}, \hyperlink{classChannelLayout_a9eb37631caab95945c6b7443740a396f}{is\+Bipolar\+Mode\+Activated()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Holds the channel connected/disconnected to Signal Reference ({\bfseries this} channel). \\
+\hline
+{\em status} & Holds the new connection status for the channel. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_a9600cfa0fc34bf00df5af7ce718fb518}{\index{Channel\+Layout@{Channel\+Layout}!channel\+Gain@{channel\+Gain}}
+\index{channel\+Gain@{channel\+Gain}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{channel\+Gain}]{\setlength{\rightskip}{0pt plus 5cm}int Channel\+Layout\+::channel\+Gain (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classChannelLayout_a9600cfa0fc34bf00df5af7ce718fb518}
+
+
+Returns the value of channel gain. This is from a graphic point of view; you should add the proper logic to ensure that the channel has this gain value actually set, when you set the graphic representation of it. 
+
+See also \hyperlink{classChannelLayout_a79f01917e46190d8e7e1cfaeb66b5334}{set\+Gain(int gain)}, \hyperlink{classChannelLayout_a12fa160d0f7b87c66d0e08e6f0abc996}{channel\+Gain\+Changed(int channel, int gain)}.
+
+\begin{DoxyReturn}{Returns}
+int Channel gain. Expected values\+: 1, 2, 4, 6, 8, 16, 24. 
+\end{DoxyReturn}
+\hypertarget{classChannelLayout_a12fa160d0f7b87c66d0e08e6f0abc996}{\index{Channel\+Layout@{Channel\+Layout}!channel\+Gain\+Changed@{channel\+Gain\+Changed}}
+\index{channel\+Gain\+Changed@{channel\+Gain\+Changed}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{channel\+Gain\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::channel\+Gain\+Changed (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{int}]{gain}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classChannelLayout_a12fa160d0f7b87c66d0e08e6f0abc996}
+
+
+This signal is emitted when the \char`\"{}\+Gain\char`\"{} Combo\+Box has its value changed, or when \hyperlink{classChannelLayout_a79f01917e46190d8e7e1cfaeb66b5334}{set\+Gain(int gain)} is called. 
+
+See also \hyperlink{classChannelLayout_a79f01917e46190d8e7e1cfaeb66b5334}{set\+Gain(int gain)}, \hyperlink{classChannelLayout_a9600cfa0fc34bf00df5af7ce718fb518}{channel\+Gain()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Holds the channel that had its gain modified (this channel). \\
+\hline
+{\em gain} & Holds the new gain value. Expected values\+: 1, 2, 4, 6, 8, 16, 24. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_a2a9870b08695ba89559f5fc29628d018}{\index{Channel\+Layout@{Channel\+Layout}!channel\+Selected@{channel\+Selected}}
+\index{channel\+Selected@{channel\+Selected}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{channel\+Selected}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::channel\+Selected (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{bool}]{status}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classChannelLayout_a2a9870b08695ba89559f5fc29628d018}
+
+
+This signal is emitted when the \char`\"{}\+Activate Channel\char`\"{} Check\+Box is toggled, or when \hyperlink{classChannelLayout_a9a030de719c4df6b68a0dcb5ea733f0e}{select(bool status)} is called. 
+
+See also \hyperlink{classChannelLayout_a9a030de719c4df6b68a0dcb5ea733f0e}{select(bool status)}, \hyperlink{classChannelLayout_a5da445dac029cce162e4ef9854b513e6}{is\+Activated()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Holds the channel that was activated/deactivated ({\bfseries this} channel). \\
+\hline
+{\em status} & Holds the new channel status. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_a05f0a5b58375512683943c5aa92dc75c}{\index{Channel\+Layout@{Channel\+Layout}!connect\+To\+Test\+Signal@{connect\+To\+Test\+Signal}}
+\index{connect\+To\+Test\+Signal@{connect\+To\+Test\+Signal}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{connect\+To\+Test\+Signal}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::connect\+To\+Test\+Signal (
+\begin{DoxyParamCaption}
+\item[{bool}]{connect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classChannelLayout_a05f0a5b58375512683943c5aa92dc75c}
+
+
+If {\itshape connect} is true, sets the channel as connected to Test Signal. Otherwise, sets the channel to disconnected from Test Signal. Triggers \hyperlink{classChannelLayout_ac515619c820628a614d25802f7ebde23}{to\+Test\+Signal\+Toggled(int channel, bool status)} S\+I\+G\+N\+A\+L. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to Test Signal when you set the graphic representation of it as connected. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries bool} parameter. 
+
+See also \hyperlink{classChannelLayout_ac515619c820628a614d25802f7ebde23}{to\+Test\+Signal\+Toggled(int channel, bool status)}, \hyperlink{classChannelLayout_ad4b21ae7682d344ac142241a79778142}{is\+Connected\+To\+Test\+Signal()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em connect} & Receives the new status for de \char`\"{}\+Connect to test signal\char`\"{} Check\+Box. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_a5da445dac029cce162e4ef9854b513e6}{\index{Channel\+Layout@{Channel\+Layout}!is\+Activated@{is\+Activated}}
+\index{is\+Activated@{is\+Activated}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{is\+Activated}]{\setlength{\rightskip}{0pt plus 5cm}bool Channel\+Layout\+::is\+Activated (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classChannelLayout_a5da445dac029cce162e4ef9854b513e6}
+
+
+Returns true if the channel is activated, otherwise returns false. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually activated when you activate the graphic representation of it. 
+
+See also \hyperlink{classChannelLayout_a9a030de719c4df6b68a0dcb5ea733f0e}{select(bool status)}, \hyperlink{classChannelLayout_a2a9870b08695ba89559f5fc29628d018}{channel\+Selected(int channel, bool status)}.
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classChannelLayout_a9eb37631caab95945c6b7443740a396f}{\index{Channel\+Layout@{Channel\+Layout}!is\+Bipolar\+Mode\+Activated@{is\+Bipolar\+Mode\+Activated}}
+\index{is\+Bipolar\+Mode\+Activated@{is\+Bipolar\+Mode\+Activated}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{is\+Bipolar\+Mode\+Activated}]{\setlength{\rightskip}{0pt plus 5cm}bool Channel\+Layout\+::is\+Bipolar\+Mode\+Activated (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classChannelLayout_a9eb37631caab95945c6b7443740a396f}
+
+
+Returns true if the channel is connected to Signal Reference, otherwise returns false. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to Signal Reference when you set the graphic representation of it as connected. 
+
+See also \hyperlink{classChannelLayout_a84a2f0c9aa038d4863486b975868bed3}{set\+Bipolar\+Configuration(bool set)}, \hyperlink{classChannelLayout_a3e4ce867e174d9ec8533f17b43247c0f}{bipolar\+Configuration\+Toggled(int channel, bool status)}.
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classChannelLayout_ad4b21ae7682d344ac142241a79778142}{\index{Channel\+Layout@{Channel\+Layout}!is\+Connected\+To\+Test\+Signal@{is\+Connected\+To\+Test\+Signal}}
+\index{is\+Connected\+To\+Test\+Signal@{is\+Connected\+To\+Test\+Signal}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{is\+Connected\+To\+Test\+Signal}]{\setlength{\rightskip}{0pt plus 5cm}bool Channel\+Layout\+::is\+Connected\+To\+Test\+Signal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classChannelLayout_ad4b21ae7682d344ac142241a79778142}
+
+
+Returns true if the channel is connected to a Test Signal, otherwise returns false. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to a Test Signal when you set the graphic representation of it as connected. 
+
+See also \hyperlink{classChannelLayout_a05f0a5b58375512683943c5aa92dc75c}{connect\+To\+Test\+Signal(bool connect)}, \hyperlink{classChannelLayout_ac515619c820628a614d25802f7ebde23}{to\+Test\+Signal\+Toggled(int channel, bool status)}.
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classChannelLayout_a9a030de719c4df6b68a0dcb5ea733f0e}{\index{Channel\+Layout@{Channel\+Layout}!select@{select}}
+\index{select@{select}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{select}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::select (
+\begin{DoxyParamCaption}
+\item[{bool}]{status}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classChannelLayout_a9a030de719c4df6b68a0dcb5ea733f0e}
+
+
+If {\itshape status} is true, sets the channel as Activated. Otherwise, sets the channel to Deactivated. Triggers \hyperlink{classChannelLayout_a2a9870b08695ba89559f5fc29628d018}{channel\+Selected(int channel, bool status)} S\+I\+G\+N\+A\+L. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually activated when you set the graphic representation of it. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries bool} parameter. 
+
+See also \hyperlink{classChannelLayout_a2a9870b08695ba89559f5fc29628d018}{channel\+Selected(int channel, bool status)}, \hyperlink{classChannelLayout_a5da445dac029cce162e4ef9854b513e6}{is\+Activated()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & Receives the new status for the channel. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_a84a2f0c9aa038d4863486b975868bed3}{\index{Channel\+Layout@{Channel\+Layout}!set\+Bipolar\+Configuration@{set\+Bipolar\+Configuration}}
+\index{set\+Bipolar\+Configuration@{set\+Bipolar\+Configuration}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{set\+Bipolar\+Configuration}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::set\+Bipolar\+Configuration (
+\begin{DoxyParamCaption}
+\item[{bool}]{set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classChannelLayout_a84a2f0c9aa038d4863486b975868bed3}
+
+
+If {\itshape set} is true, sets the channel as connected to Signal Reference (\char`\"{}\+Bipolar Configuration\char`\"{} Check\+Box). Otherwise, sets the channel to disconnected from Signal Reference. Triggers \hyperlink{classChannelLayout_a3e4ce867e174d9ec8533f17b43247c0f}{bipolar\+Configuration\+Toggled(int channel, bool status)} S\+I\+G\+N\+A\+L. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to Signal Reference when you set the graphic representation of it as connected. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries bool} parameter. 
+
+See also \hyperlink{classChannelLayout_a3e4ce867e174d9ec8533f17b43247c0f}{bipolar\+Configuration\+Toggled(int channel, bool status)}, \hyperlink{classChannelLayout_a9eb37631caab95945c6b7443740a396f}{is\+Bipolar\+Mode\+Activated()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em set} & Receives the new status for the \char`\"{}\+Bipolar Configuration\char`\"{} Check\+Box. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_a8af1129c9668ad666f3f8b5884bc2e26}{\index{Channel\+Layout@{Channel\+Layout}!set\+Channel\+Number@{set\+Channel\+Number}}
+\index{set\+Channel\+Number@{set\+Channel\+Number}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{set\+Channel\+Number}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::set\+Channel\+Number (
+\begin{DoxyParamCaption}
+\item[{int}]{number}
+\end{DoxyParamCaption}
+)}}\label{classChannelLayout_a8af1129c9668ad666f3f8b5884bc2e26}
+
+
+Sets the channel number for the current channel. This is needed for several control logic algorithms within the class, so you should call this method if possible. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & The identification number of the channel, in case you have more than one channel. Defaults to 0. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_a79f01917e46190d8e7e1cfaeb66b5334}{\index{Channel\+Layout@{Channel\+Layout}!set\+Gain@{set\+Gain}}
+\index{set\+Gain@{set\+Gain}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{set\+Gain}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::set\+Gain (
+\begin{DoxyParamCaption}
+\item[{int}]{gain}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classChannelLayout_a79f01917e46190d8e7e1cfaeb66b5334}
+
+
+Sets the gain value displayed in the \char`\"{}\+Gain\char`\"{} Combo\+Box to {\itshape gain}. Triggers \hyperlink{classChannelLayout_a12fa160d0f7b87c66d0e08e6f0abc996}{channel\+Gain\+Changed(int channel, int gain)} S\+I\+G\+N\+A\+L. This is from a graphic point of view; you should add the proper logic to ensure that the channel gain is actually changed when you set the graphic representation of it. This S\+L\+O\+T can be used as is, or connected to a S\+I\+G\+N\+A\+L that also has one {\bfseries int} parameter. 
+
+See also \hyperlink{classChannelLayout_a12fa160d0f7b87c66d0e08e6f0abc996}{channel\+Gain\+Changed(int channel, int gain)}, \hyperlink{classChannelLayout_a9600cfa0fc34bf00df5af7ce718fb518}{channel\+Gain()}, \hyperlink{classChannelLayout_a3417dcaf9e7632b9b5c1c77d0dcf8d73}{toggle\+Void\+Gain(bool void\+Gain)}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gain} & Receives the new value for the \char`\"{}\+Gain\char`\"{} Combo\+Box. Expected values\+: 1, 2, 4, 6, 8, 16, 24. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_a3417dcaf9e7632b9b5c1c77d0dcf8d73}{\index{Channel\+Layout@{Channel\+Layout}!toggle\+Void\+Gain@{toggle\+Void\+Gain}}
+\index{toggle\+Void\+Gain@{toggle\+Void\+Gain}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{toggle\+Void\+Gain}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::toggle\+Void\+Gain (
+\begin{DoxyParamCaption}
+\item[{bool}]{void\+Gain}
+\end{DoxyParamCaption}
+)}}\label{classChannelLayout_a3417dcaf9e7632b9b5c1c77d0dcf8d73}
+
+
+This method should only be called when you have a generic \hyperlink{classChannelLayout}{Channel\+Layout} that commands the behaviour of several actual channels, and thus does not represent a channel itself. 
+
+Use example\+: 
+\begin{DoxyCode}
+QVBoxLayout *channelsConfigurationBoxLayout;
+\hyperlink{classChannelLayout}{ChannelLayout} *channel1;
+
+channelsConfigurationBoxLayout = \textcolor{keyword}{new} QVBoxLayout(\textcolor{keyword}{this});
+channel1 = \textcolor{keyword}{new} \hyperlink{classChannelLayout_a36135c95c4635b8e2b426b8968dc4847}{ChannelLayout}(\textcolor{stringliteral}{"<u>Channel "} + QString::number(1) + \textcolor{stringliteral}{"</u>"});
+
+channel1->\hyperlink{classChannelLayout_a8af1129c9668ad666f3f8b5884bc2e26}{setChannelNumber}(0);                  \textcolor{comment}{// First Channel, used as configuration for
+       all channels.}
+                                                \textcolor{comment}{// The setChannelNumber(int number) method can be ignored
+       in this case, as the channel number defaults to 0.}
+
+channel1->\hyperlink{classChannelLayout_a2fc7025ace239041152a6b7f01141e55}{activateTestMode}(\textcolor{keyword}{false});
+
+channel1->\hyperlink{classChannelLayout_a3417dcaf9e7632b9b5c1c77d0dcf8d73}{toggleVoidGain}(\textcolor{keyword}{true});                 \textcolor{comment}{// Sets the Gain ComboBox to display no text.}
+channel1->\hyperlink{classChannelLayout_a3417dcaf9e7632b9b5c1c77d0dcf8d73}{toggleVoidGain}(\textcolor{keyword}{false});                \textcolor{comment}{// Sets the Gain ComboBox to display "1".}
+
+channel1->\hyperlink{classChannelLayout_a79f01917e46190d8e7e1cfaeb66b5334}{setGain}(24);                          \textcolor{comment}{// Sets the Gain ComboBox to display 24.}
+                                                \textcolor{comment}{// Triggers channelGainChanged(int channel, int gain)
+       signal with gain = 24.}
+
+channelsConfigurationBoxLayout->addWidget(channel1);
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em void\+Gain} & Set true if the \hyperlink{classChannelLayout}{Channel\+Layout} should not display any Gain value. Otherwise set false. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayout_ac515619c820628a614d25802f7ebde23}{\index{Channel\+Layout@{Channel\+Layout}!to\+Test\+Signal\+Toggled@{to\+Test\+Signal\+Toggled}}
+\index{to\+Test\+Signal\+Toggled@{to\+Test\+Signal\+Toggled}!Channel\+Layout@{Channel\+Layout}}
+\subsubsection[{to\+Test\+Signal\+Toggled}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+::to\+Test\+Signal\+Toggled (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{bool}]{status}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classChannelLayout_ac515619c820628a614d25802f7ebde23}
+
+
+This signal is emitted when the \char`\"{}\+Connect to test signal\char`\"{} Check\+Box is toggled, or when \hyperlink{classChannelLayout_a05f0a5b58375512683943c5aa92dc75c}{connect\+To\+Test\+Signal(bool connect)} is called. 
+
+See also \hyperlink{classChannelLayout_a05f0a5b58375512683943c5aa92dc75c}{connect\+To\+Test\+Signal(bool connect)}, \hyperlink{classChannelLayout_ad4b21ae7682d344ac142241a79778142}{is\+Connected\+To\+Test\+Signal()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Holds the channel connected/disconnected to Test Signal ({\bfseries this} channel). \\
+\hline
+{\em status} & Holds the new connection status for the channel. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+channellayout.\+h\item 
+channellayout.\+cpp\end{DoxyCompactItemize}

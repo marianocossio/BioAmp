@@ -1,0 +1,337 @@
+\hypertarget{classSystem}{\section{System Class Reference}
+\label{classSystem}\index{System@{System}}
+}
+
+
+Inheritance diagram for System\+:
+
+
+Collaboration diagram for System\+:
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSystem_accbb532702c1994c649a41ba3e0b91c5}{enum {\bfseries Channel} \{ \\*
+{\bfseries channel1}, 
+{\bfseries channel2}, 
+{\bfseries channel3}, 
+{\bfseries channel4}, 
+\\*
+{\bfseries channel5}, 
+{\bfseries channel6}, 
+{\bfseries channel7}, 
+{\bfseries channel8}
+ \}}\label{classSystem_accbb532702c1994c649a41ba3e0b91c5}
+
+\item 
+\hypertarget{classSystem_af3382dec151558280d2d38b6a07f2c57}{enum {\bfseries Connection\+Type} \{ \\*
+{\bfseries input}, 
+{\bfseries short\+\_\+circuit}, 
+{\bfseries B\+I\+A\+S}, 
+{\bfseries M\+V\+D\+D}, 
+\\*
+{\bfseries temp}, 
+{\bfseries test}, 
+{\bfseries B\+I\+A\+S\+\_\+\+D\+R\+P}, 
+{\bfseries B\+I\+A\+S\+\_\+\+D\+R\+N}
+ \}}\label{classSystem_af3382dec151558280d2d38b6a07f2c57}
+
+\item 
+\hypertarget{classSystem_a5ad11f039305a0628b65a43ce5aa8f14}{enum {\bfseries Test\+Signal} \{ \\*
+{\bfseries G\+N\+D}, 
+{\bfseries S\+Q1875x097}, 
+{\bfseries S\+Q1875x195}, 
+{\bfseries D\+C}, 
+\\*
+{\bfseries S\+Q3750x097}, 
+{\bfseries S\+Q3750x195}
+ \}}\label{classSystem_a5ad11f039305a0628b65a43ce5aa8f14}
+
+\item 
+\hypertarget{classSystem_a198df846d1ea72a0e2407146f0650e87}{enum {\bfseries Gain} \{ \\*
+{\bfseries x1}, 
+{\bfseries x2}, 
+{\bfseries x4}, 
+{\bfseries x6}, 
+\\*
+{\bfseries x8}, 
+{\bfseries x16}, 
+{\bfseries x24}
+ \}}\label{classSystem_a198df846d1ea72a0e2407146f0650e87}
+
+\item 
+\hypertarget{classSystem_a4bec9be96e7c64e4544b86b6467d002a}{enum {\bfseries Sample\+Rate} \{ {\bfseries at2k\+Hz}, 
+{\bfseries at1k\+Hz}, 
+{\bfseries at500\+Hz}, 
+{\bfseries at250\+Hz}
+ \}}\label{classSystem_a4bec9be96e7c64e4544b86b6467d002a}
+
+\item 
+\hypertarget{classSystem_a209625b11d630ae69c8f059551cab7f6}{enum {\bfseries Channel\+Terminal} \{ {\bfseries P\+\_\+\+Terminal}, 
+{\bfseries N\+\_\+\+Terminal}
+ \}}\label{classSystem_a209625b11d630ae69c8f059551cab7f6}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSystem_a2b4ee1465036831f1025add301e6809d}{activate\+Channel} (int channel, bool activated)
+\item 
+\hypertarget{classSystem_a1fed588e1273e8ea44394c91732a895b}{void {\bfseries activate\+All\+Channels} ()}\label{classSystem_a1fed588e1273e8ea44394c91732a895b}
+
+\item 
+\hypertarget{classSystem_ad2364ef8bc782840a0962ad00bcc1e0f}{void {\bfseries deactivate\+All\+Channels} ()}\label{classSystem_ad2364ef8bc782840a0962ad00bcc1e0f}
+
+\item 
+void \hyperlink{classSystem_ad6c8a797a836088d9d1706ece4b5480e}{set\+Test\+Signal} (int signal)
+\item 
+void \hyperlink{classSystem_ab3600fd2a9b8263f832cbe150a65be44}{set\+Channel\+Connection\+Type} (int channel, Connection\+Type type)
+\item 
+void \hyperlink{classSystem_a843b4c13738156abc2e7ccac51ad46e6}{set\+Channel\+Gain} (int channel, int gain)
+\item 
+void \hyperlink{classSystem_a40fd7729f43e5ac269a07723ed583ad1}{set\+Channel\+S\+R\+B2} (int channel, bool set)
+\item 
+void \hyperlink{classSystem_a49b471ea98c2431ad472d3701fca6db6}{set\+Sample\+Rate} (int sample\+Rate)
+\item 
+\hypertarget{classSystem_a147f252c0eacc362e062b9413441abf8}{void {\bfseries toggle\+Graph\+Visibility} ()}\label{classSystem_a147f252c0eacc362e062b9413441abf8}
+
+\item 
+void \hyperlink{classSystem_adbecfc00974b9aeb256abd8c00a1607a}{start\+Checking\+Channel\+Impedance} (int channel, System\+::\+Channel\+Terminal terminal)
+\item 
+\hypertarget{classSystem_aac1d5642fa6941c6a42a84d2014caaad}{void {\bfseries stop\+Checking\+Channel\+Impedance} ()}\label{classSystem_aac1d5642fa6941c6a42a84d2014caaad}
+
+\item 
+void \hyperlink{classSystem_a984ebba834ed5f9a1b24eb761f2f846b}{connect\+To\+B\+I\+A\+S} (int channel, bool connect)
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSystem_a008f5e16f2732d0d9c965b58cba0d1b5}{impedance\+Calculated} (int channel\+Number, System\+::\+Channel\+Terminal terminal, double impedance)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSystem_a33366b5aa0be50bc0e7a40d63c01a659}{System} (Q\+Object $\ast$parent=0)
+\item 
+bool \hyperlink{classSystem_abbfb0ffce4c588ded910071268171a87}{start} (Q\+String port\+Name, int baud\+Rate)
+\item 
+\hypertarget{classSystem_aec90bf08b30b1944e5c8074387ed7354}{void {\bfseries stop} ()}\label{classSystem_aec90bf08b30b1944e5c8074387ed7354}
+
+\item 
+\hypertarget{classSystem_ad50c9e438a7f4250232951d8e4f7f9ac}{void {\bfseries pause} ()}\label{classSystem_ad50c9e438a7f4250232951d8e4f7f9ac}
+
+\item 
+bool \hyperlink{classSystem_a803cd09e1ddb2ca4209b6611feec743b}{receiving\+Data} ()
+\item 
+void \hyperlink{classSystem_ad86ad1f5eff614f155f2f33a668b0cc7}{send} (Q\+Byte\+Array data)
+\item 
+Q\+List$<$ Q\+String $>$ \hyperlink{classSystem_ab862daac1ca6d32acea10b21d57bf2aa}{available\+Ports} ()
+\item 
+\hypertarget{classSystem_aacb9dc3ab085d9537755319fa7493982}{void {\bfseries flush} ()}\label{classSystem_aacb9dc3ab085d9537755319fa7493982}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSystem_a33366b5aa0be50bc0e7a40d63c01a659}{\index{System@{System}!System@{System}}
+\index{System@{System}!System@{System}}
+\subsubsection[{System}]{\setlength{\rightskip}{0pt plus 5cm}System\+::\+System (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{classSystem_a33366b5aa0be50bc0e7a40d63c01a659}
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSystem_a2b4ee1465036831f1025add301e6809d}{\index{System@{System}!activate\+Channel@{activate\+Channel}}
+\index{activate\+Channel@{activate\+Channel}!System@{System}}
+\subsubsection[{activate\+Channel}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::activate\+Channel (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{bool}]{activated}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classSystem_a2b4ee1465036831f1025add301e6809d}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+{\em activated} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSystem_ab862daac1ca6d32acea10b21d57bf2aa}{\index{System@{System}!available\+Ports@{available\+Ports}}
+\index{available\+Ports@{available\+Ports}!System@{System}}
+\subsubsection[{available\+Ports}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List$<$ Q\+String $>$ System\+::available\+Ports (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSystem_ab862daac1ca6d32acea10b21d57bf2aa}
+\begin{DoxyReturn}{Returns}
+Q\+List$<$\+Q\+String$>$ 
+\end{DoxyReturn}
+\hypertarget{classSystem_a984ebba834ed5f9a1b24eb761f2f846b}{\index{System@{System}!connect\+To\+B\+I\+A\+S@{connect\+To\+B\+I\+A\+S}}
+\index{connect\+To\+B\+I\+A\+S@{connect\+To\+B\+I\+A\+S}!System@{System}}
+\subsubsection[{connect\+To\+B\+I\+A\+S}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::connect\+To\+B\+I\+A\+S (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{bool}]{connect}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classSystem_a984ebba834ed5f9a1b24eb761f2f846b}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+{\em connect} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSystem_a008f5e16f2732d0d9c965b58cba0d1b5}{\index{System@{System}!impedance\+Calculated@{impedance\+Calculated}}
+\index{impedance\+Calculated@{impedance\+Calculated}!System@{System}}
+\subsubsection[{impedance\+Calculated}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::impedance\+Calculated (
+\begin{DoxyParamCaption}
+\item[{int}]{channel\+Number, }
+\item[{System\+::\+Channel\+Terminal}]{terminal, }
+\item[{double}]{impedance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classSystem_a008f5e16f2732d0d9c965b58cba0d1b5}
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Number} & \\
+\hline
+{\em terminal} & \\
+\hline
+{\em impedance} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSystem_a803cd09e1ddb2ca4209b6611feec743b}{\index{System@{System}!receiving\+Data@{receiving\+Data}}
+\index{receiving\+Data@{receiving\+Data}!System@{System}}
+\subsubsection[{receiving\+Data}]{\setlength{\rightskip}{0pt plus 5cm}bool System\+::receiving\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSystem_a803cd09e1ddb2ca4209b6611feec743b}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classSystem_ad86ad1f5eff614f155f2f33a668b0cc7}{\index{System@{System}!send@{send}}
+\index{send@{send}!System@{System}}
+\subsubsection[{send}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::send (
+\begin{DoxyParamCaption}
+\item[{Q\+Byte\+Array}]{data}
+\end{DoxyParamCaption}
+)}}\label{classSystem_ad86ad1f5eff614f155f2f33a668b0cc7}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSystem_ab3600fd2a9b8263f832cbe150a65be44}{\index{System@{System}!set\+Channel\+Connection\+Type@{set\+Channel\+Connection\+Type}}
+\index{set\+Channel\+Connection\+Type@{set\+Channel\+Connection\+Type}!System@{System}}
+\subsubsection[{set\+Channel\+Connection\+Type}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::set\+Channel\+Connection\+Type (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{Connection\+Type}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classSystem_ab3600fd2a9b8263f832cbe150a65be44}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+{\em type} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSystem_a843b4c13738156abc2e7ccac51ad46e6}{\index{System@{System}!set\+Channel\+Gain@{set\+Channel\+Gain}}
+\index{set\+Channel\+Gain@{set\+Channel\+Gain}!System@{System}}
+\subsubsection[{set\+Channel\+Gain}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::set\+Channel\+Gain (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{int}]{gain}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classSystem_a843b4c13738156abc2e7ccac51ad46e6}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+{\em gain} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSystem_a40fd7729f43e5ac269a07723ed583ad1}{\index{System@{System}!set\+Channel\+S\+R\+B2@{set\+Channel\+S\+R\+B2}}
+\index{set\+Channel\+S\+R\+B2@{set\+Channel\+S\+R\+B2}!System@{System}}
+\subsubsection[{set\+Channel\+S\+R\+B2}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::set\+Channel\+S\+R\+B2 (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{bool}]{set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classSystem_a40fd7729f43e5ac269a07723ed583ad1}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+{\em set} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSystem_a49b471ea98c2431ad472d3701fca6db6}{\index{System@{System}!set\+Sample\+Rate@{set\+Sample\+Rate}}
+\index{set\+Sample\+Rate@{set\+Sample\+Rate}!System@{System}}
+\subsubsection[{set\+Sample\+Rate}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::set\+Sample\+Rate (
+\begin{DoxyParamCaption}
+\item[{int}]{sample\+Rate}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classSystem_a49b471ea98c2431ad472d3701fca6db6}
+
+\begin{DoxyParams}{Parameters}
+{\em sample\+Rate} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSystem_ad6c8a797a836088d9d1706ece4b5480e}{\index{System@{System}!set\+Test\+Signal@{set\+Test\+Signal}}
+\index{set\+Test\+Signal@{set\+Test\+Signal}!System@{System}}
+\subsubsection[{set\+Test\+Signal}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::set\+Test\+Signal (
+\begin{DoxyParamCaption}
+\item[{int}]{signal}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classSystem_ad6c8a797a836088d9d1706ece4b5480e}
+
+\begin{DoxyParams}{Parameters}
+{\em signal} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSystem_abbfb0ffce4c588ded910071268171a87}{\index{System@{System}!start@{start}}
+\index{start@{start}!System@{System}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}bool System\+::start (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{port\+Name, }
+\item[{int}]{baud\+Rate}
+\end{DoxyParamCaption}
+)}}\label{classSystem_abbfb0ffce4c588ded910071268171a87}
+
+\begin{DoxyParams}{Parameters}
+{\em port\+Name} & \\
+\hline
+{\em baud\+Rate} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classSystem_adbecfc00974b9aeb256abd8c00a1607a}{\index{System@{System}!start\+Checking\+Channel\+Impedance@{start\+Checking\+Channel\+Impedance}}
+\index{start\+Checking\+Channel\+Impedance@{start\+Checking\+Channel\+Impedance}!System@{System}}
+\subsubsection[{start\+Checking\+Channel\+Impedance}]{\setlength{\rightskip}{0pt plus 5cm}void System\+::start\+Checking\+Channel\+Impedance (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{System\+::\+Channel\+Terminal}]{terminal}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classSystem_adbecfc00974b9aeb256abd8c00a1607a}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+{\em terminal} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+system.\+h\item 
+system.\+cpp\end{DoxyCompactItemize}

@@ -34,7 +34,11 @@ SOURCES += main.cpp\
     graph.cpp \
     mainwindow.cpp \
     channellayout.cpp \
-    channellayoutadvanced.cpp
+    channellayoutadvanced.cpp \
+    connectionlostdialog.cpp \
+    logger.cpp \
+    chebyshev3035.cpp \
+    waitforclosedialog.cpp
 
 HEADERS  += \
     system.h \
@@ -47,9 +51,15 @@ HEADERS  += \
     graph.h \
     mainwindow.h \
     channellayout.h \
-    channellayoutadvanced.h
+    channellayoutadvanced.h \
+    connectionlostdialog.h \
+    logger.h \
+    chebyshev3035.h \
+    waitforclosedialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    connectionlostdialog.ui \
+    waitforclosedialog.ui
 
 win32 {
     LIBS += -lOpengl32

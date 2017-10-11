@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['select',['select',['../classChannelLayout.html#a9a030de719c4df6b68a0dcb5ea733f0e',1,'ChannelLayout']]],
+  ['send',['send',['../classSystem.html#ad86ad1f5eff614f155f2f33a668b0cc7',1,'System']]],
+  ['serverthread',['ServerThread',['../classServerThread.html',1,'ServerThread'],['../classServerThread.html#a552106ab27d9cff73b7ed8bb28b63171',1,'ServerThread::ServerThread()']]],
+  ['setbaudrate',['setBaudRate',['../classAcquisitionServer.html#a6fd77361e5704bc75d3b33a64b4be9c1',1,'AcquisitionServer::setBaudRate()'],['../classServerThread.html#a5a2fd84aec757a4475d9bb26ea53e896',1,'ServerThread::setBaudRate()']]],
+  ['setbipolarconfiguration',['setBipolarConfiguration',['../classChannelLayout.html#a84a2f0c9aa038d4863486b975868bed3',1,'ChannelLayout']]],
+  ['setchannelconnectiontype',['setChannelConnectionType',['../classSystem.html#ab3600fd2a9b8263f832cbe150a65be44',1,'System']]],
+  ['setchannelgain',['setChannelGain',['../classSystem.html#a843b4c13738156abc2e7ccac51ad46e6',1,'System']]],
+  ['setchannelnumber',['setChannelNumber',['../classChannelLayout.html#a8af1129c9668ad666f3f8b5884bc2e26',1,'ChannelLayout::setChannelNumber()'],['../classChannelLayoutAdvanced.html#afa83505f555a87d3e0ebf4e7d7f1e407',1,'ChannelLayoutAdvanced::setChannelNumber()']]],
+  ['setchannelsrb2',['setChannelSRB2',['../classSystem.html#a40fd7729f43e5ac269a07723ed583ad1',1,'System']]],
+  ['setconnectedtobias',['setConnectedToBIAS',['../classChannelLayoutAdvanced.html#a283b1c5b0870dd9949f864b9fcd73000',1,'ChannelLayoutAdvanced']]],
+  ['setdataorder',['setDataOrder',['../classDataSet.html#a4d3cdc4163a6df9860da8fd77be53380',1,'DataSet']]],
+  ['setgain',['setGain',['../classChannelLayout.html#a79f01917e46190d8e7e1cfaeb66b5334',1,'ChannelLayout']]],
+  ['setsamplerate',['setSampleRate',['../classSystem.html#a49b471ea98c2431ad472d3701fca6db6',1,'System']]],
+  ['settestsignal',['setTestSignal',['../classSystem.html#ad6c8a797a836088d9d1706ece4b5480e',1,'System']]],
+  ['start',['start',['../classSystem.html#abbfb0ffce4c588ded910071268171a87',1,'System']]],
+  ['startcheckingchannelimpedance',['startCheckingChannelImpedance',['../classSystem.html#adbecfc00974b9aeb256abd8c00a1607a',1,'System']]],
+  ['startcheckingimpedancerequested',['startCheckingImpedanceRequested',['../classChannelLayoutAdvanced.html#a91b635650fbb638df5b460de69560eb3',1,'ChannelLayoutAdvanced']]],
+  ['startport',['startPort',['../classAcquisitionServer.html#acef57dade37889fb65b3026578e33522',1,'AcquisitionServer::startPort()'],['../classServerThread.html#a9cdcb660181ea510dd011e709abeb130',1,'ServerThread::startPort()']]],
+  ['stopport',['stopPort',['../classAcquisitionServer.html#a8599a0d29401fdc387870a7bfbbdbdaf',1,'AcquisitionServer']]],
+  ['system',['System',['../classSystem.html',1,'System'],['../classSystem.html#a33366b5aa0be50bc0e7a40d63c01a659',1,'System::System()']]]
+];

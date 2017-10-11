@@ -1,0 +1,179 @@
+\hypertarget{classChannelLayoutAdvanced}{\section{Channel\+Layout\+Advanced Class Reference}
+\label{classChannelLayoutAdvanced}\index{Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}}
+}
+
+
+Inheritance diagram for Channel\+Layout\+Advanced\+:
+
+
+Collaboration diagram for Channel\+Layout\+Advanced\+:
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classChannelLayoutAdvanced_ad48eeec3ecdc2f9ce95eee211fc39ba7}{update\+Impedance\+Value} (int channel\+Number, System\+::\+Channel\+Terminal terminal, double value)
+\item 
+void \hyperlink{classChannelLayoutAdvanced_a283b1c5b0870dd9949f864b9fcd73000}{set\+Connected\+To\+B\+I\+A\+S} (bool set)
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classChannelLayoutAdvanced_a91b635650fbb638df5b460de69560eb3}{start\+Checking\+Impedance\+Requested} (int channel, System\+::\+Channel\+Terminal terminal)
+\begin{DoxyCompactList}\small\item\em This signal is emitted when the. \end{DoxyCompactList}\item 
+\hypertarget{classChannelLayoutAdvanced_a30fa307005ac38bb11ad3829decc335c}{void {\bfseries stop\+Checking\+Impedance\+Requested} ()}\label{classChannelLayoutAdvanced_a30fa307005ac38bb11ad3829decc335c}
+
+\item 
+void \hyperlink{classChannelLayoutAdvanced_a4b26746769cd4eeeb22c9f7004e4b657}{connect\+To\+B\+I\+A\+S\+Toggled} (int channel, bool status)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classChannelLayoutAdvanced_a47fca52a45fbbd3584e6e3ee1f4fdcdb}{Channel\+Layout\+Advanced} (Q\+String displayed\+Text, Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Class constructor. It receives the text to be displayed as a title. This method is inherited from Q\+Widget. \end{DoxyCompactList}\item 
+\hypertarget{classChannelLayoutAdvanced_a81ecdc295cd9d4a097d76556442029be}{\hyperlink{classChannelLayoutAdvanced_a81ecdc295cd9d4a097d76556442029be}{$\sim$\+Channel\+Layout\+Advanced} ()}\label{classChannelLayoutAdvanced_a81ecdc295cd9d4a097d76556442029be}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. You should call delete on this object before you delete the parent (or containing) Qwidget. \end{DoxyCompactList}\item 
+void \hyperlink{classChannelLayoutAdvanced_afa83505f555a87d3e0ebf4e7d7f1e407}{set\+Channel\+Number} (int number)
+\begin{DoxyCompactList}\small\item\em Sets the channel number for the current channel. This is needed for several control logic algorithms within the class, so you should call this method if possible. \end{DoxyCompactList}\item 
+bool \hyperlink{classChannelLayoutAdvanced_a9481d8caaf83aa07d440cf13941f1198}{is\+Connected\+To\+B\+I\+A\+S} ()
+\begin{DoxyCompactList}\small\item\em Returns true if the channel is connected to B\+I\+A\+S, otherwise returns false. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to B\+I\+A\+S when you set the graphic representation of it as connected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classChannelLayoutAdvanced_a47fca52a45fbbd3584e6e3ee1f4fdcdb}{\index{Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}!Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}}
+\index{Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}!Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}}
+\subsubsection[{Channel\+Layout\+Advanced}]{\setlength{\rightskip}{0pt plus 5cm}Channel\+Layout\+Advanced\+::\+Channel\+Layout\+Advanced (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{displayed\+Text, }
+\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{classChannelLayoutAdvanced_a47fca52a45fbbd3584e6e3ee1f4fdcdb}
+
+
+Class constructor. It receives the text to be displayed as a title. This method is inherited from Q\+Widget. 
+
+A basic configuration example could be\+: 
+\begin{DoxyCode}
+QVBoxLayout *channelsConfigurationBoxLayout;
+\hyperlink{classChannelLayoutAdvanced}{ChannelLayoutAdvanced} *channel1;
+
+channelsConfigurationBoxLayout = \textcolor{keyword}{new} QVBoxLayout(\textcolor{keyword}{this});
+channel1 = \textcolor{keyword}{new} \hyperlink{classChannelLayout}{ChannelLayout}(\textcolor{stringliteral}{"<u>Channel "} + QString::number(1) + \textcolor{stringliteral}{"</u>"});
+
+channel1->\hyperlink{classChannelLayoutAdvanced_afa83505f555a87d3e0ebf4e7d7f1e407}{setChannelNumber}(0);                  \textcolor{comment}{// First Channel.}
+
+channelsConfigurationBoxLayout->addWidget(channel1);
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em displayed\+Text} & The text to be displayed as a title for the channel. Could be the channel name. \\
+\hline
+{\em parent} & The Q\+Widget that contains this object. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classChannelLayoutAdvanced_a4b26746769cd4eeeb22c9f7004e4b657}{\index{Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}!connect\+To\+B\+I\+A\+S\+Toggled@{connect\+To\+B\+I\+A\+S\+Toggled}}
+\index{connect\+To\+B\+I\+A\+S\+Toggled@{connect\+To\+B\+I\+A\+S\+Toggled}!Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}}
+\subsubsection[{connect\+To\+B\+I\+A\+S\+Toggled}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+Advanced\+::connect\+To\+B\+I\+A\+S\+Toggled (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{bool}]{status}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classChannelLayoutAdvanced_a4b26746769cd4eeeb22c9f7004e4b657}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+{\em status} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayoutAdvanced_a9481d8caaf83aa07d440cf13941f1198}{\index{Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}!is\+Connected\+To\+B\+I\+A\+S@{is\+Connected\+To\+B\+I\+A\+S}}
+\index{is\+Connected\+To\+B\+I\+A\+S@{is\+Connected\+To\+B\+I\+A\+S}!Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}}
+\subsubsection[{is\+Connected\+To\+B\+I\+A\+S}]{\setlength{\rightskip}{0pt plus 5cm}bool Channel\+Layout\+Advanced\+::is\+Connected\+To\+B\+I\+A\+S (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classChannelLayoutAdvanced_a9481d8caaf83aa07d440cf13941f1198}
+
+
+Returns true if the channel is connected to B\+I\+A\+S, otherwise returns false. This is from a graphic point of view; you should add the proper logic to ensure that the channel is actually connected to B\+I\+A\+S when you set the graphic representation of it as connected. 
+
+See also \hyperlink{classChannelLayoutAdvanced_a283b1c5b0870dd9949f864b9fcd73000}{set\+Connected\+To\+B\+I\+A\+S(bool set)}, \hyperlink{classChannelLayoutAdvanced_a4b26746769cd4eeeb22c9f7004e4b657}{connect\+To\+B\+I\+A\+S\+Toggled(int channel, bool status)}
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classChannelLayoutAdvanced_afa83505f555a87d3e0ebf4e7d7f1e407}{\index{Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}!set\+Channel\+Number@{set\+Channel\+Number}}
+\index{set\+Channel\+Number@{set\+Channel\+Number}!Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}}
+\subsubsection[{set\+Channel\+Number}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+Advanced\+::set\+Channel\+Number (
+\begin{DoxyParamCaption}
+\item[{int}]{number}
+\end{DoxyParamCaption}
+)}}\label{classChannelLayoutAdvanced_afa83505f555a87d3e0ebf4e7d7f1e407}
+
+
+Sets the channel number for the current channel. This is needed for several control logic algorithms within the class, so you should call this method if possible. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & The identification number of the channel, in case you have more than one channel. Defaults to 0. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayoutAdvanced_a283b1c5b0870dd9949f864b9fcd73000}{\index{Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}!set\+Connected\+To\+B\+I\+A\+S@{set\+Connected\+To\+B\+I\+A\+S}}
+\index{set\+Connected\+To\+B\+I\+A\+S@{set\+Connected\+To\+B\+I\+A\+S}!Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}}
+\subsubsection[{set\+Connected\+To\+B\+I\+A\+S}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+Advanced\+::set\+Connected\+To\+B\+I\+A\+S (
+\begin{DoxyParamCaption}
+\item[{bool}]{set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classChannelLayoutAdvanced_a283b1c5b0870dd9949f864b9fcd73000}
+
+\begin{DoxyParams}{Parameters}
+{\em set} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayoutAdvanced_a91b635650fbb638df5b460de69560eb3}{\index{Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}!start\+Checking\+Impedance\+Requested@{start\+Checking\+Impedance\+Requested}}
+\index{start\+Checking\+Impedance\+Requested@{start\+Checking\+Impedance\+Requested}!Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}}
+\subsubsection[{start\+Checking\+Impedance\+Requested}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+Advanced\+::start\+Checking\+Impedance\+Requested (
+\begin{DoxyParamCaption}
+\item[{int}]{channel, }
+\item[{System\+::\+Channel\+Terminal}]{terminal}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classChannelLayoutAdvanced_a91b635650fbb638df5b460de69560eb3}
+
+
+This signal is emitted when the. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & \\
+\hline
+{\em terminal} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classChannelLayoutAdvanced_ad48eeec3ecdc2f9ce95eee211fc39ba7}{\index{Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}!update\+Impedance\+Value@{update\+Impedance\+Value}}
+\index{update\+Impedance\+Value@{update\+Impedance\+Value}!Channel\+Layout\+Advanced@{Channel\+Layout\+Advanced}}
+\subsubsection[{update\+Impedance\+Value}]{\setlength{\rightskip}{0pt plus 5cm}void Channel\+Layout\+Advanced\+::update\+Impedance\+Value (
+\begin{DoxyParamCaption}
+\item[{int}]{channel\+Number, }
+\item[{System\+::\+Channel\+Terminal}]{terminal, }
+\item[{double}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classChannelLayoutAdvanced_ad48eeec3ecdc2f9ce95eee211fc39ba7}
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Number} & \\
+\hline
+{\em terminal} & \\
+\hline
+{\em value} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+channellayoutadvanced.\+h\item 
+channellayoutadvanced.\+cpp\end{DoxyCompactItemize}

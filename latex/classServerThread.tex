@@ -1,0 +1,142 @@
+\hypertarget{classServerThread}{\section{Server\+Thread Class Reference}
+\label{classServerThread}\index{Server\+Thread@{Server\+Thread}}
+}
+
+
+Inheritance diagram for Server\+Thread\+:
+
+
+Collaboration diagram for Server\+Thread\+:
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classServerThread_a5a2fd84aec757a4475d9bb26ea53e896}{set\+Baud\+Rate} (long baud\+Rate)
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classServerThread_af556f75e493771e636ffb39d5c7fcc6c}{data\+Received} (Q\+Byte\+Array data)
+\item 
+\hypertarget{classServerThread_ada857cd9723bf0b135b7e03bef2bb1f5}{void {\bfseries port\+Opened} ()}\label{classServerThread_ada857cd9723bf0b135b7e03bef2bb1f5}
+
+\item 
+\hypertarget{classServerThread_a500d464163002ba2c87670af08ecbd40}{void {\bfseries port\+Closed} ()}\label{classServerThread_a500d464163002ba2c87670af08ecbd40}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classServerThread_a552106ab27d9cff73b7ed8bb28b63171}{Server\+Thread} (Q\+Object $\ast$parent=0)
+\item 
+bool \hyperlink{classServerThread_a9cdcb660181ea510dd011e709abeb130}{start\+Port} (Q\+String port\+Name)
+\item 
+\hypertarget{classServerThread_a030b9a76d680d92bcab92bebf8ac3ed8}{void {\bfseries stop\+Port} ()}\label{classServerThread_a030b9a76d680d92bcab92bebf8ac3ed8}
+
+\item 
+bool \hyperlink{classServerThread_ae4a93a55ae78933c32d2c56c8d7faac0}{port\+Is\+Active} ()
+\item 
+void \hyperlink{classServerThread_acafe1f651556eddc49b97b40b9d526f0}{write} (Q\+Byte\+Array data)
+\item 
+Q\+List$<$ Q\+String $>$ \hyperlink{classServerThread_a8647882b35b461817de51025bd97b5b9}{available\+Ports} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classServerThread_ac2e96a0d05bc1f9eb7f1c36deb45a9f3}{void {\bfseries run} () override}\label{classServerThread_ac2e96a0d05bc1f9eb7f1c36deb45a9f3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classServerThread_a552106ab27d9cff73b7ed8bb28b63171}{\index{Server\+Thread@{Server\+Thread}!Server\+Thread@{Server\+Thread}}
+\index{Server\+Thread@{Server\+Thread}!Server\+Thread@{Server\+Thread}}
+\subsubsection[{Server\+Thread}]{\setlength{\rightskip}{0pt plus 5cm}Server\+Thread\+::\+Server\+Thread (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{classServerThread_a552106ab27d9cff73b7ed8bb28b63171}
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classServerThread_a8647882b35b461817de51025bd97b5b9}{\index{Server\+Thread@{Server\+Thread}!available\+Ports@{available\+Ports}}
+\index{available\+Ports@{available\+Ports}!Server\+Thread@{Server\+Thread}}
+\subsubsection[{available\+Ports}]{\setlength{\rightskip}{0pt plus 5cm}Q\+List$<$ Q\+String $>$ Server\+Thread\+::available\+Ports (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classServerThread_a8647882b35b461817de51025bd97b5b9}
+\begin{DoxyReturn}{Returns}
+Q\+List$<$\+Q\+String$>$ 
+\end{DoxyReturn}
+\hypertarget{classServerThread_af556f75e493771e636ffb39d5c7fcc6c}{\index{Server\+Thread@{Server\+Thread}!data\+Received@{data\+Received}}
+\index{data\+Received@{data\+Received}!Server\+Thread@{Server\+Thread}}
+\subsubsection[{data\+Received}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+Thread\+::data\+Received (
+\begin{DoxyParamCaption}
+\item[{Q\+Byte\+Array}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{classServerThread_af556f75e493771e636ffb39d5c7fcc6c}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classServerThread_ae4a93a55ae78933c32d2c56c8d7faac0}{\index{Server\+Thread@{Server\+Thread}!port\+Is\+Active@{port\+Is\+Active}}
+\index{port\+Is\+Active@{port\+Is\+Active}!Server\+Thread@{Server\+Thread}}
+\subsubsection[{port\+Is\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Server\+Thread\+::port\+Is\+Active (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classServerThread_ae4a93a55ae78933c32d2c56c8d7faac0}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classServerThread_a5a2fd84aec757a4475d9bb26ea53e896}{\index{Server\+Thread@{Server\+Thread}!set\+Baud\+Rate@{set\+Baud\+Rate}}
+\index{set\+Baud\+Rate@{set\+Baud\+Rate}!Server\+Thread@{Server\+Thread}}
+\subsubsection[{set\+Baud\+Rate}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+Thread\+::set\+Baud\+Rate (
+\begin{DoxyParamCaption}
+\item[{long}]{baud\+Rate}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{classServerThread_a5a2fd84aec757a4475d9bb26ea53e896}
+
+\begin{DoxyParams}{Parameters}
+{\em baud\+Rate} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classServerThread_a9cdcb660181ea510dd011e709abeb130}{\index{Server\+Thread@{Server\+Thread}!start\+Port@{start\+Port}}
+\index{start\+Port@{start\+Port}!Server\+Thread@{Server\+Thread}}
+\subsubsection[{start\+Port}]{\setlength{\rightskip}{0pt plus 5cm}bool Server\+Thread\+::start\+Port (
+\begin{DoxyParamCaption}
+\item[{Q\+String}]{port\+Name}
+\end{DoxyParamCaption}
+)}}\label{classServerThread_a9cdcb660181ea510dd011e709abeb130}
+
+\begin{DoxyParams}{Parameters}
+{\em port\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classServerThread_acafe1f651556eddc49b97b40b9d526f0}{\index{Server\+Thread@{Server\+Thread}!write@{write}}
+\index{write@{write}!Server\+Thread@{Server\+Thread}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}void Server\+Thread\+::write (
+\begin{DoxyParamCaption}
+\item[{Q\+Byte\+Array}]{data}
+\end{DoxyParamCaption}
+)}}\label{classServerThread_acafe1f651556eddc49b97b40b9d526f0}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+serverthread.\+h\item 
+serverthread.\+cpp\end{DoxyCompactItemize}
