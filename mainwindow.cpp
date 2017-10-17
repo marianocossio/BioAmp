@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     availablePorts = new QActionGroup(this);
     operationModes = new QActionGroup(this);
 
-    guideImageDialog = new QDialog();
+    guideImageDialog = new QWidget();
     guideImageLabel = new QLabel(guideImageDialog);
 
     connectionLostDialog = new ConnectionLostDialog(this);
@@ -73,7 +73,8 @@ MainWindow::MainWindow(QWidget *parent) :
     guideImageLabel->setPixmap(QPixmap(":/connection_guide/BioAmpFE.png"));
     guideImageLabel->adjustSize();
     guideImageDialog->adjustSize();
-    guideImageDialog->setWindowFlags(Qt::WindowTitleHint);
+    guideImageDialog->setFixedSize(guideImageDialog->size());
+    guideImageDialog->setWindowFlags(Qt::Dialog);
 
     channelsConfigurationBox->setLayout(channelsConfigurationBoxLayout);
     ui->channelsLayout->setWidget(channelsConfigurationBox);

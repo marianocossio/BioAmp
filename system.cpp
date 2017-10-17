@@ -7,7 +7,7 @@ System::System(QObject *parent) : QObject(parent)
 
     channelGains.resize(8);
 
-    for (unsigned channel; channel < channelGains.size(); channel++)
+    for (unsigned channel = 0; channel < channelGains.size(); channel++)
         channelGains[channel] = 24;
 
     cascadeMode = false;
@@ -181,7 +181,7 @@ void System::setChannelConnectionType(int channel, ConnectionType type)
 
 void System::setChannelGain(int channel, int gain)
 {
-    int realGain;
+    int realGain = 1;
 
     channelConfigurationCommands[channel][3] = QByteArray::number(gain)[0];
     commandsBuffer.push_back(channelConfigurationCommands[channel]);
